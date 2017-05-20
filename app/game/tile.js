@@ -52,11 +52,12 @@ export class Tile{
 	}
 	
 	// User clicks on the tile
-	select(player){
-		
+	select(){
 		if(!this.game.gameActive || !this.game.turn){
 			return false;
 		}
+		console.log(this);
+		let player = this.game.activePlayer;
 		
 		if(!this.empty() && this.piece.color == player.color){
 			// Chooses the tile, if it's the player's

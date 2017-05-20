@@ -4,7 +4,9 @@ import { StyleSheet, View, TouchableHighlight } from 'react-native';
 export class BoardTile extends Component {
   render() {
     return (
-      <TouchableHighlight style={[styles.tile, {backgroundColor: this.props.color}]}><View></View></TouchableHighlight>
+      <TouchableHighlight onPress={this.props.onPress} style={[styles.tile, {backgroundColor: this.props.color}]}>
+        <View></View>
+      </TouchableHighlight>
     );
   }
 }

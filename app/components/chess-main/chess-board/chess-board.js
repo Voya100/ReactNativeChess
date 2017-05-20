@@ -43,7 +43,7 @@ export class ChessBoard extends Component {
 
   renderTile(tile, index){
     let color = this.tileColor(tile);
-    return <BoardTile color={color} onPress={tile.select} key={index}/>;
+    return <BoardTile color={color} onPress={() => tile.select()} key={index}/>;
   }
 
 }

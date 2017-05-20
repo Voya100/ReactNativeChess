@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet,  View, Dimensions } from 'react-native';
+import { StyleSheet,  View } from 'react-native';
 
 import { ChessHeader } from './components/chess-header/chess-header';
 import { ChessMain } from './components/chess-main/chess-main';
