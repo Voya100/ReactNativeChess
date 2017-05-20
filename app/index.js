@@ -1,45 +1,31 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { StyleSheet,  View } from 'react-native';
+
+import { ChessHeader } from './components/chess-header/chess-header';
+import { ChessMain } from './components/chess-main/chess-main';
+import { ChessFooter } from './components/chess-footer/chess-footer';
 
 export default class ReactNativeChess extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native2!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+      <View>
+        <ChessHeader style={styles.header}></ChessHeader>
+        <ChessMain></ChessMain>
+        <ChessFooter style={styles.footer}></ChessFooter>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  header: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
+  footer: {
     margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    flex: 1
+  }
 });
