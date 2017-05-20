@@ -5,24 +5,24 @@ import { ChessHeader } from './components/chess-header/chess-header';
 import { ChessMain } from './components/chess-main/chess-main';
 import { ChessFooter } from './components/chess-footer/chess-footer';
 
+import { ChessGame } from './game/chess-game';
+import { ChessSettings } from './game/chess-settings';
+
 export default class ReactNativeChess extends Component {
 
   constructor(){
     super();
+    this.settings = new ChessSettings();
+    this.game = new ChessGame(this.settings);
+    this.game.reset();
   }
 
   render() {
-    let boardSize = Dimensions.get('window').width;
-    let mainStyle = {
-      width: boardSize,
-      height: boardSize,
-      backgroundColor: 'black'
-    }
 
     return (
       <View style={[styles.container]}>
         <ChessHeader style={styles.header}></ChessHeader>
-        <ChessMain style={mainStyle}></ChessMain>
+        <ChessMain tiles={this.game.board} pieces={this.game.pieces}></ChessMain>
         <ChessFooter style={styles.footer}></ChessFooter>
       </View>
     );
@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1,
     justifyContent: 'center',
-    margin: 10,
+    margin: 10
   }
 });

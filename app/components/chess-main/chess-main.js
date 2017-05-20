@@ -1,20 +1,33 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 
-import { ChessText } from '../shared/chess-text';
+import { ChessBoard } from './chess-board/chess-board'
+
+
+const border = 3;
+const margin = 2;
 
 export class ChessMain extends Component {
   render() {
+    let fullBoardSize = Dimensions.get('window').width - 2*margin;
+    let mainStyle = {
+      width: fullBoardSize,
+      height: fullBoardSize
+    }
+    // Without border
+    let boardSize = fullBoardSize - 2*border;
+    let tileSize = boardSize / 8;
     return (
-      <View style={this.props.style}>
-        <ChessText>
-          Board
-        </ChessText>
+      <View style={[styles.main, mainStyle]}>
+          <ChessBoard tiles={this.props.tiles} pieces={this.props.pieces} tileSize={tileSize}></ChessBoard>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-
+  main: {
+    borderWidth: border,
+    margin: margin
+  }
 });
