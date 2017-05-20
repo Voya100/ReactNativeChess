@@ -19,7 +19,7 @@ export class ChessMain extends Component {
     let tileSize = boardSize / 8;
     return (
       <View style={[styles.main, mainStyle]}>
-          <ChessBoard tiles={this.props.tiles} pieces={this.props.pieces} tileSize={tileSize}></ChessBoard>
+          <ChessBoard game={this.props.game} tiles={this.props.tiles} pieces={this.props.pieces} tileSize={tileSize}></ChessBoard>
       </View>
     );
   }
@@ -28,6 +28,7 @@ export class ChessMain extends Component {
 const styles = StyleSheet.create({
   main: {
     borderWidth: border,
-    margin: margin
+    margin: margin,
+    position: 'relative'
   }
 });

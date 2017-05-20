@@ -22,7 +22,7 @@ export default class ReactNativeChess extends Component {
     return (
       <View style={[styles.container]}>
         <ChessHeader style={styles.header}></ChessHeader>
-        <ChessMain tiles={this.game.board} pieces={this.game.pieces}></ChessMain>
+        <ChessMain game={this.game} tiles={this.game.board} pieces={[...this.game.white.pieces, ...this.game.black.pieces]}></ChessMain>
         <ChessFooter style={styles.footer}></ChessFooter>
       </View>
     );

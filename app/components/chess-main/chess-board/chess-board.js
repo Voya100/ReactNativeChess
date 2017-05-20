@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { BoardTile } from './board-tile/board-tile'
+import { BoardTile } from './board-tile';
+import { BoardPiece } from './board-piece';
 
 const whiteTileColor = "#e6cfaf";
 const blackTileColor = "#9b7b40";
@@ -31,9 +32,14 @@ export class ChessBoard extends Component {
   render() {
     return (
         <View style={this.props.style}>
-          {this.props.tiles.map((tileRow, i) => this.renderRow(tileRow, i))}
+          {this.renderBoard()}
+          {this.renderPieces()}
         </View>
     );
+  }
+
+  renderBoard(){
+    return this.props.tiles.map((tileRow, i) => this.renderRow(tileRow, i));
   }
 
   renderRow(tileRow, index){
@@ -43,7 +49,20 @@ export class ChessBoard extends Component {
 
   renderTile(tile, index){
     let color = this.tileColor(tile);
-    return <BoardTile color={color} onPress={() => tile.select()} key={index}/>;
+    return <BoardTile color={color} onPress={() => this.selectTile(tile)} key={index}/>;
+  }
+
+  renderPieces(){
+    return this.props.pieces.map((piece, i) => {
+      return <BoardPiece x={piece.x()} y={piece.y()} color={piece.color} type={piece.type} boardReversed={false} tileSize={this.props.tileSize} 
+                         key={i} onPress={() => this.selectTile(piece.tile)} />
+    })
+  }
+
+  selectTile(tile){
+    if(!this.props.game.gamePaused && this.game.activePlayer instanceof HumanPlayer){
+      tile.select();
+    }
   }
 
 }
