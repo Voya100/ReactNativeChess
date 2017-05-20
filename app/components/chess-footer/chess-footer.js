@@ -6,7 +6,7 @@ import { ChessText } from '../shared/chess-text';
 export class ChessFooter extends Component {
   render() {
     return (
-      <View>
+      <View style={this.props.style}>
         <ChessText>
           Footer
         </ChessText>

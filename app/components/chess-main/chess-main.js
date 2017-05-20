@@ -6,7 +6,7 @@ import { ChessText } from '../shared/chess-text';
 export class ChessMain extends Component {
   render() {
     return (
-      <View>
+      <View style={this.props.style}>
         <ChessText>
           Board
         </ChessText>
