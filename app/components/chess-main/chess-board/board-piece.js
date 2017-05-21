@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
-import { Image, TouchableHighlight } from 'react-native';
+import { Image, TouchableHighlight, LayoutAnimation } from 'react-native';
 import { chessImages } from '../../../images/images'
 
 export class BoardPiece extends Component {
+
+
+  shouldComponentUpdate(nextProps){
+    return nextProps.piece !== this.props.piece || nextProps.boardReversed !== this.props.boardReversed;
+  }
+
+  componentWillUpdate() { 
+    LayoutAnimation.linear();
+  }
+
   render() {
     let size = {
       height: this.props.tileSize,
@@ -14,7 +24,6 @@ export class BoardPiece extends Component {
       top: this.pieceTopLocation(),
       zIndex: 2
     };
-
     return (
       <TouchableHighlight onPress={this.props.onPress} style={[size, position]}>
         <Image style={size} source={this.image()}/>
@@ -23,26 +32,24 @@ export class BoardPiece extends Component {
   }
 
   pieceTopLocation(){
-    console.log(this.props.tileSize);
     if(!this.props.boardReversed){
-      return this.props.y * this.props.tileSize;
+      return this.props.piece.tile.y * this.props.tileSize;
     }else{
-      return this.props.x * this.props.tileSize;
+      return this.props.piece.tile.x * this.props.tileSize;
     }
   }
   
   pieceLeftLocation(){
     if(!this.props.boardReversed){
-      console.log(this.props.x, this.props)
-      return this.props.x * this.props.tileSize;
+      return this.props.piece.tile.x * this.props.tileSize;
     }else{
       let maxIndex = 7;
-      return (maxIndex -this.props.y) * this.props.tileSize;
+      return (maxIndex -this.props.piece.tile.y) * this.props.tileSize;
     }
   }
   
   image(){
-    return chessImages[this.props.color + '-' + this.props.type];
+    return chessImages[this.props.piece.color + '-' + this.props.piece.type];
   }
 
 }

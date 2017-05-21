@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Reflux from 'reflux';
 import { View, StyleSheet } from 'react-native';
 
 import { BoardTile } from './board-tile';
 import { BoardPiece } from './board-piece';
+
+import { HumanPlayer } from '../../../players/human-player';
+import { PieceStore } from '../../../stores/piece-store';
 
 const whiteTileColor = "#e6cfaf";
 const blackTileColor = "#9b7b40";
@@ -10,14 +14,18 @@ const highlightTileColor = "orange";
 const movableTileColor = "yellow";
 const enemyTileColor = "rgb(189, 104, 53)";
 
-export class ChessBoard extends Component {
+export class ChessBoard extends Reflux.Component {
 
+  constructor(){
+    super();
+    this.store = PieceStore;
+  }
 
   // Returns color of the tile in tilePosition
   tileColor(tile){
      
     if(tile.highlighted()){
-        return highlightTileColor;
+      return highlightTileColor;
     }else if(tile.markedMovable()){
       if(tile.empty()){
         return movableTileColor;
@@ -30,6 +38,7 @@ export class ChessBoard extends Component {
   }
 
   render() {
+    console.log("render");
     return (
         <View style={this.props.style}>
           {this.renderBoard()}
@@ -53,14 +62,16 @@ export class ChessBoard extends Component {
   }
 
   renderPieces(){
-    return this.props.pieces.map((piece, i) => {
-      return <BoardPiece x={piece.x()} y={piece.y()} color={piece.color} type={piece.type} boardReversed={false} tileSize={this.props.tileSize} 
-                         key={i} onPress={() => this.selectTile(piece.tile)} />
+    console.log("Render begin")
+    return this.state.pieceIds.map((pieceId) => {
+      let piece = this.state.pieces[pieceId];
+      return <BoardPiece piece={piece} boardReversed={false} tileSize={this.props.tileSize} 
+                         key={pieceId} onPress={() => this.selectTile(piece.tile)} />
     })
   }
 
   selectTile(tile){
-    if(!this.props.game.gamePaused && this.game.activePlayer instanceof HumanPlayer){
+    if(!this.props.game.gamePaused && this.props.game.activePlayer instanceof HumanPlayer){
       tile.select();
     }
   }
