@@ -1,5 +1,7 @@
 import * as _ from 'underscore';
 
+import { BoardActions } from '../stores/board-store';
+
 export class Tile{
 
 	static highligtedTile = null;
@@ -56,7 +58,6 @@ export class Tile{
 		if(!this.game.gameActive || !this.game.turn){
 			return false;
 		}
-		console.log(this);
 		let player = this.game.activePlayer;
 		
 		if(!this.empty() && this.piece.color == player.color){
@@ -94,14 +95,17 @@ export class Tile{
 		if(clickedTile){
 			Tile.highligtedTile = this;
 			Tile.highlightedMovableTiles = [];
+			BoardActions.updateAllTiles();
 		}else{
 			Tile.highlightedMovableTiles.push(this);
+			BoardActions.updateTile(this);
 		}
 	}
 
 	clearHighlights(){
-			Tile.highligtedTile = null;
-			Tile.highlightedMovableTiles = [];
+		Tile.highligtedTile = null;
+		Tile.highlightedMovableTiles = [];
+		BoardActions.updateAllTiles();
 	}
 
 	highlighted(){

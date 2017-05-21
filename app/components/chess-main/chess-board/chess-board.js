@@ -7,34 +7,13 @@ import { BoardPiece } from './board-piece';
 
 import { HumanPlayer } from '../../../players/human-player';
 import { PieceStore } from '../../../stores/piece-store';
-
-const whiteTileColor = "#e6cfaf";
-const blackTileColor = "#9b7b40";
-const highlightTileColor = "orange";
-const movableTileColor = "yellow";
-const enemyTileColor = "rgb(189, 104, 53)";
+import { BoardStore } from '../../../stores/board-store';
 
 export class ChessBoard extends Reflux.Component {
 
   constructor(){
     super();
-    this.store = PieceStore;
-  }
-
-  // Returns color of the tile in tilePosition
-  tileColor(tile){
-     
-    if(tile.highlighted()){
-      return highlightTileColor;
-    }else if(tile.markedMovable()){
-      if(tile.empty()){
-        return movableTileColor;
-      }else{
-        return enemyTileColor;
-      }
-    }else{
-        return (tile.x + tile.y) % 2 == 0 ? blackTileColor : whiteTileColor;
-    }
+    this.stores = [PieceStore, BoardStore];
   }
 
   render() {
@@ -48,7 +27,7 @@ export class ChessBoard extends Reflux.Component {
   }
 
   renderBoard(){
-    return this.props.tiles.map((tileRow, i) => this.renderRow(tileRow, i));
+    return this.state.board.map((tileRow, i) => this.renderRow(tileRow, i));
   }
 
   renderRow(tileRow, index){
@@ -56,16 +35,15 @@ export class ChessBoard extends Reflux.Component {
     return <View style={[styles.row, {height: this.props.tileSize}]} key={index}>{jsxRow}</View>;
   }
 
-  renderTile(tile, index){
-    let color = this.tileColor(tile);
-    return <BoardTile color={color} onPress={() => this.selectTile(tile)} key={index}/>;
+  renderTile(tileData, index){
+    return <BoardTile color={tileData.color} tile={tileData.tile} onPress={() => this.selectTile(tileData.tile)} key={index}/>;
   }
 
   renderPieces(){
     console.log("Render begin")
     return this.state.pieceIds.map((pieceId) => {
       let piece = this.state.pieces[pieceId];
-      return <BoardPiece piece={piece} boardReversed={false} tileSize={this.props.tileSize} 
+      return <BoardPiece piece={piece} boardReversed={this.state.reversed} tileSize={this.props.tileSize} 
                          key={pieceId} onPress={() => this.selectTile(piece.tile)} />
     })
   }

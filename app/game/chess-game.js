@@ -9,6 +9,7 @@ import { HumanPlayer } from '../players/human-player';
 import { ComputerPlayer } from '../players/computer-player';
 
 import { PieceActions } from '../stores/piece-store';
+import { BoardActions } from '../stores/board-store';
 
 export class ChessGame {
   
@@ -70,6 +71,7 @@ export class ChessGame {
 				this.board[j][i] = new Tile(i,j,this);
 			}
 		}
+		BoardActions.setBoard(this.board);
 	}
 	
 	addPieces(){

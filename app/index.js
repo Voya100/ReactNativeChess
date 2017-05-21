@@ -9,14 +9,15 @@ import { ChessFooter } from './components/chess-footer/chess-footer';
 import { ChessGame } from './game/chess-game';
 import { ChessSettings } from './game/chess-settings';
 
-
 import { PieceStore } from './stores/piece-store';
+import { BoardStore } from './stores/board-store';
 
 export default class ReactNativeChess extends Component {
 
   constructor(){
     super();
     Reflux.initStore(PieceStore);
+    Reflux.initStore(BoardStore);
     this.settings = new ChessSettings();
     this.game = new ChessGame(this.settings);
     this.game.reset();
