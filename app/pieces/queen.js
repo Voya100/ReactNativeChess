@@ -6,7 +6,7 @@ export class Queen extends Piece{
   value = 7;
 
   constructor(player, tile){
-    super(player, tile);
+    super("queen", player, tile);
   }
 	
   tileCheck(){

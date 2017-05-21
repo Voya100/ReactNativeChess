@@ -6,7 +6,7 @@ export class Bishop extends Piece{
   value = 5;
 
   constructor(player, tile){
-    super(player, tile);
+    super("bishop", player, tile);
   }
 
   // Moves diagonally

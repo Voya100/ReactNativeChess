@@ -6,7 +6,7 @@ export class Knight extends Piece{
   value = 4;
 
   constructor(player, tile){
-    super(player, tile);
+    super("knight", player, tile);
   }
   
   tileCheck(){

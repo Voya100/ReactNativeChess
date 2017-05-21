@@ -8,6 +8,7 @@ import { Rook } from '../pieces/rook';
 import { HumanPlayer } from '../players/human-player';
 import { ComputerPlayer } from '../players/computer-player';
 
+import { PieceActions } from '../stores/piece-store';
 
 export class ChessGame {
   
@@ -33,6 +34,7 @@ export class ChessGame {
 		this.gameId++;
 		
 		this.board = [];
+		PieceActions.clearPieces();
 		
 		this.white = this.settings.whiteComputer ? new ComputerPlayer("white", this) : new HumanPlayer("white", this);
 		this.black = this.settings.blackComputer ? new ComputerPlayer("black", this) : new HumanPlayer("black", this);

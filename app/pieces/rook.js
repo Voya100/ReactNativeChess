@@ -7,7 +7,7 @@ export class Rook extends Piece{
 	hasMoved = false;
 
   constructor(player, tile){
-    super(player, tile);
+    super("rook", player, tile);
   }
 
 	move(x, y, changeTurn = true){

@@ -8,7 +8,7 @@ export class King extends Piece{
 	hasMoved = false;
 
   constructor(player, tile){
-    super(player, tile);
+    super("king", player, tile);
   }
 
 	move(x, y){

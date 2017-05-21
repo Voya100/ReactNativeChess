@@ -1,7 +1,13 @@
 import * as _ from 'underscore';
 
+import { PieceActions } from '../stores/piece-store';
+
 // Abstract class
 export class Piece{
+
+	static id = 0;
+
+	id;
 	color;
   white;
 	tile;
@@ -22,7 +28,8 @@ export class Piece{
 	type;
 
 
-  constructor(player, tile){
+  constructor(typeName, player, tile){
+		this.id = Piece.id++;
     this.color = player.color;
     this.white = this.color == "white";
     this.tile = tile;
@@ -31,6 +38,7 @@ export class Piece{
 		this.moveTiles = []; 
 		this.hitTiles = []; 
 		this.protectsKing = false;
+		PieceActions.addPiece(this.id, typeName, player.color, tile);
 	}
 
 		
@@ -59,6 +67,7 @@ export class Piece{
 			this.tile.piece.die();
 		}
 		this.tile.piece = this;
+		PieceActions.movePiece(this.id, this.tile);
 		let gameId = this.player.game.gameId;
 		if(changeTurn){
 			setTimeout(() => this.player.game.changeTurn(gameId), 650);
@@ -127,6 +136,7 @@ export class Piece{
 		this.player.pieces = _.without(this.player.pieces, this);
 		this.player[this.type + "s"] = _.without(this.player[this.type + "s"], this);
 		this.dead = true;
+		PieceActions.removePiece(this.id);
 		// Check if the game has ended
 		if(this.type == "king" && this.player.kingCount() == 0){
 			this.player.game.gameOver(this.player);

@@ -12,7 +12,7 @@ export class Pawn extends Piece{
 	enPassantRound;
 
   constructor(player, tile){
-    super(player, tile);
+    super("pawn", player, tile);
     this.xStart = tile.x;
     this.yStart = tile.y;
 		this.yDir = this.white ? -1 : 1;
