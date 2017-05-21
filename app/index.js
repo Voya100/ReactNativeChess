@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Reflux from 'reflux';
 import { StyleSheet,  View } from 'react-native';
 
 import { ChessHeader } from './components/chess-header/chess-header';
@@ -8,10 +9,14 @@ import { ChessFooter } from './components/chess-footer/chess-footer';
 import { ChessGame } from './game/chess-game';
 import { ChessSettings } from './game/chess-settings';
 
+
+import { PieceStore } from './stores/piece-store';
+
 export default class ReactNativeChess extends Component {
 
   constructor(){
     super();
+    Reflux.initStore(PieceStore);
     this.settings = new ChessSettings();
     this.game = new ChessGame(this.settings);
     this.game.reset();
