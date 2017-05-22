@@ -4,7 +4,7 @@ import { Text, StyleSheet } from 'react-native';
 export class ChessText extends Component {
   render() {
     return (
-        <Text style={styles.text}>
+        <Text style={[styles.text, this.props.style]}>
           {this.props.children}
         </Text>
     );
@@ -13,6 +13,6 @@ export class ChessText extends Component {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 20
+    fontSize: 16
   }
 });
