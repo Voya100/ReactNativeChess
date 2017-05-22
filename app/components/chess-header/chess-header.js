@@ -14,9 +14,9 @@ export class ChessHeader extends Reflux.Component {
     this.stores = [PieceStore, RoundStateStore];
   }
 
-  render() {
-    let whiteCount = this.state.pieceIds.map((id) => this.state.pieces[id]).filter((piece) => piece.color == 'white').length;
-    let blackCount = this.state.pieceIds.length - whiteCount;
+  render(){
+    let whiteCount = this.state.pieceLocations.filter(({piece}) => piece.color == 'white').length;
+    let blackCount = this.state.pieceLocations.length - whiteCount;
     let currentColor = this.capitalize(this.state.activePlayerColor);
 
     return (

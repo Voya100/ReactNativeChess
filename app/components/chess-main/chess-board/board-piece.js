@@ -4,9 +4,8 @@ import { chessImages } from '../../../images/images'
 
 export class BoardPiece extends Component {
 
-
   shouldComponentUpdate(nextProps){
-    return nextProps.piece !== this.props.piece || nextProps.boardReversed !== this.props.boardReversed;
+    return nextProps.tile !== this.props.tile || nextProps.boardReversed !== this.props.boardReversed;
   }
 
   componentWillUpdate() { 
@@ -33,18 +32,18 @@ export class BoardPiece extends Component {
 
   pieceTopLocation(){
     if(!this.props.boardReversed){
-      return this.props.piece.tile.y * this.props.tileSize;
+      return this.props.tile.y * this.props.tileSize;
     }else{
-      return this.props.piece.tile.x * this.props.tileSize;
+      return this.props.tile.x * this.props.tileSize;
     }
   }
   
   pieceLeftLocation(){
     if(!this.props.boardReversed){
-      return this.props.piece.tile.x * this.props.tileSize;
+      return this.props.tile.x * this.props.tileSize;
     }else{
       let maxIndex = 7;
-      return (maxIndex -this.props.piece.tile.y) * this.props.tileSize;
+      return (maxIndex -this.props.tile.y) * this.props.tileSize;
     }
   }
   

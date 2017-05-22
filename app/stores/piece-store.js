@@ -7,28 +7,43 @@ export var PieceActions = Reflux.createActions([
   'movePiece'
 ]);
 
+// Contains pieces that are on the board and their locations (tile)
+
 export class PieceStore extends Reflux.Store
 {
     constructor(){
       super();
-      this.state = {pieceIds: [], pieces: {}}; // {id: {type, color, tile}}
+      this.pieceIds = [];
+      this.pieceLocationsMap = {}; // {id: {piece, tile}}
+      this.state = {pieceLocations: []}; 
       this.listenables = PieceActions;
     }
 
     clearPieces(){
-      this.setState({pieceIds: [], pieces: {}});
+      this.pieceIds = [];
+      this.pieceLocationsMap = {};
+      this.setState({pieceIds: [], pieceLocations: {}});
     }
 
-    addPiece(id, type, color, tile){
-      this.setState({pieceIds: [...this.state.pieceIds, id], pieces: { ...this.state.pieces, [id]: {type, color, tile}}});
+    addPiece(piece, tile){
+      let pieceLocation = {piece, tile};
+      this.pieceIds.push(piece.id);
+      this.pieceLocationsMap[piece.id] = pieceLocation;
+      this.setState({pieceLocations: [...this.state.pieceLocations, pieceLocation]});
     }
 
-    removePiece(idToRemove){
-      this.setState({pieceIds: this.state.pieceIds.filter((id) => id !== idToRemove)});
+    removePiece(piece){
+      this.pieceIds = this.pieceIds.filter((id) => id !== piece.id);
+      this.pieceLocationsMap[piece.id] = undefined;
+      this.setState({pieceLocations: this.pieceLocations()});
     }
 
-    movePiece(id, tile){
-      let piece = {...this.state.pieces[id], tile: tile};
-      this.setState({pieces: {...this.state.pieces, [id]: piece}});
+    movePiece(piece, tile){
+      this.pieceLocationsMap[piece.id] = {piece, tile};
+      this.setState({pieceLocations: this.pieceLocations()});
+    }
+
+    pieceLocations(){
+      return this.pieceIds.map(id => this.pieceLocationsMap[id]);
     }
 }

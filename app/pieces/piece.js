@@ -38,7 +38,7 @@ export class Piece{
 		this.moveTiles = []; 
 		this.hitTiles = []; 
 		this.protectsKing = false;
-		PieceActions.addPiece(this.id, typeName, player.color, tile);
+		PieceActions.addPiece(this, tile);
 	}
 
 		
@@ -67,7 +67,7 @@ export class Piece{
 			this.tile.piece.die();
 		}
 		this.tile.piece = this;
-		PieceActions.movePiece(this.id, this.tile);
+		PieceActions.movePiece(this, this.tile);
 		let gameId = this.player.game.gameId;
 		if(changeTurn){
 			setTimeout(() => this.player.game.changeTurn(gameId), 650);
@@ -136,7 +136,7 @@ export class Piece{
 		this.player.pieces = _.without(this.player.pieces, this);
 		this.player[this.type + "s"] = _.without(this.player[this.type + "s"], this);
 		this.dead = true;
-		PieceActions.removePiece(this.id);
+		PieceActions.removePiece(this);
 		// Check if the game has ended
 		if(this.type == "king" && this.player.kingCount() == 0){
 			this.player.game.gameOver(this.player);
