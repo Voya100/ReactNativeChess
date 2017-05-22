@@ -24,11 +24,11 @@ export class PieceStore extends Reflux.Store
     }
 
     removePiece(idToRemove){
-      this.setState({pieceIds: this.state.pieceIds.filter((id) => id !== idToRemove), pieces: this.state.pieces});
+      this.setState({pieceIds: this.state.pieceIds.filter((id) => id !== idToRemove)});
     }
 
     movePiece(id, tile){
       let piece = {...this.state.pieces[id], tile: tile};
-      this.setState({pieceIds: this.state.pieceIds, pieces: {...this.state.pieces, [id]: piece}});
+      this.setState({pieces: {...this.state.pieces, [id]: piece}});
     }
 }

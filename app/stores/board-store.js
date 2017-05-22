@@ -18,16 +18,16 @@ export class BoardStore extends Reflux.Store{
   constructor(){
     super();
     // board[y][x] = {tile, color}
-    this.state = {board: [], reversed: true};
+    this.state = {board: [], reversed: false};
     this.listenables = BoardActions;
   }
 
   clearBoard(){
-    this.setState({board: [], reversed: this.state.reversed});
+    this.setState({board: []});
   }
 
   setReversed(reversed){
-    this.setState({board: this.state.board, reversed});
+    this.setState({reversed});
   }
 
   setBoard(board){
@@ -41,7 +41,7 @@ export class BoardStore extends Reflux.Store{
         return {tile: tile, color: this.tileColor(tile)}
       })));
     }
-    this.setState({board, reversed: this.state.reversed});
+    this.setState({board});
   }
 
   updateAllTiles(){
@@ -49,7 +49,7 @@ export class BoardStore extends Reflux.Store{
       let color = this.tileColor(data.tile);
       return color == data.color ? data : {tile: data.tile, color};
     }));
-    this.setState({board, reversed: this.state.reversed});
+    this.setState({board});
   }
 
   updateTile(tile){
@@ -61,7 +61,7 @@ export class BoardStore extends Reflux.Store{
       let row = board[y];
       row = this.replaceAtIndex(row, x, {tile, color: tileColor});
       board = this.replaceAtIndex(board, y, row);
-      this.setState({board, reversed: this.state.reversed});
+      this.setState({board});
     }
   }
 
