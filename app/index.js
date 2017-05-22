@@ -11,6 +11,7 @@ import { ChessSettings } from './game/chess-settings';
 
 import { PieceStore } from './stores/piece-store';
 import { BoardStore } from './stores/board-store';
+import { RoundStateStore } from './stores/round-state-store';
 
 export default class ReactNativeChess extends Component {
 
@@ -18,6 +19,7 @@ export default class ReactNativeChess extends Component {
     super();
     Reflux.initStore(PieceStore);
     Reflux.initStore(BoardStore);
+    Reflux.initStore(RoundStateStore);
     this.settings = new ChessSettings();
     this.game = new ChessGame(this.settings);
     this.game.reset();

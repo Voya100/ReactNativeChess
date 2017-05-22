@@ -10,6 +10,7 @@ import { ComputerPlayer } from '../players/computer-player';
 
 import { PieceActions } from '../stores/piece-store';
 import { BoardActions } from '../stores/board-store';
+import { RoundStateActions } from '../stores/round-state-store';
 
 export class ChessGame {
   
@@ -43,15 +44,25 @@ export class ChessGame {
 		this.white.enemy = this.black;
 		this.black.enemy = this.white;
 		
-		this.activePlayer = this.white;
+		this.setActivePlayer(this.white);
 		this.winner = null;
 
-		this.round = 1;
+		this.setRound(1);
 		this.setUp();
 		this.gameActive = true;
 		this.turn = true;
 		// Small delay so that ui has time to add pieces before computer starts its moves
 		setTimeout(() => this.run(), 500);
+	}
+
+	setActivePlayer(player){
+		this.activePlayer = player;
+		RoundStateActions.setActivePlayerColor(player.color);
+	}
+
+	setRound(round){
+		this.round = round;
+		RoundStateActions.setRound(round);
 	}
 	
 	// Sets the board and adds all the pieces
@@ -170,9 +181,9 @@ export class ChessGame {
 	changeTurn(gameId){
 		if(gameId == this.gameId){ // Make sure the game hasn't been reset
 			this.doTileChecks();
-			this.activePlayer = this.activePlayer.enemy;
+			this.setActivePlayer(this.activePlayer.enemy);
 			if(this.activePlayer.color == "white"){
-				this.round += 1;
+				this.setRound(this.round+1);
 			}
 			if(this.activePlayer.moveTiles.length == 0){
 				this.gameOver(this.activePlayer);

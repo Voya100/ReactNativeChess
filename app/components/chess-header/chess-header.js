@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Reflux from 'reflux';
 
 import { ChessText } from '../shared/chess-text';
 
 import { PieceStore } from '../../stores/piece-store';
+import { RoundStateStore } from '../../stores/round-state-store';
 
 export class ChessHeader extends Reflux.Component {
 
   constructor(){
     super();
-    this.state = {'activePlayerColor': 'white', 'gameRound': 1}
-    this.stores = [PieceStore];
+    this.stores = [PieceStore, RoundStateStore];
   }
 
   render() {
@@ -22,10 +22,10 @@ export class ChessHeader extends Reflux.Component {
     return (
       <View style={[this.props.style, styles.header]}>
         <View style={styles.textContainer}>
-        <ChessText style={styles.headerText}>
-          Chess
-        </ChessText>
-          <ChessText>{currentColor}'s turn{'\n'}Round: {this.state.gameRound}</ChessText>
+          <ChessText style={styles.headerText}>Chess</ChessText>
+
+          <ChessText>{currentColor}'s turn{'\n'}Round: {this.state.round}</ChessText>
+
           <View style={styles.pieceCountContainer}>
             <ChessText>White: {'\n'}Black: </ChessText>
             <ChessText>{whiteCount} pieces{'\n'}{blackCount} pieces</ChessText>
