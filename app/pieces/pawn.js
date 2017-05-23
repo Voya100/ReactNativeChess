@@ -4,7 +4,6 @@ import { Tile } from '../game/tile';
 
 export class Pawn extends Piece{
 
-  type = "pawn";
   value = 1;
   xStart;
   yStart;

@@ -1,8 +1,7 @@
 import { Piece } from './piece';
 
 export class Queen extends Piece{
-
-  type = "queen";
+  
   value = 7;
 
   constructor(player, tile){

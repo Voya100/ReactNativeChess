@@ -2,7 +2,6 @@ import { Piece } from './piece';
 
 export class Rook extends Piece{
 
-  type = "rook";
   value = 5;
 	hasMoved = false;
 

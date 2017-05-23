@@ -3,7 +3,6 @@ import { Tile } from '../game/tile';
 
 export class King extends Piece{
 
-  type = "king";
   value = 10;
 	hasMoved = false;
 

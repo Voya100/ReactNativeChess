@@ -23,10 +23,8 @@ export class Piece{
 
 	tiles;
 
-  // abstract values
+  // abstract value
 	value; 
-	type;
-
 
   constructor(typeName, player, tile){
 		this.id = Piece.id++;
@@ -38,6 +36,7 @@ export class Piece{
 		this.moveTiles = []; 
 		this.hitTiles = []; 
 		this.protectsKing = false;
+		this.type = typeName;
 		PieceActions.addPiece(this, tile);
 	}
 
