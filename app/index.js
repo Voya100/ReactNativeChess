@@ -52,6 +52,6 @@ const styles = StyleSheet.create({
   footer: {
     flex: 1,
     justifyContent: 'center',
-    margin: 10
+    margin: 2
   }
 });
