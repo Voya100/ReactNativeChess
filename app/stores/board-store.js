@@ -62,15 +62,15 @@ export class BoardStore extends Reflux.Store{
 
   tileColor(tile){
     if(tile.highlighted()){
-      return colors.highlightTileColor;
+      return colors.highlightTile;
     }else if(tile.markedMovable()){
       if(tile.empty()){
-        return colors.movableTileColor;
+        return colors.movableTile;
       }else{
-        return colors.enemyTileColor;
+        return colors.enemyTile;
       }
     }else{
-      return (tile.x + tile.y) % 2 == 0 ? colors.blackTileColor : colors.whiteTileColor;
+      return (tile.x + tile.y) % 2 == 0 ? colors.blackTile : colors.whiteTile;
     }
   }
 
