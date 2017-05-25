@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Reflux from 'reflux';
 import { StyleSheet,  View } from 'react-native';
-import { StackNavigator, StackRouter, NavigationActions } from 'react-navigation';
+import { TabNavigator } from 'react-navigation';
 
 import { ChessMain } from './components/screens/chess-main/chess-main';
 import { ChessSettingsView } from './components/screens/chess-settings/chess-settings';
@@ -22,13 +22,28 @@ let navigationOptions = {
   }
 }
 
-const App = StackNavigator({
-  Main: { screen: ChessMain, navigationOptions },
-  Settings: { screen: ChessSettingsView, navigationOptions}
+const App = TabNavigator({
+  Main: { screen: ChessMain, navigationOptions: {...navigationOptions, title: 'Game'} },
+  Settings: { screen: ChessSettingsView, navigationOptions: {...navigationOptions, title: 'Settings'}},
+  Instructions: { screen: ChessSettingsView, navigationOptions: {...navigationOptions, title: 'Statistics'}},
+  Statistics: { screen: ChessSettingsView, navigationOptions: {...navigationOptions, title: 'Help'}},
+
 },{
   cardStyle: {backgroundColor: colors.background},
-  headerMode: 'screen'
-})
+  headerMode: 'screen',
+  tabBarOptions: {
+    labelStyle: {
+      fontSize: 14
+    }, 
+    tabStyle: {
+      paddingLeft: 0,
+      paddingRight: 0
+    },
+    style: {
+      backgroundColor: colors.blackTile
+    }
+  }
+});
 
 export default class ReactNativeChess extends Component {
   constructor(){
@@ -40,29 +55,6 @@ export default class ReactNativeChess extends Component {
     this.game = new ChessGame(this.settings);
     this.game.reset();
     RoundStateActions.setGame(this.game);
-    this.route = 'Main';
-    this.navigate = this.navigate.bind(this);
-  }
-
-  navigate(routeName){
-    let action;
-    console.log(routeName);
-    if(routeName == 'Main' && this.route == 'Main'){
-      return;
-    }else if(routeName == 'Main' || routeName == this.route){
-      action = NavigationActions.reset({
-        index: 0,
-        actions: [NavigationActions.navigate({routeName: 'Main'})]
-      })
-      this.route = 'Main';
-    }else{
-      action = NavigationActions.navigate({
-        routeName
-      })
-      this.route = routeName;
-    }
-    
-    this.navigator.dispatch(action);
   }
 
   render() {
