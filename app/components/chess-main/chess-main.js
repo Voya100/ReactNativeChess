@@ -3,7 +3,7 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 
 import { ChessBoard } from './chess-board/chess-board'
 
-const border = 3;
+const border = 2;
 const margin = 2;
 
 export class ChessMain extends Component {
