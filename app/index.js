@@ -7,7 +7,6 @@ import { ChessMain } from './components/screens/chess-main/chess-main';
 import { ChessSettingsView } from './components/screens/chess-settings/chess-settings';
 import { ChessStatistics } from './components/screens/chess-statistics/chess-statistics';
 import { ChessHelp } from './components/screens/chess-help/chess-help';
-import { ChessFooter } from './components/chess-footer/chess-footer';
 
 import { ChessGame } from './game/chess-game';
 import { ChessSettings } from './game/chess-settings';
@@ -65,7 +64,6 @@ export default class ReactNativeChess extends Component {
         <View style={styles.screenContainer}>
           <App ref={nav => { this.navigator = nav; }}></App>
         </View>
-        <ChessFooter style={styles.footer} navigate={this.navigate}></ChessFooter>
       </View>
     );
   }

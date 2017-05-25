@@ -3,13 +3,15 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 
 import { ChessBoard } from './chess-board/chess-board';
 import { ChessMainHeader } from './chess-main-header/chess-main-header';
+import { ChessMainFooter } from './chess-main-footer/chess-main-footer';
+
 
 const border = 2;
 const margin = 2;
 
 export class ChessMain extends Component {
   static navigationOptions = {
-      title: 'Chess',
+      title: 'Game',
   };
 
   render() {
@@ -27,6 +29,7 @@ export class ChessMain extends Component {
       <View style={[styles.main]}>
         <ChessMainHeader/>
         <ChessBoard tileSize={tileSize} style={boardStyle}/>
+        <ChessMainFooter style={styles.footer}/>
       </View>
     );
   }
@@ -35,7 +38,7 @@ export class ChessMain extends Component {
 const styles = StyleSheet.create({
   main: {
     margin: margin,
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     flex: 1
   }
 });
