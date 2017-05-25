@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Button } from 'react-native';
+import { StyleSheet, View, Button, Dimensions } from 'react-native';
 
-import { ChessText } from '../shared/chess-text';
+import { ChessButton } from '../shared/chess-button';
+
+import { colors } from '../colors';
 
 export class ChessFooter extends Component {
   render() {
+
     return (
       <View style={[this.props.style, styles.buttonContainer]}>
         <View style={styles.buttonRow}>
-          <ChessNavButton title='New game'/>
-          <ChessNavButton title='Game mode'/>
-          <ChessNavButton title='Settings'/>
+          <ChessButton>New Game</ChessButton>
+          <ChessButton>Game mode</ChessButton>
+          <ChessButton>Statistics</ChessButton>
         </View>
         <View style={styles.buttonRow}>
-          <ChessNavButton title='Statistics'/>
-          <ChessNavButton title='Instructions'/>
+          <ChessButton>Settings</ChessButton>
+          <ChessButton>Board layout</ChessButton>
+          <ChessButton>Instructions</ChessButton>
         </View>
       </View>
     );
@@ -24,22 +28,13 @@ export class ChessFooter extends Component {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    justifyContent: 'space-around'
+    backgroundColor: colors.active,
+    alignItems: 'stretch',
+    borderWidth: 1,
+    borderColor: colors.border
   },
   buttonRow: {
     flexDirection: 'row',
-    justifyContent: 'space-around'
-  },
-  button: {
-    width: 110,
-    minWidth: 110,
     flex: 1
   }
 });
-
-// TODO: replace with touchable highlight
-class ChessNavButton extends Component{
-  render(){
-    return <View style={styles.button}><Button title={this.props.title} onPress={() => {}} /></View>
-  }
-}
