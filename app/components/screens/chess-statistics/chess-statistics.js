@@ -3,16 +3,16 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 
 import { ChessText } from '../../shared/chess-text'
 
-export class ChessSettingsView extends Component {
+export class ChessStatistics extends Component {
   static navigationOptions = {
-      title: 'Settings',
+      title: 'Statistics',
   };
 
   render() {
 
     return (
       <View>
-        <ChessText>Settings</ChessText>
+        <ChessText>Statistics</ChessText>
       </View>
     );
   }

@@ -5,6 +5,8 @@ import { TabNavigator } from 'react-navigation';
 
 import { ChessMain } from './components/screens/chess-main/chess-main';
 import { ChessSettingsView } from './components/screens/chess-settings/chess-settings';
+import { ChessStatistics } from './components/screens/chess-statistics/chess-statistics';
+import { ChessHelp } from './components/screens/chess-help/chess-help';
 import { ChessFooter } from './components/chess-footer/chess-footer';
 
 import { ChessGame } from './game/chess-game';
@@ -23,10 +25,10 @@ let navigationOptions = {
 }
 
 const App = TabNavigator({
-  Main: { screen: ChessMain, navigationOptions: {...navigationOptions, title: 'Game'} },
-  Settings: { screen: ChessSettingsView, navigationOptions: {...navigationOptions, title: 'Settings'}},
-  Instructions: { screen: ChessSettingsView, navigationOptions: {...navigationOptions, title: 'Statistics'}},
-  Statistics: { screen: ChessSettingsView, navigationOptions: {...navigationOptions, title: 'Help'}},
+  Main: { screen: ChessMain, navigationOptions },
+  Settings: { screen: ChessSettingsView, navigationOptions},
+  Statistics: { screen: ChessStatistics, navigationOptions},
+  Help: { screen: ChessHelp, navigationOptions},
 
 },{
   cardStyle: {backgroundColor: colors.background},
