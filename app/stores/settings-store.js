@@ -1,7 +1,7 @@
 import Reflux from 'reflux';
 
 export var SettingsActions = Reflux.createActions([
-  'changeGameMode',
+  'setGameMode',
   'setPieceLocations',
   'resetPiecePositions'
 ]);
@@ -24,12 +24,13 @@ export class SettingsStore extends Reflux.Store{
 
   
 	// Changes game mode
-	changeGameMode(modeCode){
+	setGameMode(modeCode){
 		switch(modeCode){
       case 0: // Player vs computer
         this.setState({whiteIsComputer: false, blackIsComputer: true});
         break;
       case 1: // Local multiplayer
+        console.log("local")
         this.setState({whiteIsComputer: false, blackIsComputer: false});
         break;
       case 2: // Computer vs computer

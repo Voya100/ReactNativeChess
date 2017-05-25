@@ -26,7 +26,7 @@ export class ChessMainFooter extends Reflux.Component {
       <View style={[this.props.style, styles.buttonContainer]}>
         <View style={styles.buttonRow}>
           <ChessButton onPress={this.newGame}>New Game</ChessButton>
-          <ChessButton>Game mode</ChessButton>
+          <ChessButton onPress={this.props.toggleModal}>Game mode</ChessButton>
           <ChessButton>Board layout</ChessButton>
         </View>
       </View>
