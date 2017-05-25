@@ -37,7 +37,6 @@ export class Piece{
 		this.hitTiles = []; 
 		this.protectsKing = false;
 		this.type = typeName;
-		PieceActions.addPiece(this, tile);
 	}
 
 		

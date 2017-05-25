@@ -93,15 +93,16 @@ export class ChessGame {
 		let row1b = row1.split("").reverse().join(""); // Black rows are mirrored
 		let row2b = row2.split("").reverse().join("");
 		for(let i = 0; i < 8; i++){
-			this.addPiece(i,7,this.white,row1[i]);
-			this.addPiece(i,0,this.black,row1b[i]);
-			this.addPiece(i,6,this.white,row2[i]);
-			this.addPiece(i,1,this.black,row2b[i]);
+			this.addPiece(i, 7, this.white,row1[i], false);
+			this.addPiece(i, 0, this.black,row1b[i], false);
+			this.addPiece(i, 6, this.white,row2[i], false);
+			this.addPiece(i, 1, this.black,row2b[i], false);
 		}
+		PieceActions.setPieces([...this.white.pieces, ...this.black.pieces]);
 	}
 	
 	// Adds piece to the board
-	addPiece(x, y, player, type){
+	addPiece(x, y, player, type, updateStore = true){
 		let piece;
 		let tile = this.board[y][x];
 		player.pieceId++;
@@ -130,6 +131,9 @@ export class ChessGame {
 		}
 		player.addPiece(piece);
 		this.board[y][x].piece = piece;
+		if(updateStore){
+			PieceActions.addPiece(piece, tile);
+		}
 	}
 
 	doTileChecks(){

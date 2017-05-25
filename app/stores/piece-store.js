@@ -2,6 +2,7 @@ import Reflux from 'reflux';
 
 export var PieceActions = Reflux.createActions([
   'clearPieces',
+  'setPieces',
   'addPiece',
   'removePiece',
   'movePiece'
@@ -20,16 +21,29 @@ export class PieceStore extends Reflux.Store
     }
 
     clearPieces(){
+      console.log("clear pieces")
       this.pieceIds = [];
       this.pieceLocationsMap = {};
       this.setState({pieceIds: [], pieceLocations: {}});
+    }
+
+    setPieces(pieces){
+      this.pieceLocationsMap = {};
+      this.pieceIds = [];
+      let pieceLocations = pieces.map((piece) => {
+        let pieceLocation = {piece, tile: piece.tile};
+        this.pieceLocationsMap[piece.id] = pieceLocation;
+        this.pieceIds.push(piece.id);
+        return pieceLocation;
+      })
+      this.setState({pieceLocations});
     }
 
     addPiece(piece, tile){
       let pieceLocation = {piece, tile};
       this.pieceIds.push(piece.id);
       this.pieceLocationsMap[piece.id] = pieceLocation;
-      this.setState({pieceLocations: [...this.state.pieceLocations, pieceLocation]});
+      this.setState({pieceLocations: [this.state.pieceLocations.concat(pieceLocation)]});
     }
 
     removePiece(piece){
@@ -39,6 +53,7 @@ export class PieceStore extends Reflux.Store
     }
 
     movePiece(piece, tile){
+      console.log("move piece");
       this.pieceLocationsMap[piece.id] = {piece, tile};
       this.setState({pieceLocations: this.pieceLocations()});
     }
