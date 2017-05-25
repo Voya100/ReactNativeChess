@@ -41,11 +41,15 @@ export default class ReactNativeChess extends Component {
     this.game.reset();
     RoundStateActions.setGame(this.game);
     this.route = 'Main';
+    this.navigate = this.navigate.bind(this);
   }
 
   navigate(routeName){
     let action;
-    if(routeName == 'Main' || routeName == this.route){
+    console.log(routeName);
+    if(routeName == 'Main' && this.route == 'Main'){
+      return;
+    }else if(routeName == 'Main' || routeName == this.route){
       action = NavigationActions.reset({
         index: 0,
         actions: [NavigationActions.navigate({routeName: 'Main'})]
@@ -67,7 +71,7 @@ export default class ReactNativeChess extends Component {
         <View style={styles.screenContainer}>
           <App ref={nav => { this.navigator = nav; }}></App>
         </View>
-        <ChessFooter style={styles.footer} onNavigate={(route) => this.navigate(route)}></ChessFooter>
+        <ChessFooter style={styles.footer} navigate={this.navigate}></ChessFooter>
       </View>
     );
   }
