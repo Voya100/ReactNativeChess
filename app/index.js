@@ -13,6 +13,8 @@ import { PieceStore } from './stores/piece-store';
 import { BoardStore } from './stores/board-store';
 import { RoundStateStore } from './stores/round-state-store';
 
+import { colors } from './components/colors';
+
 export default class ReactNativeChess extends Component {
 
   constructor(){
@@ -39,7 +41,7 @@ export default class ReactNativeChess extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#e6cfaf',
+    backgroundColor: colors.background,
     flex: 1
   },
   header: {

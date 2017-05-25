@@ -1,10 +1,5 @@
 import Reflux from 'reflux';
-
-const whiteTileColor = "#e6cfaf";
-const blackTileColor = "#9b7b40";
-const highlightTileColor = "orange";
-const movableTileColor = "yellow";
-const enemyTileColor = "rgb(189, 104, 53)";
+import { colors } from '../components/colors';
 
 export var BoardActions = Reflux.createActions([
   'clearBoard',
@@ -67,15 +62,15 @@ export class BoardStore extends Reflux.Store{
 
   tileColor(tile){
     if(tile.highlighted()){
-      return highlightTileColor;
+      return colors.highlightTileColor;
     }else if(tile.markedMovable()){
       if(tile.empty()){
-        return movableTileColor;
+        return colors.movableTileColor;
       }else{
-        return enemyTileColor;
+        return colors.enemyTileColor;
       }
     }else{
-      return (tile.x + tile.y) % 2 == 0 ? blackTileColor : whiteTileColor;
+      return (tile.x + tile.y) % 2 == 0 ? colors.blackTileColor : colors.whiteTileColor;
     }
   }
 
