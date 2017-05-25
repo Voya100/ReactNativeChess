@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { ChessText } from '../../shared/chess-text'
 
-export class ChessSettingsView extends Component {
+export class ChessSettings extends Component {
   static navigationOptions = {
       title: 'Settings',
   };

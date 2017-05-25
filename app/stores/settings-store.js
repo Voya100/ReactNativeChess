@@ -1,0 +1,49 @@
+import Reflux from 'reflux';
+
+export var SettingsActions = Reflux.createActions([
+  'changeGameMode',
+  'setPieceLocations',
+  'resetPiecePositions'
+]);
+
+const defaultPiecePositions = ["RKBXQBKR",
+	                             "PPPPPPPP"];
+
+export class SettingsStore extends Reflux.Store{
+
+  constructor(){
+    super();
+    this.state = {
+      whiteIsComputer: false, 
+      blackIsComputer: true, 
+      piecePositions: defaultPiecePositions,
+      gameSpeed: 1
+    };
+    this.listenables = SettingsActions;
+  }
+
+  
+	// Changes game mode
+	changeGameMode(modeCode){
+		switch(modeCode){
+      case 0: // Player vs computer
+        this.setState({whiteIsComputer: false, blackIsComputer: true});
+        break;
+      case 1: // Local multiplayer
+        this.setState({whiteIsComputer: false, blackIsComputer: false});
+        break;
+      case 2: // Computer vs computer
+        this.setState({whiteIsComputer: true, blackIsComputer: true});
+        break;
+      }
+	}
+
+  setPiecePositions(row1, row2){
+    this.setState({piecePositions: [row1, row2]});
+  }
+
+  resetPiecePositions(){
+    this.setState({piecePositions: defaultPiecePositions});
+  }
+
+}

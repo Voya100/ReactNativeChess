@@ -8,6 +8,7 @@ import { Rook } from '../pieces/rook';
 import { HumanPlayer } from '../players/human-player';
 import { ComputerPlayer } from '../players/computer-player';
 
+import { SettingsStore } from '../stores/settings-store';
 import { PieceActions } from '../stores/piece-store';
 import { BoardActions } from '../stores/board-store';
 import { RoundStateActions } from '../stores/round-state-store';
@@ -26,8 +27,8 @@ export class ChessGame {
 	activePlayer;
 	winner;
 
-  constructor(settings) { 
-    this.settings = settings;
+  constructor() { 
+    this.settings = SettingsStore;
   }
 	
 	reset(){
@@ -38,8 +39,8 @@ export class ChessGame {
 		this.board = [];
 		PieceActions.clearPieces();
 		
-		this.white = this.settings.whiteComputer ? new ComputerPlayer("white", this) : new HumanPlayer("white", this);
-		this.black = this.settings.blackComputer ? new ComputerPlayer("black", this) : new HumanPlayer("black", this);
+		this.white = this.settings.state.whiteIsComputer ? new ComputerPlayer("white", this) : new HumanPlayer("white", this);
+		this.black = this.settings.state.blackIsComputer ? new ComputerPlayer("black", this) : new HumanPlayer("black", this);
 		
 		this.white.enemy = this.black;
 		this.black.enemy = this.white;
@@ -86,8 +87,9 @@ export class ChessGame {
 	}
 	
 	addPieces(){
-		let row1 = this.settings.positions[0] + "_".repeat(8-this.settings.positions[0].length);
-		let row2 = this.settings.positions[1] + "_".repeat(8-this.settings.positions[1].length);
+		let positions = this.settings.state.piecePositions;
+		let row1 = positions[0] + "_".repeat(8-positions[0].length);
+		let row2 = positions[1] + "_".repeat(8-positions[1].length);
 		let row1b = row1.split("").reverse().join(""); // Black rows are mirrored
 		let row2b = row2.split("").reverse().join("");
 		for(let i = 0; i < 8; i++){
