@@ -2,14 +2,15 @@ import Reflux from 'reflux';
 
 export var RoundStateActions = Reflux.createActions([
   'setActivePlayerColor',
-  'setRound'
+  'setRound',
+  'setGame'
 ]);
 
 export class RoundStateStore extends Reflux.Store{
 
   constructor(){
     super();
-    this.state = {activePlayerColor: 'white', round: 1};
+    this.state = {activePlayerColor: 'white', round: 1, game: null};
     this.listenables = RoundStateActions;
   }
 
@@ -19,6 +20,11 @@ export class RoundStateStore extends Reflux.Store{
 
   setRound(round){
     this.setState({round});
+  }
+
+  // Game is mutable - is only set at init (not used in rendering)
+  setGame(game){
+    this.setState({game});
   }
 
 

@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
 
-import { ChessBoard } from './chess-board/chess-board'
+import { ChessBoard } from './chess-board/chess-board';
+import { ChessMainHeader } from './chess-main-header/chess-main-header';
 
 const border = 2;
 const margin = 2;
 
 export class ChessMain extends Component {
+  static navigationOptions = {
+      title: 'Chess',
+  };
+
   render() {
     let fullBoardSize = Dimensions.get('window').width - 2*margin;
     let boardSize = fullBoardSize - 2*border;
     let tileSize = boardSize / 8;
 
-    let mainStyle = {
+    let boardStyle = {
       width: fullBoardSize,
-      height: fullBoardSize
+      height: fullBoardSize,
+      borderWidth: border
     }
 
     return (
-      <View style={[styles.main, mainStyle]}>
-          <ChessBoard game={this.props.game} tiles={this.props.tiles} pieces={this.props.pieces} tileSize={tileSize}></ChessBoard>
+      <View style={[styles.main]}>
+        <ChessMainHeader/>
+        <ChessBoard tileSize={tileSize} style={boardStyle}/>
       </View>
     );
   }
@@ -27,8 +34,8 @@ export class ChessMain extends Component {
 
 const styles = StyleSheet.create({
   main: {
-    borderWidth: border,
     margin: margin,
-    position: 'relative'
+    justifyContent: 'space-between',
+    flex: 1
   }
 });

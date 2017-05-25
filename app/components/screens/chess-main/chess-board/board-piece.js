@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Image, TouchableHighlight, LayoutAnimation } from 'react-native';
-import { chessImages } from '../../../images/images';
+import { chessImages } from '../../../../images/images';
 
-import { colors } from '../../colors';
+import { colors } from '../../../colors';
 
 export class BoardPiece extends Component {
 

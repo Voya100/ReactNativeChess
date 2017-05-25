@@ -5,18 +5,21 @@ import { View, StyleSheet } from 'react-native';
 import { BoardTile } from './board-tile';
 import { BoardPiece } from './board-piece';
 
-import { HumanPlayer } from '../../../players/human-player';
-import { PieceStore } from '../../../stores/piece-store';
-import { BoardStore } from '../../../stores/board-store';
+import { HumanPlayer } from '../../../../players/human-player';
+import { PieceStore } from '../../../../stores/piece-store';
+import { BoardStore } from '../../../../stores/board-store';
+import { RoundStateStore } from '../../../../stores/round-state-store';
 
 export class ChessBoard extends Reflux.Component {
 
   constructor(){
     super();
-    this.stores = [PieceStore, BoardStore];
+    this.stores = [PieceStore, BoardStore, RoundStateStore];
+    this.storeKeys = ['board', 'pieceLocations', 'game'];
   }
 
   render() {
+    console.log(this.state.board.length)
     console.log("render");
     return (
         <View style={this.props.style}>
@@ -48,7 +51,7 @@ export class ChessBoard extends Reflux.Component {
   }
 
   selectTile(tile){
-    if(!this.props.game.gamePaused && this.props.game.activePlayer instanceof HumanPlayer){
+    if(!this.state.game.gamePaused && this.state.game.activePlayer instanceof HumanPlayer){
       tile.select();
     }
   }

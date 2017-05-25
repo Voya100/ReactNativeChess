@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TouchableHighlight } from 'react-native';
 
-import { colors } from '../../colors';
+import { colors } from '../../../colors';
 
 export class BoardTile extends Component {
 
@@ -11,7 +11,6 @@ export class BoardTile extends Component {
   }
 
   render() {
-    console.log("highlight")
     return (
       <TouchableHighlight onPress={this.props.onPress} style={[styles.tile, {backgroundColor: this.props.color}]} activeOpacity={0.6} underlayColor={colors.highlightTile}>
         <View></View>

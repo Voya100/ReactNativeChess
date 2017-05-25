@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Reflux from 'reflux';
 import { StyleSheet,  View } from 'react-native';
+import { StackNavigator, StackRouter, NavigationActions } from 'react-navigation';
 
-import { ChessHeader } from './components/chess-header/chess-header';
-import { ChessMain } from './components/chess-main/chess-main';
+import { ChessMain } from './components/screens/chess-main/chess-main';
+import { ChessSettingsView } from './components/screens/chess-settings/chess-settings';
 import { ChessFooter } from './components/chess-footer/chess-footer';
 
 import { ChessGame } from './game/chess-game';
@@ -11,12 +12,25 @@ import { ChessSettings } from './game/chess-settings';
 
 import { PieceStore } from './stores/piece-store';
 import { BoardStore } from './stores/board-store';
-import { RoundStateStore } from './stores/round-state-store';
+import { RoundStateStore, RoundStateActions } from './stores/round-state-store';
 
 import { colors } from './components/colors';
 
-export default class ReactNativeChess extends Component {
+let navigationOptions = {
+  headerStyle: {
+    backgroundColor: colors.background
+  }
+}
 
+const App = StackNavigator({
+  Main: { screen: ChessMain, navigationOptions },
+  Settings: { screen: ChessSettingsView, navigationOptions}
+},{
+  cardStyle: {backgroundColor: colors.background},
+  headerMode: 'screen'
+})
+
+export default class ReactNativeChess extends Component {
   constructor(){
     super();
     Reflux.initStore(PieceStore);
@@ -25,15 +39,35 @@ export default class ReactNativeChess extends Component {
     this.settings = new ChessSettings();
     this.game = new ChessGame(this.settings);
     this.game.reset();
+    RoundStateActions.setGame(this.game);
+    this.route = 'Main';
+  }
+
+  navigate(routeName){
+    let action;
+    if(routeName == 'Main' || routeName == this.route){
+      action = NavigationActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({routeName: 'Main'})]
+      })
+      this.route = 'Main';
+    }else{
+      action = NavigationActions.navigate({
+        routeName
+      })
+      this.route = routeName;
+    }
+    
+    this.navigator.dispatch(action);
   }
 
   render() {
-
     return (
       <View style={[styles.container]}>
-        <ChessHeader style={styles.header}></ChessHeader>
-        <ChessMain game={this.game} tiles={this.game.board} pieces={[...this.game.white.pieces, ...this.game.black.pieces]}></ChessMain>
-        <ChessFooter style={styles.footer}></ChessFooter>
+        <View style={styles.screenContainer}>
+          <App ref={nav => { this.navigator = nav; }}></App>
+        </View>
+        <ChessFooter style={styles.footer} onNavigate={(route) => this.navigate(route)}></ChessFooter>
       </View>
     );
   }
@@ -44,13 +78,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
     flex: 1
   },
-  header: {
-    flex: 1,
-    justifyContent: 'center',
-    margin: 10
+  screenContainer: {
+    flex: 12
   },
   footer: {
-    flex: 1,
+    flex: 2,
     justifyContent: 'center',
     margin: 2
   }

@@ -2,12 +2,12 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Reflux from 'reflux';
 
-import { ChessText } from '../shared/chess-text';
+import { ChessText } from '../../../shared/chess-text';
 
-import { PieceStore } from '../../stores/piece-store';
-import { RoundStateStore } from '../../stores/round-state-store';
+import { PieceStore } from '../../../../stores/piece-store';
+import { RoundStateStore } from '../../../../stores/round-state-store';
 
-export class ChessHeader extends Reflux.Component {
+export class ChessMainHeader extends Reflux.Component {
 
   constructor(){
     super();
@@ -41,6 +41,11 @@ export class ChessHeader extends Reflux.Component {
 }
 
 const styles = StyleSheet.create({
+  header: {
+    flex: 1,
+    justifyContent: 'center',
+    margin: 10,
+  },
   headerText: {
     textAlign: 'center',
     fontSize: 24
