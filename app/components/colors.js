@@ -3,7 +3,7 @@ export const colors = {
     blackTile: '#9b7b40',
     highlightTile: 'orange',
     movableTile: 'yellow',
-    enemyTil: 'rgb(189, 104, 53)',
+    enemyTile: 'rgb(189, 104, 53)',
     background: '#e6cfaf',
     button: '#eeeeee',
     border: 'black',

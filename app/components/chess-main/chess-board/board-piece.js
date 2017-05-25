@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Image, TouchableHighlight, LayoutAnimation } from 'react-native';
-import { chessImages } from '../../../images/images'
+import { chessImages } from '../../../images/images';
+
+import { colors } from '../../colors';
 
 export class BoardPiece extends Component {
 
@@ -24,7 +26,7 @@ export class BoardPiece extends Component {
       zIndex: 2
     };
     return (
-      <TouchableHighlight onPress={this.props.onPress} style={[size, position]}>
+      <TouchableHighlight onPress={this.props.onPress} style={[size, position]} activeOpacity={0.6} underlayColor={colors.highlightTile}>
         <Image style={size} source={this.image()}/>
       </TouchableHighlight>
     );
