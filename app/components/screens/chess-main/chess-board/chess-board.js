@@ -19,8 +19,6 @@ export class ChessBoard extends Reflux.Component {
   }
 
   render() {
-    console.log(this.state.board.length)
-    console.log("render");
     return (
         <View style={this.props.style}>
           {this.renderBoard()}
@@ -43,7 +41,6 @@ export class ChessBoard extends Reflux.Component {
   }
 
   renderPieces(){
-    console.log("Render begin")
     return this.state.pieceLocations.map(({piece,tile}) => {
       return <BoardPiece piece={piece} tile={tile} boardReversed={this.state.reversed} tileSize={this.props.tileSize} 
                          key={piece.id} onPress={() => this.selectTile(tile)} />

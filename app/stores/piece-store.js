@@ -21,7 +21,6 @@ export class PieceStore extends Reflux.Store
     }
 
     clearPieces(){
-      console.log("clear pieces")
       this.pieceIds = [];
       this.pieceLocationsMap = {};
       this.setState({pieceIds: [], pieceLocations: {}});
