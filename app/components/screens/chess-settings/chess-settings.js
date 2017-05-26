@@ -6,14 +6,14 @@ import { ChessText } from '../../shared/chess-text'
 
 export class ChessSettings extends Component {
   static navigationOptions = {
-      title: i18n.t('settings.title'),
+    tabBarLabel: () => i18n.t('settings.title'),
   };
 
   render() {
 
     return (
       <View>
-        <ChessText>Settings</ChessText>
+        <ChessText>Settings{i18n.t('settings.title')}</ChessText>
       </View>
     );
   }

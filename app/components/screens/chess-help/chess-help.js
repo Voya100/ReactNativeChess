@@ -6,7 +6,7 @@ import { ChessText } from '../../shared/chess-text'
 
 export class ChessHelp extends Component {
   static navigationOptions = {
-      title: i18n.t('help.title'),
+    tabBarLabel: () => i18n.t('help.title'),
   };
 
   render() {

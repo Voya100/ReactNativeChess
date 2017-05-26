@@ -12,7 +12,7 @@ const margin = 2;
 
 export class ChessMain extends Component {
   static navigationOptions = {
-      title: i18n.t('game.title'),
+    tabBarLabel: () => i18n.t('game.title'),
   };
 
   constructor(){
