@@ -1,4 +1,5 @@
 import Reflux from 'reflux';
+import i18n from 'react-native-i18n'
 
 export var SettingsActions = Reflux.createActions([
   'setGameMode',
@@ -17,7 +18,8 @@ export class SettingsStore extends Reflux.Store{
       whiteIsComputer: false, 
       blackIsComputer: true, 
       piecePositions: defaultPiecePositions,
-      gameSpeed: 1
+      gameSpeed: 1,
+      language: i18n.locale.substr(0, 2)
     };
     this.listenables = SettingsActions;
   }

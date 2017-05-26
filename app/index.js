@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Reflux from 'reflux';
+import './i18n/i18n'; // Localisation setup
+
 import { StyleSheet, View } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 
@@ -34,7 +36,7 @@ const App = TabNavigator({
   headerMode: 'screen',
   tabBarOptions: {
     labelStyle: {
-      fontSize: 14
+      fontSize: 13
     }, 
     tabStyle: {
       paddingLeft: 0,

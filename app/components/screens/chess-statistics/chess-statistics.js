@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import i18n from 'react-native-i18n'
 
 import { ChessText } from '../../shared/chess-text'
 
 export class ChessStatistics extends Component {
   static navigationOptions = {
-      title: 'Statistics',
+      title: i18n.t('statistics.title'),
   };
 
   render() {

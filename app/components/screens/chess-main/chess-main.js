@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
+import i18n from 'react-native-i18n'
 
 import { ChessBoard } from './chess-board/chess-board';
 import { ChessMainHeader } from './chess-main-header/chess-main-header';
@@ -11,7 +12,7 @@ const margin = 2;
 
 export class ChessMain extends Component {
   static navigationOptions = {
-      title: 'Game',
+      title: i18n.t('game.title'),
   };
 
   constructor(){
