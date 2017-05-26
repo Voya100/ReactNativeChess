@@ -2,6 +2,7 @@ import Reflux from 'reflux';
 import i18n from 'react-native-i18n'
 
 export var SettingsActions = Reflux.createActions([
+  'setLanguage',
   'setGameMode',
   'setPieceLocations',
   'resetPiecePositions'
@@ -24,6 +25,10 @@ export class SettingsStore extends Reflux.Store{
     this.listenables = SettingsActions;
   }
 
+  setLanguage(language){
+    i18n.locale = language;
+    this.setState({language});
+  }
   
 	// Changes game mode
 	setGameMode(modeCode){
