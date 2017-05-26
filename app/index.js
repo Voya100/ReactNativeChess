@@ -48,7 +48,7 @@ const App = TabNavigator({
   }
 });
 
-export default class ReactNativeChess extends Component {
+export default class ReactNativeChess extends Reflux.Component {
   constructor(){
     super();
     Reflux.initStore(PieceStore);
@@ -58,12 +58,14 @@ export default class ReactNativeChess extends Component {
     this.game = new ChessGame();
     this.game.reset();
     RoundStateActions.setGame(this.game);
+
+    this.store = SettingsStore;
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <App></App>
+        <App screenProps={this.state.language}></App>
       </View>
     );  
   }
