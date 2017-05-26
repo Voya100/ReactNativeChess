@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Reflux from 'reflux';
-import { StyleSheet, View, Button, Dimensions } from 'react-native';
-import { NavigationActions } from 'react-navigation';
+import { StyleSheet, View } from 'react-native';
+import i18n from 'react-native-i18n';
 
 import { ChessButton } from '../../../shared/chess-button';
 
@@ -25,9 +25,9 @@ export class ChessMainFooter extends Reflux.Component {
     return (
       <View style={[this.props.style, styles.buttonContainer]}>
         <View style={styles.buttonRow}>
-          <ChessButton onPress={this.newGame}>New Game</ChessButton>
-          <ChessButton onPress={this.props.toggleModal}>Game mode</ChessButton>
-          <ChessButton>Board layout</ChessButton>
+          <ChessButton onPress={this.newGame}>{i18n.t('game.newGame')}</ChessButton>
+          <ChessButton onPress={this.props.toggleModal}>{i18n.t('game.gameMode.title')}</ChessButton>
+          
         </View>
       </View>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Reflux from 'reflux';
+import i18n from 'react-native-i18n';
 
 import { ChessText } from '../../../shared/chess-text';
 
@@ -17,18 +18,17 @@ export class ChessMainHeader extends Reflux.Component {
   render(){
     let whiteCount = this.state.pieceLocations.filter(({piece}) => piece.color == 'white').length;
     let blackCount = this.state.pieceLocations.length - whiteCount;
-    let currentColor = this.capitalize(this.state.activePlayerColor);
+    let currentTurn = this.state.activePlayerColor == 'white' ? i18n.t('game.whitesTurn') : i18n.t('game.blacksTurn');
 
     return (
       <View style={[this.props.style, styles.header]}>
         <View style={styles.textContainer}>
-          <ChessText style={styles.headerText}>Chess</ChessText>
 
-          <ChessText>{currentColor}'s turn{'\n'}Round: {this.state.round}</ChessText>
+          <ChessText>{currentTurn}{'\n'}{i18n.t('game.round')}: {this.state.round}</ChessText>
 
           <View style={styles.pieceCountContainer}>
-            <ChessText>White: {'\n'}Black: </ChessText>
-            <ChessText>{whiteCount} pieces{'\n'}{blackCount} pieces</ChessText>
+            <ChessText>{i18n.t('game.white')}: {'\n'}{i18n.t('game.black')}: </ChessText>
+            <ChessText>{i18n.t('game.pieces', {count: whiteCount})}{'\n'}{i18n.t('game.pieces', {count: blackCount})}</ChessText>
           </View>
         </View>
       </View>

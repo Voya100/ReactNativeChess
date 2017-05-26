@@ -34,13 +34,13 @@ export class ChessSettings extends Reflux.Component {
 
     return (
       <View>
-        <ChessText style={styles.headerText}>General settings</ChessText>
+        <ChessText style={styles.headerText}>{i18n.t('settings.generalSettings')}</ChessText>
 				<View style={styles.optionContainer}>
-					<ChessText style={styles.text}>Language</ChessText>
+					<ChessText style={styles.text}>{i18n.t('settings.language')}</ChessText>
 					<Picker style={styles.languagePicker} 
 									selectedValue={this.state.language} 
 									onValueChange={language => this.updateLanguage(language)}
-									prompt={"Select language"}> 
+									prompt={i18n.t('settings.selectLanguage')}> 
 						{this.renderLanguageOptions()}
 					</Picker>
 				</View>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Modal, TouchableWithoutFeedback } from 'react-native';
+import i18n from 'react-native-i18n';
+
 import { ChessButton } from '../../../shared/chess-button';
 import { ChessText } from '../../../shared/chess-text';
 
@@ -28,10 +30,10 @@ export class ChooseModeModal extends Component {
           <View style={styles.container}>
             <TouchableWithoutFeedback>
               <View style={[this.props.style, styles.modalContent]}>
-                <ChessText style={styles.text}>Game mode</ChessText>
-                <ChessButton style={styles.button} onPress={() => this.setMode(0)}>Player vs Computer</ChessButton>
-                <ChessButton style={styles.button} onPress={() => this.setMode(1)}>Local multiplayer</ChessButton>
-                <ChessButton style={styles.button} onPress={() => this.setMode(2)}>Computer vs Computer</ChessButton>
+                <ChessText style={styles.text}>{i18n.t('game.gameMode.title')}</ChessText>
+                <ChessButton style={styles.button} onPress={() => this.setMode(0)}>{i18n.t('game.gameMode.playerVsComputer')}</ChessButton>
+                <ChessButton style={styles.button} onPress={() => this.setMode(1)}>{i18n.t('game.gameMode.localMultiplayer')}</ChessButton>
+                <ChessButton style={styles.button} onPress={() => this.setMode(2)}>{i18n.t('game.gameMode.computerVsComputer')}</ChessButton>
               </View>
             </TouchableWithoutFeedback>
           </View>
