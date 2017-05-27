@@ -5,7 +5,8 @@ import { StyleSheet, View, Picker } from 'react-native';
 
 import { SettingsStore, SettingsActions } from '../../../stores/settings-store';
 
-import { ChessText } from '../../shared/chess-text'
+import { ChessText } from '../../shared/chess-text';
+import { ChessHeader } from '../../shared/chess-header';
 
 export class ChessSettings extends Reflux.Component {
   static navigationOptions = {
@@ -34,7 +35,7 @@ export class ChessSettings extends Reflux.Component {
 
     return (
       <View>
-        <ChessText style={styles.headerText}>{i18n.t('settings.generalSettings')}</ChessText>
+        <ChessHeader style={styles.header}>{i18n.t('settings.generalSettings')}</ChessHeader>
 				<View style={styles.optionContainer}>
 					<ChessText style={styles.text}>{i18n.t('settings.language')}</ChessText>
 					<Picker style={styles.languagePicker} 
@@ -56,9 +57,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		borderBottomWidth: 1
 	},
-	headerText: {
-		fontSize: 24,
-		margin: 10
+	header: {
+ 		margin: 10
 	},
 	text: {
 		flex: 1,

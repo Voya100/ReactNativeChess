@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import i18n from 'react-native-i18n';
 
 import { ChessButton } from '../../../shared/chess-button';
-import { ChessText } from '../../../shared/chess-text';
+import { ChessHeader } from '../../../shared/chess-header';
 import { CenteredModal } from '../../../shared/centered-modal';
 
 export class VictoryModal extends Component {
@@ -18,7 +18,7 @@ export class VictoryModal extends Component {
     }
     return (
       <CenteredModal onRequestClose={this.props.onRequestClose} visible={this.props.visible} style={this.props.style}>
-        <ChessText style={styles.text}>{victoryMessage}</ChessText>
+        <ChessHeader headerType={2} style={styles.text}>{victoryMessage}</ChessHeader>
         <ChessButton style={styles.button} onPress={this.props.startNewGame}>{i18n.t('game.newGame')}</ChessButton>
         <ChessButton style={styles.button} onPress={this.props.openChooseModeModal}>{i18n.t('game.victory.changeGameMode')}</ChessButton>
       </CenteredModal>
@@ -28,7 +28,6 @@ export class VictoryModal extends Component {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 24,
     textAlign: 'center'
   },
   button: {
