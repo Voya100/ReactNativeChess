@@ -210,12 +210,17 @@ export class Tile{
 			if(piece.type == 'pawn'){
 				valuablePieces = _.difference(piece.player.pieces, piece.player.pawns);
 			}else{
-				valuablePieces = piece.player.queens;
+				valuablePieces = _.union(piece.player.queens, piece.player.kings);
 			}
 			for(let i = 0; i < valuablePieces.length; i++){
 				let valPiece = valuablePieces[i];
+				// Tile will stay protected if this tile protects the tile
 				if(piece.tile.protectsTile(valPiece.tile,piece.player) && valPiece.friends().length == 0 && !this.protectsTile(valPiece.tile,piece.player)){
 					risk += valPiece.value / 2;
+					// King must not be left unprotected
+					if(valPiece.type == 'king'){
+						risk += 1000;
+					}
 					break;
 				}
 			}

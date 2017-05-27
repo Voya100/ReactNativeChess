@@ -267,8 +267,7 @@ export class ComputerPlayer extends Player{
 
 		for(let i = 0; i < this.pieces.length; i++){
 			let piece = this.pieces[i];
-			// Makes sure that the piece isn't protecting the king (moving it doesn't put king at risk)
-			if(piece.protectsKing || piece.moveTiles.length == 0){
+			if(piece.moveTiles.length == 0){
 				continue;
 			}
       this.setMove(this.findSmallestRisk([piece], piece.moveTiles));
