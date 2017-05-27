@@ -30,8 +30,10 @@ export class RoundStateStore extends Reflux.Store{
   }
 
   setGameEnded(gameHasEnded, winner){
-    this.setState({gameHasEnded, winner})
-		StatisticsActions.addGameResult(winner, this.state.round);
+    this.setState({gameHasEnded, winner});
+    if(gameHasEnded){
+		  StatisticsActions.addGameResult(winner, this.state.round);
+    }
   }
 
 }
