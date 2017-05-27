@@ -34,7 +34,15 @@ export default {
     selectLanguage: 'Select language'
   },
   statistics: {
-    title: 'Statistics'
+    title: 'Statistics',
+    wins: 'Wins',
+    losses: 'Losses',
+    ties: 'Ties',
+    roundAverage: 'Round average',
+    resetStatistics: 'Reset statistics',
+    resetWarning: 'Warning: This will erase all of your statistic information.\nAre you sure?',
+    resetConfirmation: 'Yes, reset my statistics',
+    resetDenial: 'No, I want to keep my statistics'
   },
   help: {
     title: 'Help'

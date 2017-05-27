@@ -34,7 +34,15 @@ export default {
     selectLanguage: 'Valitse kieli'
   },
   statistics: {
-    title: 'Tilastot'
+    title: 'Tilastot',
+    wins: 'Voitot',
+    losses: 'Tappiot',
+    ties: 'Tasapelit',
+    roundAverage: 'Kierroskeskiarvo',
+    resetStatistics: 'Reset tilastotiedot',
+    resetWarning: 'Varoitus: Tämä poistaa kaikki tilastotietosi.\nOletko varma?',
+    resetConfirmation: 'Kyllä, resetoi tietoni',
+    resetDenial: 'Ei, haluan säilyttää tietoni'
   },
   help: {
     title: 'Ohjeet'
