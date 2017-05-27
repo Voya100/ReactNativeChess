@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Reflux from 'reflux';
-import './i18n/i18n'; // Localisation setup
+import '../i18n/i18n'; // Localisation setup
 
 import { StyleSheet, View } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 
-import { ChessMain } from './components/screens/chess-main/chess-main';
-import { ChessSettings } from './components/screens/chess-settings/chess-settings';
-import { ChessStatistics } from './components/screens/chess-statistics/chess-statistics';
-import { ChessHelp } from './components/screens/chess-help/chess-help';
+import { ChessMain } from './screens/chess-main/chess-main';
+import { ChessSettings } from './screens/chess-settings/chess-settings';
+import { ChessStatistics } from './screens/chess-statistics/chess-statistics';
+import { ChessHelp } from './screens/chess-help/chess-help';
 
-import { ChessGame } from './game/chess-game';
+import { ChessGame } from '../game/chess-game';
 
-import { PieceStore } from './stores/piece-store';
-import { BoardStore } from './stores/board-store';
-import { SettingsStore } from './stores/settings-store';
-import { RoundStateStore, RoundStateActions } from './stores/round-state-store';
+import { PieceStore } from '../stores/piece-store';
+import { BoardStore } from '../stores/board-store';
+import { SettingsStore } from '../stores/settings-store';
+import { RoundStateStore, RoundStateActions } from '../stores/round-state-store';
 
-import { colors } from './components/colors';
+import { colors } from './colors';
 
 let navigationOptions = {
   headerStyle: {
@@ -25,7 +25,7 @@ let navigationOptions = {
   }
 }
 
-const App = TabNavigator({
+const AppNavigation = TabNavigator({
   Main: { screen: ChessMain, navigationOptions },
   Settings: { screen: ChessSettings, navigationOptions},
   Statistics: { screen: ChessStatistics, navigationOptions},
@@ -65,7 +65,7 @@ export default class ReactNativeChess extends Reflux.Component {
   render() {
     return (
       <View style={styles.container}>
-        <App screenProps={this.state.language}></App>
+        <AppNavigation screenProps={this.state.language}></AppNavigation>
       </View>
     );  
   }

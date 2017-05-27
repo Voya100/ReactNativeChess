@@ -1,6 +1,6 @@
 import { AppRegistry, UIManager } from 'react-native';
 
-import ReactNativeChess from './app/index';
+import ReactNativeChess from './app/components/app';
 
 UIManager.setLayoutAnimationEnabledExperimental(true);
 
