@@ -1,4 +1,5 @@
 import Reflux from 'reflux';
+import { StatisticsActions } from './statistics-store';
 
 export var RoundStateActions = Reflux.createActions([
   'setActivePlayerColor',
@@ -30,6 +31,7 @@ export class RoundStateStore extends Reflux.Store{
 
   setGameEnded(gameHasEnded, winner){
     this.setState({gameHasEnded, winner})
+		StatisticsActions.addGameResult(winner, this.state.round);
   }
 
 }
