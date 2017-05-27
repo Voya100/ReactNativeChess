@@ -234,7 +234,8 @@ export class Tile{
 		// Encourages promotion near end of the game (when king chase loops are likely)
 		if(piece.type == 'pawn'){
 			let pawn = piece;
-			let distanceFromPromotion = Math.abs(pawn.yStart - pawn.y());
+			let promotionY = piece.white ? 0 : 7;
+			let distanceFromPromotion = Math.abs(promotionY - pawn.y());
 			if(distanceFromPromotion == 1 && threats.length == 0){
 				risk -= 5;
 			}else if(piece.player.kingChaseCount > 5){
