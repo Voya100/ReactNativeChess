@@ -8,14 +8,13 @@ import { CenteredModal } from '../../../shared/centered-modal';
 
 
 import { SettingsActions } from '../../../../stores/settings-store';
-import { RoundStateStore } from '../../../../stores/round-state-store';
 
 
 export class ChooseModeModal extends Component {
 
   setMode(mode){
     SettingsActions.setGameMode(mode);
-    RoundStateStore.state.game.reset();
+    this.props.startNewGame();
     this.props.onRequestClose();
   }
 
