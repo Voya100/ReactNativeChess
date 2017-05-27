@@ -1,5 +1,6 @@
 import Reflux from 'reflux';
-import i18n from 'react-native-i18n'
+import { AsyncStorage } from 'react-native';
+import i18n from 'react-native-i18n';
 
 export var SettingsActions = Reflux.createActions([
   'setLanguage',
@@ -10,6 +11,7 @@ export var SettingsActions = Reflux.createActions([
   'setMaxRounds'
 ]);
 
+const storageKey = "@VoyaCodeChess:settings";
 const defaultPiecePositions = ["RKBXQBKR",
 	                             "PPPPPPPP"];
 
@@ -26,42 +28,60 @@ export class SettingsStore extends Reflux.Store{
       language: i18n.locale.substr(0, 2)
     };
     this.listenables = SettingsActions;
+    this.loadSettings();
+  }
+
+  loadSettings(){
+    AsyncStorage.getItem(storageKey).then((value) => {
+      console.log("settings", value);
+      if(value !== null){
+        let settings = JSON.parse(value);
+        i18n.locale = settings.language || i18n.locale;
+        this.setState(settings);
+      }
+    })
+  }
+
+  saveSettings(changedSettings){
+    console.log("Saving settings");
+    this.setState(changedSettings);
+    AsyncStorage.setItem(storageKey, JSON.stringify(this.state));
   }
 
   setLanguage(language){
     i18n.locale = language;
-    this.setState({language});
+    this.saveSettings({language});
   }
   
 	// Changes game mode
 	setGameMode(modeCode){
 		switch(modeCode){
       case 0: // Player vs computer
-        this.setState({whiteIsComputer: false, blackIsComputer: true});
+        this.saveSettings({whiteIsComputer: false, blackIsComputer: true});
         break;
       case 1: // Local multiplayer
-        this.setState({whiteIsComputer: false, blackIsComputer: false});
+        this.saveSettings({whiteIsComputer: false, blackIsComputer: false});
         break;
       case 2: // Computer vs computer
-        this.setState({whiteIsComputer: true, blackIsComputer: true});
+        this.saveSettings({whiteIsComputer: true, blackIsComputer: true});
         break;
       }
 	}
 
   setPiecePositions(row1, row2){
-    this.setState({piecePositions: [row1, row2]});
+   this.saveSettings({piecePositions: [row1, row2]});
   }
 
   resetPiecePositions(){
-    this.setState({piecePositions: defaultPiecePositions});
+    this.saveSettings({piecePositions: defaultPiecePositions});
   }
 
   setGameSpeed(gameSpeed){
-    this.setState({gameSpeed})
+    this.saveSettings({gameSpeed})
   }
 
   setMaxRounds(maxRounds){
-    this.setState({maxRounds})
+    this.saveSettings({maxRounds})
   }
 
 }
