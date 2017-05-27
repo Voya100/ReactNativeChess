@@ -38,6 +38,7 @@ export class ChessGame {
 		
 		this.board = [];
 		PieceActions.clearPieces();
+		RoundStateActions.setGameEnded(false, '');
 		
 		this.white = this.settings.state.whiteIsComputer ? new ComputerPlayer("white", this) : new HumanPlayer("white", this);
 		this.black = this.settings.state.blackIsComputer ? new ComputerPlayer("black", this) : new HumanPlayer("black", this);
@@ -46,7 +47,6 @@ export class ChessGame {
 		this.black.enemy = this.white;
 		
 		this.setActivePlayer(this.white);
-		this.winner = null;
 
 		this.setRound(1);
 		this.setUp();
@@ -179,8 +179,12 @@ export class ChessGame {
 	}
 	
   gameOver(loser){
-		this.winner = loser.enemy;
 		this.gameActive = false;
+		if(loser == null){
+			RoundStateActions.setGameEnded(true, 'tie');
+		}else{
+			RoundStateActions.setGameEnded(true, loser.enemy.color);
+		}
 	}
 	
 	// Changes turn and does situation checks once a turn has ended

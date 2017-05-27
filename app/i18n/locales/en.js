@@ -8,6 +8,7 @@ export default {
     white: 'White',
     black: 'Black',
     round: 'Round',
+    gameHasEnded: 'Game has ended',
     pieces: {
       one: '1 piece',
       other: '{{count}} pieces'
@@ -18,6 +19,12 @@ export default {
       playerVsComputer: 'Player vs Computer',
       localMultiplayer: 'Local multiplayer',
       computerVsComputer: 'Computer vs Computer'
+    },
+    victory: {
+      changeGameMode: 'Change game mode',
+      whiteWins: 'White wins!',
+      blackWins: 'Black wins!',
+      itsATie: 'It\'s a tie!'
     }
   },
   settings: {

@@ -18,7 +18,12 @@ export class ChessMainHeader extends Reflux.Component {
   render(){
     let whiteCount = this.state.pieceLocations.filter(({piece}) => piece.white).length;
     let blackCount = this.state.pieceLocations.length - whiteCount;
-    let currentTurn = this.state.activePlayerColor == 'white' ? i18n.t('game.whitesTurn') : i18n.t('game.blacksTurn');
+    let currentTurn;
+    if(this.state.gameHasEnded){
+      currentTurn = i18n.t('game.gameHasEnded');
+    }else{
+      currentTurn = this.state.activePlayerColor == 'white' ? i18n.t('game.whitesTurn') : i18n.t('game.blacksTurn');
+    }
 
     return (
       <View style={[this.props.style, styles.header]}>
@@ -33,10 +38,6 @@ export class ChessMainHeader extends Reflux.Component {
         </View>
       </View>
     );
-  }
-
-  capitalize(string){
-    return string[0].toUpperCase() + string.slice(1);
   }
 }
 

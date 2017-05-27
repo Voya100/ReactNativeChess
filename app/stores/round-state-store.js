@@ -3,14 +3,15 @@ import Reflux from 'reflux';
 export var RoundStateActions = Reflux.createActions([
   'setActivePlayerColor',
   'setRound',
-  'setGame'
+  'setGame',
+  'setGameEnded'
 ]);
 
 export class RoundStateStore extends Reflux.Store{
 
   constructor(){
     super();
-    this.state = {activePlayerColor: 'white', round: 1, game: null};
+    this.state = {activePlayerColor: 'white', round: 1, game: null, gameHasEnded: false, winner: ''};
     this.listenables = RoundStateActions;
   }
 
@@ -27,5 +28,8 @@ export class RoundStateStore extends Reflux.Store{
     this.setState({game});
   }
 
+  setGameEnded(gameHasEnded, winner){
+    this.setState({gameHasEnded, winner})
+  }
 
 }

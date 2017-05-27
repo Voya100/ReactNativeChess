@@ -8,6 +8,7 @@ export default {
     white: 'Valkoinen',
     black: 'Musta',
     round: 'Kierros',
+    gameHasEnded: 'Peli päättynyt',
     pieces: {
       one: '1 nappula',
       other: '{{count}} nappulaa'
@@ -18,6 +19,12 @@ export default {
       playerVsComputer: 'Pelaaja vs Tietokone',
       localMultiplayer: 'Paikallinen moninpeli',
       computerVsComputer: 'Tietokone vs Tietokone'
+    },
+    victory: {
+      changeGameMode: 'Vaihda pelimoodia',
+      whiteWins: 'Valkoinen voitti!',
+      blackWins: 'Musta voitti!',
+      itsATie: 'Tasapeli!'
     }
   },
   settings: {
