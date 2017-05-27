@@ -9,21 +9,22 @@ import { HumanPlayer } from '../../../../players/human-player';
 import { PieceStore } from '../../../../stores/piece-store';
 import { BoardStore } from '../../../../stores/board-store';
 import { RoundStateStore } from '../../../../stores/round-state-store';
+import { SettingsStore } from '../../../../stores/settings-store';
 
 export class ChessBoard extends Reflux.Component {
 
   constructor(){
     super();
-    this.stores = [PieceStore, BoardStore, RoundStateStore];
-    this.storeKeys = ['board', 'pieceLocations', 'game'];
+    this.stores = [PieceStore, BoardStore, RoundStateStore, SettingsStore];
+    this.storeKeys = ['board', 'pieceLocations', 'game', 'boardReversed'];
   }
 
   render() {
     return (
-        <View style={this.props.style}>
-          {this.renderBoard()}
-          {this.renderPieces()}
-        </View>
+      <View style={this.props.style}>
+        {this.renderBoard()}
+        {this.renderPieces()}
+      </View>
     );
   }
 
@@ -42,7 +43,7 @@ export class ChessBoard extends Reflux.Component {
 
   renderPieces(){
     return this.state.pieceLocations.map(({piece,tile}) => {
-      return <BoardPiece piece={piece} tile={tile} boardReversed={this.state.reversed} tileSize={this.props.tileSize} 
+      return <BoardPiece piece={piece} tile={tile} boardReversed={this.state.boardReversed} tileSize={this.props.tileSize} 
                          key={piece.id} onPress={() => this.selectTile(tile)} />
     })
   }

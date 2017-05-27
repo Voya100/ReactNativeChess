@@ -8,7 +8,9 @@ export var SettingsActions = Reflux.createActions([
   'setPieceLocations',
   'resetPiecePositions',
   'setGameSpeed',
-  'setMaxRounds'
+  'setMaxRounds',
+  'setBoardReversed',
+  'saveSettings'
 ]);
 
 const storageKey = "@VoyaCodeChess:settings";
@@ -25,7 +27,8 @@ export class SettingsStore extends Reflux.Store{
       piecePositions: defaultPiecePositions,
       gameSpeed: 1,
       maxRounds: 150,
-      language: i18n.locale.substr(0, 2)
+      language: i18n.locale.substr(0, 2),
+      boardReversed: false
     };
     this.listenables = SettingsActions;
     this.loadSettings();
@@ -57,13 +60,13 @@ export class SettingsStore extends Reflux.Store{
 	setGameMode(modeCode){
 		switch(modeCode){
       case 0: // Player vs computer
-        this.saveSettings({whiteIsComputer: false, blackIsComputer: true});
+        this.setState({whiteIsComputer: false, blackIsComputer: true});
         break;
       case 1: // Local multiplayer
-        this.saveSettings({whiteIsComputer: false, blackIsComputer: false});
+        this.setState({whiteIsComputer: false, blackIsComputer: false});
         break;
       case 2: // Computer vs computer
-        this.saveSettings({whiteIsComputer: true, blackIsComputer: true});
+        this.setState({whiteIsComputer: true, blackIsComputer: true});
         break;
       }
 	}
@@ -82,6 +85,10 @@ export class SettingsStore extends Reflux.Store{
 
   setMaxRounds(maxRounds){
     this.saveSettings({maxRounds})
+  }
+
+  setBoardReversed(boardReversed){
+    this.saveSettings({boardReversed})
   }
 
 }

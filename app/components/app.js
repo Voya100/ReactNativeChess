@@ -52,10 +52,10 @@ const AppNavigation = TabNavigator({
 export default class ReactNativeChess extends Reflux.Component {
   constructor(){
     super();
-    Reflux.initStore(PieceStore);
-    Reflux.initStore(BoardStore);
     Reflux.initStore(SettingsStore);
     Reflux.initStore(StatisticsStore);
+    Reflux.initStore(PieceStore);
+    Reflux.initStore(BoardStore);
     Reflux.initStore(RoundStateStore);
     this.game = new ChessGame();
     this.game.reset();

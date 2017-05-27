@@ -1,6 +1,8 @@
 import Reflux from 'reflux';
 import { colors } from '../components/colors';
 
+import { SettingsStore } from './settings-store';
+
 export var BoardActions = Reflux.createActions([
   'clearBoard',
   'setBoard',
@@ -13,7 +15,7 @@ export class BoardStore extends Reflux.Store{
   constructor(){
     super();
     // board[y][x] = {tile, color}
-    this.state = {board: [], reversed: false};
+    this.state = {board: [],};
     this.listenables = BoardActions;
   }
 
@@ -21,12 +23,8 @@ export class BoardStore extends Reflux.Store{
     this.setState({board: []});
   }
 
-  setReversed(reversed){
-    this.setState({reversed});
-  }
-
   setBoard(board){
-    if(this.state.reversed){
+    if(SettingsStore.state.reversed){
       board = Array(8).fill(1).map((x,j) => Array(8).fill(1).map((x,i) => {
         let tile = board[7-i][j];
         return {tile, color: this.tileColor(tile)}
@@ -75,11 +73,11 @@ export class BoardStore extends Reflux.Store{
   }
 
   getX(x,y){
-    return this.state.reversed ? 7-y : x;
+    return SettingsStore.state.reversed ? 7-y : x;
   }
 
   getY(x,y){
-    return this.state.reversed ? x : y;
+    return SettingsStore.state.reversed ? x : y;
   }
 
   replaceAtIndex(array, index, value){
