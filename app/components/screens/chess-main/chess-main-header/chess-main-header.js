@@ -16,7 +16,6 @@ export class ChessMainHeader extends Reflux.Component {
   }
 
   render(){
-    console.log(this.state.pieceLocations);
     let whiteCount = this.state.pieceLocations.filter(({piece}) => piece.white).length;
     let blackCount = this.state.pieceLocations.length - whiteCount;
     let currentTurn = this.state.activePlayerColor == 'white' ? i18n.t('game.whitesTurn') : i18n.t('game.blacksTurn');
@@ -53,7 +52,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center'
   },
   pieceCountContainer: {
