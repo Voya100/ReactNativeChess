@@ -192,13 +192,21 @@ export class ChessGame {
 		if(gameId == this.gameId){ // Make sure the game hasn't been reset
 			this.doTileChecks();
 			this.setActivePlayer(this.activePlayer.enemy);
-			if(this.activePlayer.color == "white"){
-				this.setRound(this.round+1);
-			}
+
 			if(this.activePlayer.moveTiles.length == 0){
 				this.gameOver(this.activePlayer);
 				return;
 			}
+
+			if(this.activePlayer.color == "white"){
+				if(this.round < SettingsStore.state.maxRounds){
+					this.setRound(this.round+1);
+				}else{
+					this.gameOver(null);
+					return;
+				}
+			}
+			
 			this.turn = true;
 			this.run();
 		}

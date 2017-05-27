@@ -5,7 +5,9 @@ export var SettingsActions = Reflux.createActions([
   'setLanguage',
   'setGameMode',
   'setPieceLocations',
-  'resetPiecePositions'
+  'resetPiecePositions',
+  'setGameSpeed',
+  'setMaxRounds'
 ]);
 
 const defaultPiecePositions = ["RKBXQBKR",
@@ -20,6 +22,7 @@ export class SettingsStore extends Reflux.Store{
       blackIsComputer: true, 
       piecePositions: defaultPiecePositions,
       gameSpeed: 1,
+      maxRounds: 150,
       language: i18n.locale.substr(0, 2)
     };
     this.listenables = SettingsActions;
@@ -37,7 +40,6 @@ export class SettingsStore extends Reflux.Store{
         this.setState({whiteIsComputer: false, blackIsComputer: true});
         break;
       case 1: // Local multiplayer
-        console.log("local")
         this.setState({whiteIsComputer: false, blackIsComputer: false});
         break;
       case 2: // Computer vs computer
@@ -52,6 +54,14 @@ export class SettingsStore extends Reflux.Store{
 
   resetPiecePositions(){
     this.setState({piecePositions: defaultPiecePositions});
+  }
+
+  setGameSpeed(gameSpeed){
+    this.setState({gameSpeed})
+  }
+
+  setMaxRounds(maxRounds){
+    this.setState({maxRounds})
   }
 
 }
