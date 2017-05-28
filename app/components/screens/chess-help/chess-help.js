@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Reflux from 'reflux';
 import { View, Text, Image } from 'react-native';
 import i18n from 'react-native-i18n';
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, NavigationActions } from 'react-navigation';
 
 import { GuidePage } from './guide-page';
 import { colors } from '../../colors';
 import { chessImages } from '../../../images/images';
 
-
 function piecePage(pieceName){
   return {
     screen: () => <GuidePage id={pieceName}/>,
     navigationOptions: {
+      tabBarLabel: () => i18n.t('help.' + pieceName + '.title'),
       tabBarIcon: ({focused}) => {
         let focusedStyle = focused ? {} : {tintColor: 'gray'}
         return <Image source={chessImages['black-' + pieceName]} 
@@ -23,10 +24,10 @@ function piecePage(pieceName){
 }
 
 const GuideNavigation = TabNavigator({
-  Ganeral: {
-    screen: () => <GuidePage id='general'/>,
+  Guide: {
+    screen: () => <GuidePage id='guide'/>,
     navigationOptions: {
-      tabBarLabel: 'Guide',
+      tabBarLabel: () => i18n.t('help.guide.title'),
       tabBarIcon: () => <Text style={{fontSize: 40}}>?</Text>
     }
   },
@@ -45,12 +46,12 @@ const GuideNavigation = TabNavigator({
     showIcon: true,
     showLabel: true,
     labelStyle: {
-      fontSize: 10,
+      fontSize: 8,
       color: 'black',
       margin: 0
     }, 
     tabStyle: {
-      padding: 2,
+      padding: 0,
       paddingBottom: 5
     },
     iconStyle: {
@@ -64,16 +65,23 @@ const GuideNavigation = TabNavigator({
     }
   }})
 
-export class ChessHelp extends Component {
+export class ChessHelp extends Reflux.Component {
   static navigationOptions = {
     tabBarLabel: () => i18n.t('help.title'),
   };
 
-  render() {
+  // A trick to update navigation labels when language is changed
+  componentDidUpdate(prevProps){
+		if(prevProps.screenProps !== this.props.screenProps && this.nav){
+      const action = NavigationActions.setParams({params: {language: this.props.screenProps.language}, key: 'Guide'});
+		  this.nav.dispatch(action);
+		}
+	}
 
+  render() {
     return (
       <View style={{flex: 1}}>
-        <GuideNavigation/>
+        <GuideNavigation screenProps={{language: this.props.screenProps}} ref={(ref) => this.nav = ref}/>
       </View>
     );
   }
