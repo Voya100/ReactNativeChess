@@ -5,6 +5,6 @@ import SplashScreen from 'react-native-splash-screen';
 
 UIManager.setLayoutAnimationEnabledExperimental(true);
 
-SplashScreen.show();
+//SplashScreen.show();
 
 AppRegistry.registerComponent('ReactNativeChess', () => ReactNativeChess);
