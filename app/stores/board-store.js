@@ -1,7 +1,8 @@
 import Reflux from 'reflux';
 import { colors } from '../components/colors';
 
-import { SettingsStore } from './settings-store';
+import { SettingsStore, SettingsActions } from './settings-store';
+import { RoundStateStore } from './round-state-store';
 
 export var BoardActions = Reflux.createActions([
   'clearBoard',
@@ -17,14 +18,16 @@ export class BoardStore extends Reflux.Store{
     // board[y][x] = {tile, color}
     this.state = {board: [],};
     this.listenables = BoardActions;
+    // Board needs to be set again when board gets reversed
+    this.listenTo(SettingsActions.setBoardReversed, this.updateBoard)
   }
 
   clearBoard(){
     this.setState({board: []});
   }
 
-  setBoard(board){
-    if(SettingsStore.state.reversed){
+  setBoard(board, reversed = SettingsStore.state.boardReversed){
+    if(reversed){
       board = Array(8).fill(1).map((x,j) => Array(8).fill(1).map((x,i) => {
         let tile = board[7-i][j];
         return {tile, color: this.tileColor(tile)}
@@ -38,11 +41,17 @@ export class BoardStore extends Reflux.Store{
   }
 
   updateAllTiles(){
-    let board = this.state.board.map(row => row.map(data => {
-      let color = this.tileColor(data.tile);
-      return color == data.color ? data : {tile: data.tile, color};
-    }));
+    let board = this.state.board.map(row => 
+        row.map(data => {
+          let color = this.tileColor(data.tile);
+          return color == data.color ? data : {tile: data.tile, color};
+        })
+    );
     this.setState({board});
+  }
+
+  updateBoard(reversed){
+    this.setBoard(RoundStateStore.state.game.board, reversed);
   }
 
   updateTile(tile){
@@ -73,11 +82,11 @@ export class BoardStore extends Reflux.Store{
   }
 
   getX(x,y){
-    return SettingsStore.state.reversed ? 7-y : x;
+    return SettingsStore.state.boardReversed ? 7-y : x;
   }
 
   getY(x,y){
-    return SettingsStore.state.reversed ? x : y;
+    return SettingsStore.state.boardReversed ? x : y;
   }
 
   replaceAtIndex(array, index, value){

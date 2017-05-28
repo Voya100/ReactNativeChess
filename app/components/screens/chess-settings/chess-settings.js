@@ -69,6 +69,7 @@ export class ChessSettings extends Reflux.Component {
 				{this.renderLanguagePicker()}
 				{this.renderGameSpeedSlider()}
 				{this.renderMaxRoundsSlider()}
+				{this.renderBoardReversedSwitch()}
 			</View>
     );
   }
@@ -76,7 +77,7 @@ export class ChessSettings extends Reflux.Component {
 	renderLanguagePicker(){		
 		let RowContainer = this.renderRowContainer;
 		return (
-			<RowContainer title={i18n.t('settings.language')}>
+			<RowContainer title={i18n.t('settings.language')} style={{borderTopWidth: 1}}>
 				<Picker style={styles.languagePicker} 
 								selectedValue={this.state.language} 
 								onValueChange={language => this.updateLanguage(language)}
@@ -89,7 +90,7 @@ export class ChessSettings extends Reflux.Component {
 	
 	renderRowContainer(props){
 		return (
-			<View style={styles.optionContainer}>
+			<View style={[styles.optionContainer, props.style]}>
 				<ChessText style={styles.text}>{props.title}</ChessText>
 				{props.children}
 			</View>
@@ -137,7 +138,12 @@ export class ChessSettings extends Reflux.Component {
 	}
 
 	renderBoardReversedSwitch(){
-
+		let RowContainer = this.renderRowContainer;
+		return (
+			<RowContainer title={'Reverse board'}>
+				<Switch value={this.state.boardReversed} onValueChange={this.updateBoardReversed}/>
+			</RowContainer>
+		)
 	}
 }
 
@@ -156,7 +162,7 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		flex: 1,
-		margin: 5
+		margin: 10
 	},
 	languagePicker: {
 		flex: 2,
