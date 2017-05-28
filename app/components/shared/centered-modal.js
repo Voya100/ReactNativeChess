@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Modal, TouchableWithoutFeedback } from 'react-native';
-import i18n from 'react-native-i18n';
 
 
 import { colors } from '../colors';
