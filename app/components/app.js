@@ -15,7 +15,7 @@ import { ChessGame } from '../game/chess-game';
 
 import { PieceStore } from '../stores/piece-store';
 import { BoardStore } from '../stores/board-store';
-import { SettingsStore } from '../stores/settings-store';
+import { SettingsStore, SettingsActions } from '../stores/settings-store';
 import { StatisticsStore } from '../stores/statistics-store';
 import { RoundStateStore, RoundStateActions } from '../stores/round-state-store';
 
@@ -59,14 +59,16 @@ export default class ReactNativeChess extends Reflux.Component {
     Reflux.initStore(BoardStore);
     Reflux.initStore(RoundStateStore);
     this.game = new ChessGame();
-    this.game.reset();
     RoundStateActions.setGame(this.game);
 
     this.store = SettingsStore;
   }
 
   componentDidMount(){
-    SplashScreen.hide();
+    SettingsActions.loadSettings(()=> {
+      this.game.reset();
+      SplashScreen.hide();
+    });
   }
 
   render() {

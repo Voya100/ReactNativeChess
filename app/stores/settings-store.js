@@ -3,9 +3,10 @@ import { AsyncStorage } from 'react-native';
 import i18n from 'react-native-i18n';
 
 export var SettingsActions = Reflux.createActions([
+  'loadSettings',
   'setLanguage',
   'setGameMode',
-  'setPieceLocations',
+  'setPiecePositions',
   'resetPiecePositions',
   'setGameSpeed',
   'setMaxRounds',
@@ -31,10 +32,9 @@ export class SettingsStore extends Reflux.Store{
       boardReversed: false
     };
     this.listenables = SettingsActions;
-    this.loadSettings();
   }
 
-  loadSettings(){
+  loadSettings(callback){
     AsyncStorage.getItem(storageKey).then((value) => {
       console.log("settings", value);
       if(value !== null){
@@ -42,6 +42,11 @@ export class SettingsStore extends Reflux.Store{
         i18n.locale = settings.language || i18n.locale;
         this.setState(settings);
       }
+      callback();
+      return true;
+    }).catch((error) => {
+      console.log(error);
+      callback();
     })
   }
 
