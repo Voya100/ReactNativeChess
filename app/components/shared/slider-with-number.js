@@ -6,7 +6,7 @@ import { ChessText } from './chess-text';
 export class SliderWithNumber extends Component {
   render() {
     return (
-      <View style={styles.sliderContainer}>
+      <View style={[styles.sliderContainer, this.props.style]}>
         <ChessText style={styles.text}>{this.props.tempValue}</ChessText>
         <Slider
           style={styles.slider} 
@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'row'
 	},
 	slider: {
-		flex: 6
+		flex: 5
 	}
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import Reflux from 'reflux';
 import i18n from 'react-native-i18n';
-import { StyleSheet, View, Picker, Slider, Switch } from 'react-native';
+import { StyleSheet, View, Picker, Switch } from 'react-native';
 
 import { SettingsStore, SettingsActions } from '../../../stores/settings-store';
 
@@ -105,8 +105,9 @@ export class ChessSettings extends Reflux.Component {
 	renderGameSpeedSlider(){
 		let RowContainer = this.renderRowContainer;
 		return (
-			<RowContainer title={'Game speed'}>
+			<RowContainer title={i18n.t('settings.gameSpeed')}>
 				<SliderWithNumber
+					style={styles.slider}
 					step={1} 
 					minimumValue={1} 
 					maximumValue={5} 
@@ -122,8 +123,9 @@ export class ChessSettings extends Reflux.Component {
 	renderMaxRoundsSlider(){
 		let RowContainer = this.renderRowContainer;
 		return (
-			<RowContainer title={'Max rounds'}>
+			<RowContainer title={i18n.t('settings.maxRounds')}>
 				<SliderWithNumber
+					style={styles.slider}
 					step={50}
 					minimumValue={50}
 					maximumValue={500}
@@ -139,7 +141,7 @@ export class ChessSettings extends Reflux.Component {
 	renderBoardReversedSwitch(){
 		let RowContainer = this.renderRowContainer;
 		return (
-			<RowContainer title={'Reverse board'}>
+			<RowContainer title={i18n.t('settings.reverseBoard')}>
 				<Switch value={this.state.boardReversed} onValueChange={this.updateBoardReversed}/>
 			</RowContainer>
 		)
@@ -160,11 +162,14 @@ const styles = StyleSheet.create({
  		margin:5
 	},
 	text: {
-		flex: 1,
+		flex: 3,
 		margin: 10
 	},
+	slider: {
+		flex: 5
+	},
 	languagePicker: {
-		flex: 2,
+		flex: 5,
 		width: 100
 	}
 });

@@ -31,7 +31,10 @@ export default {
     title: 'Settings',
     generalSettings: 'General settings',
     language: 'Language',
-    selectLanguage: 'Select language'
+    selectLanguage: 'Select language',
+    gameSpeed: 'Game speed',
+    maxRounds: 'Max rounds',
+    reverseBoard: 'Reverse board'
   },
   statistics: {
     title: 'Statistics',

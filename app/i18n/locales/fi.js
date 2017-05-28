@@ -31,7 +31,10 @@ export default {
     title: 'Asetukset',
     generalSettings: 'Yleisasetukset',
     language: 'Kieli',
-    selectLanguage: 'Valitse kieli'
+    selectLanguage: 'Valitse kieli',
+    gameSpeed: 'Pelin nopeus',
+    maxRounds: 'Maksimikierros',
+    reverseBoard: 'Käänteinen lauta'
   },
   statistics: {
     title: 'Tilastot',
