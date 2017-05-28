@@ -11,19 +11,23 @@ export var BoardActions = Reflux.createActions([
   'updateTile'
 ]);
 
+const defaultBoard = Array(8).fill(1).map((x,j) => Array(8).fill(1).map((x,i) => {
+  return {tile: null, color: (i + j) % 2 == 0 ? colors.blackTile : colors.whiteTile}
+}));
+
 export class BoardStore extends Reflux.Store{
 
   constructor(){
     super();
     // board[y][x] = {tile, color}
-    this.state = {board: [],};
+    this.state = {board: defaultBoard,};
     this.listenables = BoardActions;
     // Board needs to be set again when board gets reversed
     this.listenTo(SettingsActions.setBoardReversed, this.updateBoard)
   }
 
   clearBoard(){
-    this.setState({board: []});
+    this.setState({board: defaultBoard});
   }
 
   setBoard(board, reversed = SettingsStore.state.boardReversed){
