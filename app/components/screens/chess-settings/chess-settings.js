@@ -39,7 +39,6 @@ export class ChessSettings extends Reflux.Component {
 		SettingsActions.setLanguage(language);
 		// A trick to make nav bar update
 		this.props.navigation.setParams({language});
-		this.saveSettings();
 	}
 
 	updateTempSpeed(tempSpeed){
