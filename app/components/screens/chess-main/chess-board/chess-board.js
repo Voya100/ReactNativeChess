@@ -49,7 +49,7 @@ export class ChessBoard extends Reflux.Component {
   }
 
   selectTile(tile){
-    if(!this.state.game.gamePaused && this.state.game.activePlayer instanceof HumanPlayer){
+    if(!this.state.game.gamePaused && this.state.game.activePlayer instanceof HumanPlayer && tile != null){
       tile.select();
     }
   }
