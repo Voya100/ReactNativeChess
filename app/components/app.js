@@ -4,6 +4,7 @@ import '../i18n/i18n'; // Localisation setup
 
 import { StyleSheet, View } from 'react-native';
 import { TabNavigator } from 'react-navigation';
+import SplashScreen from 'react-native-splash-screen';
 
 import { ChessMain } from './screens/chess-main/chess-main';
 import { ChessSettings } from './screens/chess-settings/chess-settings';
@@ -62,6 +63,10 @@ export default class ReactNativeChess extends Reflux.Component {
     RoundStateActions.setGame(this.game);
 
     this.store = SettingsStore;
+  }
+
+  componentDidMount(){
+    SplashScreen.hide();
   }
 
   render() {
