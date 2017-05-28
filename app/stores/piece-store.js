@@ -23,7 +23,7 @@ export class PieceStore extends Reflux.Store
     clearPieces(){
       this.pieceIds = [];
       this.pieceLocationsMap = {};
-      this.setState({pieceIds: [], pieceLocations: {}});
+      this.setState({pieceLocations: []});
     }
 
     setPieces(pieces){
