@@ -270,7 +270,10 @@ export class ComputerPlayer extends Player{
 			if(piece.moveTiles.length == 0){
 				continue;
 			}
-      this.setMove(this.findSmallestRisk([piece], piece.moveTiles));
+			let smallestRisk = this.findSmallestRisk([piece], piece.moveTiles);
+			if(smallestRisk.length == 3){
+      	this.setMove(smallestRisk);
+			}
 		}		
 		// console.log("4. Risk: ",this.riskValue,this.movePiece,this.moveTile);
 		
