@@ -10,8 +10,35 @@ export class BoardPiece extends Component {
     return nextProps.tile !== this.props.tile || nextProps.boardReversed !== this.props.boardReversed;
   }
 
+  // Transition animation
   componentWillUpdate() { 
-    LayoutAnimation.linear();
+    LayoutAnimation.configureNext(this.animationConfig());
+  }
+  // Fade out animation
+  componentWillUnmount(){
+    LayoutAnimation.configureNext(this.animationConfig());
+  }
+
+  animationConfig(){
+    let speed = this.props.speed;
+    return {
+      duration: 700 / speed,
+      create: {
+        type: LayoutAnimation.Types.linear,
+        property: LayoutAnimation.Properties.opacity,
+        duration: 400 / speed
+      },
+      update: {
+        type: LayoutAnimation.Types.easeInEaseOut,
+        springDamping: 0.4,
+      },
+      delete: {
+        type: LayoutAnimation.Types.linear,
+        property: LayoutAnimation.Properties.opacity,
+        duration: 200 / speed,
+        delay: 200 / speed
+      }
+    }
   }
 
   render() {

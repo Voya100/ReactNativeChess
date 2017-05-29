@@ -1,6 +1,7 @@
 import * as _ from 'underscore';
 
 import { PieceActions } from '../stores/piece-store';
+import { SettingsStore } from '../stores/settings-store';
 
 // Abstract class
 export class Piece{
@@ -68,7 +69,8 @@ export class Piece{
 		PieceActions.movePiece(this, this.tile);
 		let gameId = this.player.game.gameId;
 		if(changeTurn){
-			setTimeout(() => this.player.game.changeTurn(gameId), 650);
+			let moveTime = 700 / SettingsStore.state.gameSpeed;
+			setTimeout(() => this.player.game.changeTurn(gameId), moveTime);
 		}
 	}
 

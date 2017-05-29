@@ -16,7 +16,7 @@ export class ChessBoard extends Reflux.Component {
   constructor(){
     super();
     this.stores = [PieceStore, BoardStore, RoundStateStore, SettingsStore];
-    this.storeKeys = ['board', 'pieceLocations', 'game', 'boardReversed'];
+    this.storeKeys = ['board', 'pieceLocations', 'game', 'boardReversed', 'gameSpeed'];
   }
 
   render() {
@@ -44,7 +44,7 @@ export class ChessBoard extends Reflux.Component {
   renderPieces(){
     return this.state.pieceLocations.map(({piece,tile}) => {
       return <BoardPiece piece={piece} tile={tile} boardReversed={this.state.boardReversed} tileSize={this.props.tileSize} 
-                         key={piece.id} onPress={() => this.selectTile(tile)} />
+                         key={piece.id} speed={this.state.gameSpeed} onPress={() => this.selectTile(tile)} />
     })
   }
 
