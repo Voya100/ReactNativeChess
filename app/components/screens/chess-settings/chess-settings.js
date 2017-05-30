@@ -112,9 +112,9 @@ export class ChessSettings extends Reflux.Component {
 			<RowContainer title={i18n.t('settings.maxRounds')}>
 				<SliderWithNumber
 					style={styles.slider}
-					step={50}
-					minimumValue={50}
-					maximumValue={500}
+					step={25}
+					minimumValue={25}
+					maximumValue={250}
 					value={this.state.maxRounds}
 					onSlidingComplete={this.updateMaxRounds}
 				/>
