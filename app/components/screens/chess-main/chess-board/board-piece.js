@@ -22,11 +22,11 @@ export class BoardPiece extends Component {
   animationConfig(){
     let speed = this.props.speed;
     return {
-      duration: 700 / speed,
+      duration: Math.floor(700 / speed),
       create: {
         type: LayoutAnimation.Types.linear,
         property: LayoutAnimation.Properties.opacity,
-        duration: 400 / speed
+        duration: Math.floor(400 / speed)
       },
       update: {
         type: LayoutAnimation.Types.easeInEaseOut,
@@ -35,8 +35,8 @@ export class BoardPiece extends Component {
       delete: {
         type: LayoutAnimation.Types.linear,
         property: LayoutAnimation.Properties.opacity,
-        duration: 200 / speed,
-        delay: 200 / speed
+        duration: Math.floor(200 / speed),
+        delay: Math.floor(200 / speed)
       }
     }
   }
