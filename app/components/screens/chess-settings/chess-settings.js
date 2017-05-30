@@ -18,10 +18,7 @@ export class ChessSettings extends Reflux.Component {
     super();
     this.store = SettingsStore;
 		this.updateGameSpeed = this.updateGameSpeed.bind(this);
-		this.updateTempSpeed = this.updateTempSpeed.bind(this);
 		this.updateMaxRounds = this.updateMaxRounds.bind(this);
-		this.updateTempMaxRounds = this.updateTempMaxRounds.bind(this);
-		this.state = {tempSpeed: SettingsStore.state.gameSpeed, tempMaxRounds: SettingsStore.state.maxRounds};
   }
 
 	// tempSpeed and tempMaxRounds need to be initialized to right value after settings are fetchhed from AsyncStorage
@@ -41,16 +38,8 @@ export class ChessSettings extends Reflux.Component {
 		this.props.navigation.setParams({language});
 	}
 
-	updateTempSpeed(tempSpeed){
-		this.setState({tempSpeed});
-	}
-
 	updateGameSpeed(speed){
 		SettingsActions.setGameSpeed(speed);
-	}
-
-	updateTempMaxRounds(tempMaxRounds){
-		this.setState({tempMaxRounds});
 	}
 
 	updateMaxRounds(rounds){
@@ -79,7 +68,6 @@ export class ChessSettings extends Reflux.Component {
 			<RowContainer title={i18n.t('settings.language')} style={{borderTopWidth: 1}}>
 				<Picker style={styles.languagePicker} 
 								selectedValue={this.state.language} 
-								onValueChange={language => this.updateLanguage(language)}
 								prompt={i18n.t('settings.selectLanguage')}> 
 					{this.renderLanguageOptions()}
 				</Picker>
@@ -112,9 +100,7 @@ export class ChessSettings extends Reflux.Component {
 					minimumValue={1} 
 					maximumValue={5} 
 					value={this.state.gameSpeed} 
-					tempValue={this.state.tempSpeed}
 					onSlidingComplete={this.updateGameSpeed}
-					onValueChange={this.updateTempSpeed}
 				/>
 			</RowContainer>
 		)
@@ -130,9 +116,7 @@ export class ChessSettings extends Reflux.Component {
 					minimumValue={50}
 					maximumValue={500}
 					value={this.state.maxRounds}
-					tempValue={this.state.tempMaxRounds}
 					onSlidingComplete={this.updateMaxRounds}
-					onValueChange={this.updateTempMaxRounds}
 				/>
 			</RowContainer>
 		);

@@ -4,18 +4,40 @@ import { View, StyleSheet, Slider } from 'react-native';
 import { ChessText } from './chess-text';
 
 export class SliderWithNumber extends Component {
+
+  constructor(){
+    super();
+    this.state = {tempValue: null};
+    this.onValueChange = this.onValueChange.bind(this);
+    this.onSlidingComplete = this.onSlidingComplete.bind(this);
+  }
+
+  // Slider lags if store is updated directly with each value change, 
+  // which is why true value is only set after sliding is complete
+  onValueChange(value){
+    this.setState({tempValue: value});
+  }
+
+  onSlidingComplete(value){
+    this.props.onSlidingComplete(value);
+    this.setState({tempValue: null});
+  }
+
   render() {
+    // tempValue is null when slider isn't dragged
+    // This way slider number should update to right value, even when changed by other means
+    let value = this.state.tempValue ? this.state.tempValue : this.props.value;
     return (
       <View style={[styles.sliderContainer, this.props.style]}>
-        <ChessText style={styles.text}>{this.props.tempValue}</ChessText>
+        <ChessText style={styles.text}>{value}</ChessText>
         <Slider
           style={styles.slider} 
           step={this.props.step}
           minimumValue={this.props.minimumValue}
           maximumValue={this.props.maximumValue}
           value={this.props.value}
-          onSlidingComplete={this.props.onSlidingComplete}
-          onValueChange={this.props.onValueChange}
+          onSlidingComplete={this.onSlidingComplete}
+          onValueChange={this.onValueChange}
         />
       </View>
     );
