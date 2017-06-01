@@ -6,11 +6,14 @@ import { StyleSheet, View } from 'react-native';
 import { SettingsStore, SettingsActions } from '../../../stores/settings-store';
 
 import { ChessHeader } from '../../shared/chess-header';
+import { ChessButton } from '../../shared/chess-button';
 
 import { BoardReversedSwitchRow } from './setting-rows/board-reversed-switch-row';
 import { GameSpeedSliderRow } from './setting-rows/game-speed-slider-row';
 import { LanguagePickerRow } from './setting-rows/language-picker-row';
 import { MaxRoundsSliderRow } from './setting-rows/max-rounds-slider-row';
+
+import { SettingsHelpModal } from './settings-help-modal';
 
 export class ChessSettings extends Reflux.Component {
   static navigationOptions = {
@@ -21,6 +24,9 @@ export class ChessSettings extends Reflux.Component {
     super();
     this.store = SettingsStore;
 		this.updateLanguage = this.updateLanguage.bind(this);
+		this.state = {helpModalOpen: false};
+		this.openModal = this.openModal.bind(this);
+		this.closeModal = this.closeModal.bind(this);
   }
 
 	updateLanguage(language){
@@ -41,14 +47,25 @@ export class ChessSettings extends Reflux.Component {
 		SettingsActions.setBoardReversed(reversed);
 	}
 
+	openModal(){
+		this.setState({helpModalOpen: true});
+	}
+
+	closeModal(){
+		this.setState({helpModalOpen: false});
+	}
+
   render() {
     return (
       <View style={styles.container}>
         <ChessHeader style={styles.header}>{i18n.t('settings.generalSettings')}</ChessHeader>
+				<ChessButton style={styles.helpButton} onPress={this.openModal}>?</ChessButton>
 				<LanguagePickerRow selectedValue={this.state.language} languageOptions={Object.keys(i18n.translations)} onValueChange={this.updateLanguage}/>
 				<GameSpeedSliderRow value={this.state.gameSpeed} onSlidingComplete={this.updateGameSpeed}/>
 				<MaxRoundsSliderRow value={this.state.maxRounds} onSlidingComplete={this.updateMaxRounds}/>
 				<BoardReversedSwitchRow value={this.state.boardReversed} onValueChange={this.updateBoardReversed}/>
+
+				<SettingsHelpModal visible={this.state.helpModalOpen} onRequestClose={this.closeModal}/>
 			</View>
     );
   }
@@ -56,9 +73,18 @@ export class ChessSettings extends Reflux.Component {
 
 const styles = StyleSheet.create({
 	container: {
-		margin: 10
+		margin: 10,
+		position: 'relative'
 	},
 	header: {
  		margin:5
+	},
+	helpButton: {
+		width: 30,
+		height: 30,
+		borderRadius: 15,
+		position: 'absolute',
+		top: 5,
+		right: 5
 	}
 });

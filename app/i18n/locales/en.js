@@ -34,7 +34,11 @@ export default {
     selectLanguage: 'Select language',
     gameSpeed: 'Game speed',
     maxRounds: 'Max rounds',
-    reverseBoard: 'Reverse board'
+    reverseBoard: 'Reverse board',
+    languageHelp: 'Language used in the app.',
+    gameSpeedHelp: 'Speed at which game pieces move.',
+    maxRoundsHelp: 'How many rounds a game can last before it ends in a tie.',
+    reverseBoardHelp: 'Turns the board by 90 degrees.'
   },
   statistics: {
     title: 'Statistics',

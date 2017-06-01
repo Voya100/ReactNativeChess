@@ -34,7 +34,11 @@ export default {
     selectLanguage: 'Valitse kieli',
     gameSpeed: 'Pelin nopeus',
     maxRounds: 'Maksimikierros',
-    reverseBoard: 'Käänteinen lauta'
+    reverseBoard: 'Käänteinen lauta',
+    languageHelp: 'Sovelluksen käyttämä kieli.',
+    gameSpeedHelp: 'Pelinappuloiden nopeus.',
+    maxRoundsHelp: 'Monenko siirron jälkeen peli päättyy tasapeliin.',
+    reverseBoardHelp: 'Kääntää pelilautaa 90 astetta.'
   },
   statistics: {
     title: 'Tilastot',
