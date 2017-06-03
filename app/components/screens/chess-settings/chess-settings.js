@@ -1,7 +1,7 @@
 import React from 'react';
 import Reflux from 'reflux';
 import i18n from 'react-native-i18n';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 
 import { SettingsStore, SettingsActions } from '../../../stores/settings-store';
 
@@ -12,6 +12,8 @@ import { BoardReversedSwitchRow } from './setting-rows/board-reversed-switch-row
 import { GameSpeedSliderRow } from './setting-rows/game-speed-slider-row';
 import { LanguagePickerRow } from './setting-rows/language-picker-row';
 import { MaxRoundsSliderRow } from './setting-rows/max-rounds-slider-row';
+
+import { CustomBoardSetup } from './custom-board-setup/custom-board-setup';
 
 import { SettingsHelpModal } from './settings-help-modal';
 
@@ -47,6 +49,10 @@ export class ChessSettings extends Reflux.Component {
 		SettingsActions.setBoardReversed(reversed);
 	}
 
+	updateBoardLayout(row1, row2){
+		SettingsActions.setPiecePositions(row1, row2);
+	}
+
 	openModal(){
 		this.setState({helpModalOpen: true});
 	}
@@ -57,16 +63,17 @@ export class ChessSettings extends Reflux.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <ChessHeader style={styles.header}>{i18n.t('settings.generalSettings')}</ChessHeader>
 				<ChessButton style={styles.helpButton} onPress={this.openModal}>?</ChessButton>
 				<LanguagePickerRow selectedValue={this.state.language} languageOptions={Object.keys(i18n.translations)} onValueChange={this.updateLanguage}/>
 				<GameSpeedSliderRow value={this.state.gameSpeed} onSlidingComplete={this.updateGameSpeed}/>
 				<MaxRoundsSliderRow value={this.state.maxRounds} onSlidingComplete={this.updateMaxRounds}/>
 				<BoardReversedSwitchRow value={this.state.boardReversed} onValueChange={this.updateBoardReversed}/>
+				<CustomBoardSetup />
 
 				<SettingsHelpModal visible={this.state.helpModalOpen} onRequestClose={this.closeModal}/>
-			</View>
+			</ScrollView>
     );
   }
 }
@@ -74,7 +81,8 @@ export class ChessSettings extends Reflux.Component {
 const styles = StyleSheet.create({
 	container: {
 		margin: 10,
-		position: 'relative'
+		position: 'relative',
+		flex: 1
 	},
 	header: {
  		margin:5
