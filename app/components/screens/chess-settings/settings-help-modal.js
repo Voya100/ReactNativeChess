@@ -26,6 +26,9 @@ export class SettingsHelpModal extends Component {
         <ChessHeader headerType={2}>{i18n.t('settings.reverseBoard')}</ChessHeader>
         <ChessText>{i18n.t('settings.reverseBoardHelp')}{'\n'}</ChessText>
 
+        <ChessHeader headerType={2}>{i18n.t('settings.customBoard.title')}</ChessHeader>
+        <ChessText>{i18n.t('settings.customBoardHelp')}{'\n'}</ChessText>
+
         <ChessButton style={styles.button} onPress={this.props.onRequestClose}>Close</ChessButton>
       </CenteredModal>
     );

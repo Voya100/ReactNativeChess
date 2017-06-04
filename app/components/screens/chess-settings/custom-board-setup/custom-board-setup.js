@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import i18n from 'react-native-i18n';
 import { StyleSheet, View, Dimensions } from 'react-native';
 import { DragContainer } from 'react-native-drag-drop';
 
@@ -34,21 +35,21 @@ export class CustomBoardSetup extends Component {
     let size = (Dimensions.get('window').width / rowSize) - margin;
     return (
       <View style={[styles.container, this.props.style]}>
-				<ChessText style={styles.text}>Custom board</ChessText>
+				<ChessText style={styles.text}>{i18n.t('settings.customBoard.title')}</ChessText>
 				<DragContainer style={styles.dragContainer} onDragEnd={this.onDragEnd}>
 
-          <ChessText>Piece options (drag and drop)</ChessText>
+          <ChessText>{i18n.t('settings.customBoard.pieceOptions')}</ChessText>
           <View style={styles.tileContainer}>
             {this.renderPieceOptions(size)}    
           </View>       
 
-          <ChessText>Board</ChessText>
+          <ChessText>{i18n.t('settings.customBoard.board')}</ChessText>
           <View style={styles.tileContainer}>
             {this.renderBoardRow(1, size)}
             {this.renderBoardRow(0, size)}
           </View>
 
-          <ChessButton onPress={() => SettingsActions.resetPiecePositions()}>Reset to default</ChessButton>
+          <ChessButton onPress={() => SettingsActions.resetPiecePositions()}>{i18n.t('settings.customBoard.resetToDefault')}</ChessButton>
           
         </DragContainer>
 			</View>

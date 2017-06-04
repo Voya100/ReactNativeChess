@@ -38,7 +38,14 @@ export default {
     languageHelp: 'Language used in the app.',
     gameSpeedHelp: 'Speed at which game pieces move.',
     maxRoundsHelp: 'How many rounds a game can last before it ends in a tie.',
-    reverseBoardHelp: 'Turns the board by 90 degrees.'
+    reverseBoardHelp: 'Turns the board by 90 degrees.',
+    customBoard: {
+      title: 'Custom board',
+      pieceOptions: 'Piece options (drag and drop)',
+      board: 'Board',
+      resetToDefault: 'Reset to default'
+    },
+    customBoardHelp: 'Set a customized board with pieces of your choice. The pieces you set will also be set for black player, but in reversed order. Changes take effect when you start a new game.'
   },
   statistics: {
     title: 'Statistics',

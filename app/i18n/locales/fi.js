@@ -38,7 +38,14 @@ export default {
     languageHelp: 'Sovelluksen käyttämä kieli.',
     gameSpeedHelp: 'Pelinappuloiden nopeus.',
     maxRoundsHelp: 'Monenko siirron jälkeen peli päättyy tasapeliin.',
-    reverseBoardHelp: 'Kääntää pelilautaa 90 astetta.'
+    reverseBoardHelp: 'Kääntää pelilautaa 90 astetta.',
+    customBoard: {
+      title: 'Erikoislauta',
+      pieceOptions: 'Nappulavaihtoehdot (vedä ja tiputa)',
+      board: 'Pelilauta',
+      resetToDefault: 'Palauta alkuperäiseksi'
+    },
+    customBoardHelp: 'Suunnittele oma pelilauta shakkipeliisi! Musta saa samat nappulat kuin valkoinen, mutta käänteisessä järjestyksessä. Muutokset tulevat voimaan, kun aloitat uuden pelin.'
   },
   statistics: {
     title: 'Tilastot',
