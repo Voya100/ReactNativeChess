@@ -92,8 +92,5 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 0,
-    margin: 15,
-    padding: 10,
-    borderRadius: 5,
   }
 });

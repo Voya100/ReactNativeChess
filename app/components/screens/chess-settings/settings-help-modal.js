@@ -40,9 +40,6 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   button: {
-    flex: 0,
-    margin: 5,
-    padding: 10,
-    borderRadius: 5,
+    flex: 0
   }
 });

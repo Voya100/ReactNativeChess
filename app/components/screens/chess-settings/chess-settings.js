@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
 		borderRadius: 15,
 		position: 'absolute',
 		top: 5,
-		right: 5
+		right: 5,
+		margin: 0
 	}
 });

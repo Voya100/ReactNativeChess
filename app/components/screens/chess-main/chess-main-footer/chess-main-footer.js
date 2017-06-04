@@ -30,8 +30,5 @@ const styles = StyleSheet.create({
   },
   buttonRow: {
     flexDirection: 'row',
-    backgroundColor: colors.active,
-    borderWidth: 1,
-    borderColor: colors.border,
   }
 });
