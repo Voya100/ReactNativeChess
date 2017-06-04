@@ -5,14 +5,17 @@ import { colors } from '../../../colors';
 
 export class BoardTile extends Component {
 
-  
   shouldComponentUpdate(nextProps){
     return nextProps.color !== this.props.color;
   }
 
   render() {
     return (
-      <TouchableHighlight onPress={this.props.onPress} style={[styles.tile, {backgroundColor: this.props.color}]} activeOpacity={0.6} underlayColor={colors.highlightTile}>
+      <TouchableHighlight 
+        onPress={this.props.onPress} 
+        style={[styles.tile, {backgroundColor: this.props.color}]} 
+        activeOpacity={0.6} 
+        underlayColor={colors.highlightTile}>
         <View></View>
       </TouchableHighlight>
     );
