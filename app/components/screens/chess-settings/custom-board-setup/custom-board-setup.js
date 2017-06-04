@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
-
 import { DragContainer } from 'react-native-drag-drop';
 
 import { TileDropZone } from './tile-drop-zone';
-
 import { ChessText } from '../../../shared/chess-text';
+import { ChessButton } from '../../../shared/chess-button';
+
+import { SettingsActions } from '../../../../stores/settings-store';
 
 export class CustomBoardSetup extends Component {
 
   updateBoardPosition(pieceData, prevPieceType, x, y){
-    console.log("board updated", pieceData, prevPieceType, x, y);
+    if(pieceData.pieceType != prevPieceType){
+      SettingsActions.setPiecePosition(pieceData.pieceType, x, y);
+    }
+    // If draggable piece is from the board, the pieces should be swapped
+    if(pieceData.isOnBoard){
+      SettingsActions.setPiecePosition(prevPieceType, pieceData.x, pieceData.y);
+    }
+  }
+
+  // Piece should be removed from board if dragged away from board
+  onDragEnd(e, zones){
+    if(zones.length == 0 && e.data.isOnBoard){
+      let pieceData = e.data;
+      SettingsActions.setPiecePosition(' ', pieceData.x, pieceData.y);
+    }
   }
   
   render(){
@@ -20,7 +35,7 @@ export class CustomBoardSetup extends Component {
     return (
       <View style={[styles.container, this.props.style]}>
 				<ChessText style={styles.text}>Custom board</ChessText>
-				<DragContainer style={styles.dragContainer}>
+				<DragContainer style={styles.dragContainer} onDragEnd={this.onDragEnd}>
 
           <ChessText>Piece options (drag and drop)</ChessText>
           <View style={styles.tileContainer}>
@@ -32,6 +47,8 @@ export class CustomBoardSetup extends Component {
             {this.renderBoardRow(1, size)}
             {this.renderBoardRow(0, size)}
           </View>
+
+          <ChessButton onPress={() => SettingsActions.resetPiecePositions()}>Reset to default</ChessButton>
           
         </DragContainer>
 			</View>

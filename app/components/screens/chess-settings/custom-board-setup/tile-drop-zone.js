@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-
 import { DropZone } from 'react-native-drag-drop';
 
 import { DraggablePiece } from './draggable-piece';

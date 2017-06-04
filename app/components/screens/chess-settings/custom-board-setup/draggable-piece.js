@@ -31,7 +31,7 @@ export class DraggablePiece extends Component {
       case 'X':
         return chessImages['white-king'];
       default:
-        return chessImages['white-pawn'];
+        return undefined;
     }
   }
 }
