@@ -30,6 +30,7 @@ export class LanguagePickerRow extends Component {
 const styles = StyleSheet.create({
 	languagePicker: {
 		flex: 5,
-		width: 100
+		width: 100,
+    height: 32
 	}
 });

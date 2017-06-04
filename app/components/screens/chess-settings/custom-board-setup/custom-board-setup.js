@@ -89,7 +89,6 @@ export class CustomBoardSetup extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		borderBottomWidth: 1,
     padding: 5,
     flex: 1
 	},
