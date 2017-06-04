@@ -1,6 +1,7 @@
 import { Piece } from './piece';
 import { Tile } from '../game/tile';
 
+import { SettingsStore } from '../stores/settings-store';
 
 export class Pawn extends Piece{
 
@@ -47,7 +48,7 @@ export class Pawn extends Piece{
 	checkDiagonalTile(xDir){
 		let x = this.x();
 		let y = this.y();
-		if(!Tile.tileExists(x+xDir,y)){
+		if(!Tile.tileExists(x+xDir,y+this.yDir)){
 			return;
 		}
 		let	tile = this.tiles[y+this.yDir][x+xDir];
@@ -73,10 +74,11 @@ export class Pawn extends Piece{
 		super.move(x, y);
 		// Promotion
 		if(y == 0 || y == 7){
+			let delay = 500 / SettingsStore.state.gameSpeed;
 			setTimeout(() => {
-				this.die();
 				this.player.game.addPiece(this.x(),this.y(),this.player,"Q");
-			}, 500)
+				this.die();
+			}, delay)
 		}
 	}
 
