@@ -11,6 +11,12 @@ import { SettingsActions } from '../../../../stores/settings-store';
 
 export class CustomBoardSetup extends Component {
 
+  constructor(){
+    super();
+    this.onDragStart = this.onDragStart.bind(this);
+    this.onDragEnd = this.onDragEnd.bind(this);
+  }
+
   updateBoardPosition(pieceData, prevPieceType, x, y){
     if(pieceData.pieceType != prevPieceType){
       SettingsActions.setPiecePosition(pieceData.pieceType, x, y);
@@ -21,12 +27,18 @@ export class CustomBoardSetup extends Component {
     }
   }
 
+  // Prevents scrolling when dragging
+  onDragStart(){
+    this.props.toggleScroll(false);
+  }
+
   // Piece should be removed from board if dragged away from board
   onDragEnd(e, zones){
     if(zones.length == 0 && e.data.isOnBoard){
       let pieceData = e.data;
       SettingsActions.setPiecePosition(' ', pieceData.x, pieceData.y);
     }
+    this.props.toggleScroll(true);
   }
   
   render(){
@@ -36,7 +48,7 @@ export class CustomBoardSetup extends Component {
     return (
       <View style={[styles.container, this.props.style]}>
 				<ChessText style={styles.text}>{i18n.t('settings.customBoard.title')}</ChessText>
-				<DragContainer style={styles.dragContainer} onDragEnd={this.onDragEnd}>
+				<DragContainer style={styles.dragContainer} onDragStart={this.onDragStart} onDragEnd={this.onDragEnd}>
 
           <ChessText>{i18n.t('settings.customBoard.pieceOptions')}</ChessText>
           <View style={styles.tileContainer}>
@@ -63,7 +75,6 @@ export class CustomBoardSetup extends Component {
 
   renderBoardRow(row, size){
     let types = this.props.positions[row];
-    console.log(types)
     return this.renderRow(types, row, size, true);
   }
 
