@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image } from 'react-native';
+import { Image } from 'react-native';
 
 import { Draggable } from 'react-native-drag-drop';
 
@@ -35,6 +35,3 @@ export class DraggablePiece extends Component {
     }
   }
 }
-
-const styles = StyleSheet.create({
-});

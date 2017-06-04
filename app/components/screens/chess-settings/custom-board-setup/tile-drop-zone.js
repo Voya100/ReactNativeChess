@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { DropZone } from 'react-native-drag-drop';
 
 import { DraggablePiece } from './draggable-piece';
@@ -27,7 +27,7 @@ export class TileDropZone extends Component {
     let size = {width: this.props.size, height: this.props.size};
     return (
       <DropZone onEnter={this.onEnter} onLeave={this.onLeave} onDrop={this.props.onDrop}>
-        <View style={[styles.tile, {backgroundColor: this.color()}, size]}>
+        <View style={[{backgroundColor: this.color()}, size]}>
           {this.props.data.pieceType && <DraggablePiece data={this.props.data} size={this.props.size}/>}
         </View>
       </DropZone>
@@ -42,6 +42,3 @@ export class TileDropZone extends Component {
     }
   }
 }
-
-const styles = StyleSheet.create({
-});
