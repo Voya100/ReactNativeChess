@@ -62,6 +62,10 @@ export default class ReactNativeChess extends Reflux.Component {
     this.game = new ChessGame();
     RoundStateActions.setGame(this.game);
 
+    // Route is saved in mutable structure for performance reasons (it shouldn't cause rerendering)
+    this.route = { activeRoute: 'Main' };
+    this.setRoute = this.setRoute.bind(this);
+
     this.store = SettingsStore;
   }
 
@@ -72,10 +76,16 @@ export default class ReactNativeChess extends Reflux.Component {
     });
   }
 
+  setRoute(prevState, currentState){
+    if(currentState){
+      RoundStateActions.setMainIsOpen(currentState.routes[currentState.index].routeName == 'Main');
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <AppNavigation screenProps={this.state.language}></AppNavigation>
+        <AppNavigation screenProps={{language: this.state.language}} onNavigationStateChange={this.setRoute}/>
       </View>
     );  
   }

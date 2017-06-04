@@ -23,7 +23,7 @@ export class ChessMain extends Reflux.Component {
     super();
     this.state = {chooseModeVisible: false, victoryVisible: false};
     this.store = RoundStateStore;
-    this.storeKeys = ['winner', 'gameHasEnded', 'game'];
+    this.storeKeys = ['winner', 'gameHasEnded', 'game', 'mainIsOpen'];
 
     this.openChooseModeModal = this.openChooseModeModal.bind(this);
     this.closeChooseModeModal = this.closeChooseModeModal.bind(this);
@@ -48,7 +48,6 @@ export class ChessMain extends Reflux.Component {
   }
 
   openVictoryModal(){
-    console.log("open victory")
     this.setState({victoryVisible: true, chooseModeVisible: false});
   }
 
@@ -75,6 +74,7 @@ export class ChessMain extends Reflux.Component {
     let modalPosition = {
       marginTop: (height - fullBoardSize) / 4 + 20
     }
+
     return (
       <View style={[styles.main]}>
         <ChessMainHeader/>
@@ -88,7 +88,7 @@ export class ChessMain extends Reflux.Component {
           style={modalPosition}
         />
         <VictoryModal 
-          visible={this.state.victoryVisible} 
+          visible={this.state.victoryVisible && this.state.mainIsOpen} 
           onRequestClose={this.closeVictoryModal} 
           startNewGame={this.newGame}
           openChooseModeModal={this.openChooseModeModal}

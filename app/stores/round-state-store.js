@@ -5,14 +5,15 @@ export var RoundStateActions = Reflux.createActions([
   'setActivePlayerColor',
   'setRound',
   'setGame',
-  'setGameEnded'
+  'setGameEnded',
+  'setMainIsOpen'
 ]);
 
 export class RoundStateStore extends Reflux.Store{
 
   constructor(){
     super();
-    this.state = {activePlayerColor: 'white', round: 1, game: null, gameHasEnded: false, winner: ''};
+    this.state = {activePlayerColor: 'white', round: 1, game: null, gameHasEnded: false, winner: '', mainIsOpen: true};
     this.listenables = RoundStateActions;
   }
 
@@ -34,6 +35,11 @@ export class RoundStateStore extends Reflux.Store{
     if(gameHasEnded){
 		  StatisticsActions.addGameResult(winner, this.state.round);
     }
+  }
+
+  // Tells whether main screen is open or not
+  setMainIsOpen(mainIsOpen){
+    this.setState({mainIsOpen})
   }
 
 }
