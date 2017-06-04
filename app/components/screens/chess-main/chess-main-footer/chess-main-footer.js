@@ -5,8 +5,6 @@ import i18n from 'react-native-i18n';
 
 import { ChessButton } from '../../../shared/chess-button';
 
-import { colors } from '../../../colors';
-
 export class ChessMainFooter extends Reflux.Component {
 
   render() {
