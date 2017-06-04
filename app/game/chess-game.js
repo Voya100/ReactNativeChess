@@ -88,10 +88,10 @@ export class ChessGame {
 	
 	addPieces(){
 		let positions = this.settings.state.piecePositions;
-		let row1 = positions[0] + "_".repeat(8-positions[0].length);
-		let row2 = positions[1] + "_".repeat(8-positions[1].length);
-		let row1b = row1.split("").reverse().join(""); // Black rows are mirrored
-		let row2b = row2.split("").reverse().join("");
+		let row1 = positions[0];
+		let row2 = positions[1];
+		let row1b = row1.reverse().join(""); // Black rows are mirrored
+		let row2b = row2.reverse().join("");
 		for(let i = 0; i < 8; i++){
 			this.addPiece(i, 7, this.white,row1[i], false);
 			this.addPiece(i, 0, this.black,row1b[i], false);

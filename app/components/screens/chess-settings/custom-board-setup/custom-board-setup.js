@@ -44,7 +44,7 @@ export class CustomBoardSetup extends Component {
   }
 
   renderBoardRow(row, size){
-    let types = this.props.positions[row].split('');
+    let types = this.props.positions[row];
     console.log(types)
     return this.renderRow(types, row, size, true);
   }

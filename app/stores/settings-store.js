@@ -15,8 +15,8 @@ export var SettingsActions = Reflux.createActions([
 ]);
 
 const storageKey = "@VoyaCodeChess:settings";
-const defaultPiecePositions = ["RKBXQBKR",
-	                             "PPPPPPPP"];
+const defaultPiecePositions = [['R','K','B','X','Q','B','K','R'],
+	                             ['P','P','P','P','P','P','P','P']];
 
 export class SettingsStore extends Reflux.Store{
 
