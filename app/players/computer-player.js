@@ -3,6 +3,7 @@ import * as _ from 'underscore';
 
 // Returns random value from array
 function randVal(array){
+	if(array.length == 0) return array;
 	return array[Math.floor(Math.random()*array.length)];
 }
 
