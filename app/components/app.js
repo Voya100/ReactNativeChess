@@ -36,6 +36,7 @@ const AppNavigation = TabNavigator({
 },{
   cardStyle: {backgroundColor: colors.background},
   headerMode: 'screen',
+  swipeEnabled: false,
   tabBarOptions: {
     labelStyle: {
       fontSize: 13
