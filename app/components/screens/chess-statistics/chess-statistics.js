@@ -72,7 +72,12 @@ export class ChessStatistics extends Reflux.Component {
   }
 
   renderDataRow(name, value){
-    return <ChessText>{i18n.t('statistics.' + name)}: {value}</ChessText>
+    return (
+      <View style={styles.rowContainer}>
+        <ChessText style={styles.statDescription}>{i18n.t('statistics.' + name)}: </ChessText>
+        <ChessText>{value}</ChessText>
+      </View>
+    )
   }
 
   // Returns percentage in brackets (or empty string, if percentage is 0/infinite)
@@ -92,5 +97,11 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 0,
+  },
+  rowContainer: {
+    flexDirection: 'row'
+  },
+  statDescription: {
+    width: 175
   }
 });
