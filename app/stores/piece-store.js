@@ -42,7 +42,7 @@ export class PieceStore extends Reflux.Store
       let pieceLocation = {piece, tile};
       this.pieceIds.push(piece.id);
       this.pieceLocationsMap[piece.id] = pieceLocation;
-      this.setState(prevState => ({pieceLocations: prevState.pieceLocations.concat(pieceLocation)}));
+      this.setState({pieceLocations: this.state.pieceLocations.concat(pieceLocation)});
     }
 
     removePiece(piece){
