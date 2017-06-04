@@ -70,7 +70,7 @@ export class ChessSettings extends Reflux.Component {
 				<GameSpeedSliderRow value={this.state.gameSpeed} onSlidingComplete={this.updateGameSpeed}/>
 				<MaxRoundsSliderRow value={this.state.maxRounds} onSlidingComplete={this.updateMaxRounds}/>
 				<BoardReversedSwitchRow value={this.state.boardReversed} onValueChange={this.updateBoardReversed}/>
-				<CustomBoardSetup />
+				<CustomBoardSetup positions={this.state.piecePositions} />
 
 				<SettingsHelpModal visible={this.state.helpModalOpen} onRequestClose={this.closeModal}/>
 			</ScrollView>

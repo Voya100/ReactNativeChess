@@ -8,6 +8,10 @@ import { TileDropZone } from './tile-drop-zone';
 import { ChessText } from '../../../shared/chess-text';
 
 export class CustomBoardSetup extends Component {
+
+  updateBoardPosition(pieceData, prevPieceType, x, y){
+    console.log("board updated", pieceData, prevPieceType, x, y);
+  }
   
   render(){
     let rowSize = 8;
@@ -17,20 +21,40 @@ export class CustomBoardSetup extends Component {
       <View style={[styles.container, this.props.style]}>
 				<ChessText style={styles.text}>Custom board</ChessText>
 				<DragContainer style={styles.dragContainer}>
+
           <ChessText>Piece options (drag and drop)</ChessText>
           <View style={styles.tileContainer}>
-            {this.renderPieceOptions(size)}            
+            {this.renderPieceOptions(size)}    
+          </View>       
+
+          <ChessText>Board</ChessText>
+          <View style={styles.tileContainer}>
+            {this.renderBoardRow(1, size)}
+            {this.renderBoardRow(0, size)}
           </View>
+          
         </DragContainer>
 			</View>
     )
   }
 
   renderPieceOptions(size){
-    let options = ['P', 'R', 'K', 'B', 'Q', 'X'];
-    return options.map((pieceType, i) => {
-      return <TileDropZone data={{pieceType: pieceType, x: i, y: 0}} size={size} key={i}/>
+    let typeOptions = ['P', 'R', 'K', 'B', 'Q', 'X'];
+    return this.renderRow(typeOptions, 0, size, false);
+  }
+
+  renderBoardRow(row, size){
+    let types = this.props.positions[row].split('');
+    console.log(types)
+    return this.renderRow(types, row, size, true);
+  }
+
+  renderRow(types, y, size, isBoard){
+    let dropZones = types.map((pieceType, x) => {
+      let onDrop = isBoard ? (data) => this.updateBoardPosition(data, pieceType, x, y) : undefined;
+      return <TileDropZone data={{pieceType: pieceType, isOnBoard: isBoard, x, y}} size={size} key={x} onDrop={onDrop}/>
     })
+    return <View style={styles.tileRow}>{dropZones}</View>;
   }
 }
 
@@ -44,8 +68,10 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   tileContainer: {
-    flexDirection: 'row',
     borderWidth: 1,
     margin: 5
+  },
+  tileRow: {
+    flexDirection: 'row'
   }
 });
