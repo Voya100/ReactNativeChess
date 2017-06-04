@@ -6,7 +6,7 @@ export var SettingsActions = Reflux.createActions([
   'loadSettings',
   'setLanguage',
   'setGameMode',
-  'setPiecePositions',
+  'setPiecePosition',
   'resetPiecePositions',
   'setGameSpeed',
   'setMaxRounds',
@@ -77,11 +77,14 @@ export class SettingsStore extends Reflux.Store{
       }
 	}
 
-  setPiecePositions(row1, row2){
-   this.saveSettings({piecePositions: [row1, row2]});
+  setPiecePosition(pieceType, x, y){
+    let piecePositions = this.state.piecePositions.map(row => row.slice());
+    piecePositions[y][x] = pieceType;
+    this.saveSettings({piecePositions})
   }
 
   resetPiecePositions(){
+    console.log("resetting")
     this.saveSettings({piecePositions: defaultPiecePositions});
   }
 
