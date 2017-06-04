@@ -45,7 +45,8 @@ export default {
       board: 'Board',
       resetToDefault: 'Reset to default'
     },
-    customBoardHelp: 'Set a customized board with pieces of your choice. The pieces you set will also be set for black player, but in reversed order. Changes take effect when you start a new game.'
+    customBoardHelp: 'Set a customized board with pieces of your choice. The pieces you set will also be set for black player, but in reversed order. Changes take effect when you start a new game.',
+    close: 'Close'
   },
   statistics: {
     title: 'Statistics',

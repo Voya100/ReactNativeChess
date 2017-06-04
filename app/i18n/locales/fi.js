@@ -45,7 +45,8 @@ export default {
       board: 'Pelilauta',
       resetToDefault: 'Palauta alkuperäiseksi'
     },
-    customBoardHelp: 'Suunnittele oma pelilauta shakkipeliisi! Musta saa samat nappulat kuin valkoinen, mutta käänteisessä järjestyksessä. Muutokset tulevat voimaan, kun aloitat uuden pelin.'
+    customBoardHelp: 'Suunnittele oma pelilauta shakkipeliisi! Musta saa samat nappulat kuin valkoinen, mutta käänteisessä järjestyksessä. Muutokset tulevat voimaan, kun aloitat uuden pelin.',
+    close: 'Sulje'
   },
   statistics: {
     title: 'Tilastot',

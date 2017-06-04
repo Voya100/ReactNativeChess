@@ -29,7 +29,7 @@ export class SettingsHelpModal extends Component {
         <ChessHeader headerType={2}>{i18n.t('settings.customBoard.title')}</ChessHeader>
         <ChessText>{i18n.t('settings.customBoardHelp')}{'\n'}</ChessText>
 
-        <ChessButton style={styles.button} onPress={this.props.onRequestClose}>Close</ChessButton>
+        <ChessButton style={styles.button} onPress={this.props.onRequestClose}>{i18n.t('settings.close')}</ChessButton>
       </CenteredModal>
     );
   }
