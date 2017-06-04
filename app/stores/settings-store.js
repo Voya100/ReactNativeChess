@@ -84,7 +84,6 @@ export class SettingsStore extends Reflux.Store{
   }
 
   resetPiecePositions(){
-    console.log("resetting")
     this.saveSettings({piecePositions: defaultPiecePositions});
   }
 
