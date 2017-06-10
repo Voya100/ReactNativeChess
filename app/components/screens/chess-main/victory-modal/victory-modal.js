@@ -9,20 +9,22 @@ import { CenteredModal } from '../../../shared/centered-modal';
 export class VictoryModal extends Component {
 
   render() {
-    let winner = this.props.winner;
-    let victoryMessage = '';
-    if(winner == 'tie'){
-      victoryMessage = i18n.t('game.victory.itsATie');
-    }else if(winner == 'white' || winner == 'black'){
-      victoryMessage = i18n.t('game.victory.' + winner + 'Wins');
-    }
     return (
       <CenteredModal onRequestClose={this.props.onRequestClose} visible={this.props.visible} style={this.props.style}>
-        <ChessHeader headerType={2} style={styles.text}>{victoryMessage}</ChessHeader>
+        <ChessHeader headerType={2} style={styles.text}>{this.victoryMessage()}</ChessHeader>
         <ChessButton style={styles.button} onPress={this.props.startNewGame}>{i18n.t('game.newGame')}</ChessButton>
         <ChessButton style={styles.button} onPress={this.props.openChooseModeModal}>{i18n.t('game.victory.changeGameMode')}</ChessButton>
       </CenteredModal>
     );
+  }
+
+  victoryMessage(){
+    let winner = this.props.winner;
+    if(winner == 'white' || winner == 'black'){
+      return i18n.t('game.victory.' + winner + 'Wins');
+    }else{
+      return i18n.t('game.victory.itsATie');
+    }
   }
 }
 

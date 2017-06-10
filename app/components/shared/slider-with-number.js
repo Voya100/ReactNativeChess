@@ -3,6 +3,9 @@ import { View, StyleSheet, Slider } from 'react-native';
 
 import { ChessText } from './chess-text';
 
+// A slider that shows a number that displays slider's current value
+// Slider updates the real value only after sliding has ended (for performance reasons), but displays the temporary value
+
 export class SliderWithNumber extends Component {
 
   constructor(){

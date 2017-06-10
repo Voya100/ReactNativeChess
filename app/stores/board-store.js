@@ -85,14 +85,17 @@ export class BoardStore extends Reflux.Store{
     }
   }
 
+  // Gets x coordinate in visible board, which is different when board is reversed
   getX(x,y){
     return SettingsStore.state.boardReversed ? 7-y : x;
   }
 
+  // Gets y coordinate in visible board, which is different when board is reversed
   getY(x,y){
     return SettingsStore.state.boardReversed ? x : y;
   }
 
+  // Returns new array that has value at index replaced by value
   replaceAtIndex(array, index, value){
     return [...array.slice(0,index), value, ...array.slice(index+1)];
   }

@@ -9,6 +9,12 @@ import { ChessButton } from '../../../shared/chess-button';
 
 import { SettingsActions } from '../../../../stores/settings-store';
 
+// CustomBoardSetup provides interface to make custom chess board layouts
+
+// Note: Dragging doesn't seem to work well with scrolling view.
+// This may make dragging hard on smaller devices
+// If support of this is needed, may need to redo the implementation
+
 export class CustomBoardSetup extends Component {
 
   constructor(){
@@ -27,7 +33,7 @@ export class CustomBoardSetup extends Component {
     }
   }
 
-  // Prevents scrolling when dragging
+  // Prevents scrolling when dragging (note: doesn't work reliably)
   onDragStart(){
     this.props.toggleScroll(false);
   }
@@ -48,8 +54,8 @@ export class CustomBoardSetup extends Component {
     return (
       <View style={[styles.container, this.props.style]}>
 				<ChessText style={styles.text}>{i18n.t('settings.customBoard.title')}</ChessText>
-				<DragContainer style={styles.dragContainer} onDragStart={this.onDragStart} onDragEnd={this.onDragEnd}>
 
+				<DragContainer style={styles.dragContainer} onDragStart={this.onDragStart} onDragEnd={this.onDragEnd}>
           <ChessText>{i18n.t('settings.customBoard.pieceOptions')}</ChessText>
           <View style={styles.tileContainer}>
             {this.renderPieceOptions(size)}    
@@ -62,8 +68,8 @@ export class CustomBoardSetup extends Component {
           </View>
 
           <ChessButton onPress={() => SettingsActions.resetPiecePositions()}>{i18n.t('settings.customBoard.resetToDefault')}</ChessButton>
-          
         </DragContainer>
+
 			</View>
     )
   }

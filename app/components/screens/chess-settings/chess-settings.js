@@ -25,8 +25,8 @@ export class ChessSettings extends Reflux.Component {
   constructor(){
     super();
     this.store = SettingsStore;
-		this.updateLanguage = this.updateLanguage.bind(this);
 		this.state = {helpModalOpen: false, scrollEnabled: true};
+		this.updateLanguage = this.updateLanguage.bind(this);
 		this.openModal = this.openModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
 		this.toggleScroll = this.toggleScroll.bind(this);
@@ -71,6 +71,7 @@ export class ChessSettings extends Reflux.Component {
       <ScrollView style={styles.container} scrollEnabled={this.state.scrollEnabled}>
         <ChessHeader style={styles.header}>{i18n.t('settings.generalSettings')}</ChessHeader>
 				<ChessButton style={styles.helpButton} onPress={this.openModal}>?</ChessButton>
+				
 				<LanguagePickerRow selectedValue={this.state.language} languageOptions={Object.keys(i18n.translations)} onValueChange={this.updateLanguage}/>
 				<GameSpeedSliderRow value={this.state.gameSpeed} onSlidingComplete={this.updateGameSpeed}/>
 				<MaxRoundsSliderRow value={this.state.maxRounds} onSlidingComplete={this.updateMaxRounds}/>

@@ -19,7 +19,6 @@ export class ChessMainFooter extends Reflux.Component {
   }
 }
 
-
 const styles = StyleSheet.create({
   buttonContainer: {
     alignItems: 'stretch',

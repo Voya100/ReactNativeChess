@@ -3,6 +3,8 @@ import { StyleSheet, View } from 'react-native';
 
 import { ChessText } from '../../../shared/chess-text';
 
+// A row that has a title (name of the setting)
+
 export class SettingRow extends Component {
   
   render(){

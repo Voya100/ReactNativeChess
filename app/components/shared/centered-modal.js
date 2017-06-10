@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Modal, TouchableWithoutFeedback } from 'react-native';
 
-
 import { colors } from '../colors';
+
+// Centered modal that can be closed by pressing outside of it
 
 export class CenteredModal extends Component {
 

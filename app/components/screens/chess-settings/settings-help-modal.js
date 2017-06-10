@@ -7,6 +7,8 @@ import { ChessHeader } from '../../shared/chess-header';
 import { ChessText } from '../../shared/chess-text';
 import { CenteredModal } from '../../shared/centered-modal';
 
+// Shows more detailed descriptions of the settings
+
 export class SettingsHelpModal extends Component {
 
   render() {

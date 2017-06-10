@@ -5,6 +5,8 @@ import { Draggable } from 'react-native-drag-drop';
 
 import { chessImages } from '../../../../images/images';
 
+// A piece that can be dragged
+
 export class DraggablePiece extends Component {
   
   render(){

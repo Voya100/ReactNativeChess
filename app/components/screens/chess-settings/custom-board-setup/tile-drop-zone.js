@@ -6,6 +6,9 @@ import { DraggablePiece } from './draggable-piece';
 
 import { colors } from '../../../colors';
 
+// A board tile, on which draggable pieces can be dropped
+// Contains draggable piece, if a piece is on the tile
+
 export class TileDropZone extends Component {
 
   constructor(){

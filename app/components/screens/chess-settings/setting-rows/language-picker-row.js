@@ -19,7 +19,6 @@ export class LanguagePickerRow extends Component {
     )
   }
 
-  
   renderLanguageOptions(){
     return this.props.languageOptions.map((language, i) => {
       return <Picker.Item label={ i18n.translations[language].id } value={ language } key={i}/> 

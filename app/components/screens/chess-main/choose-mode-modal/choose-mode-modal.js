@@ -12,6 +12,7 @@ import { SettingsActions } from '../../../../stores/settings-store';
 
 export class ChooseModeModal extends Component {
 
+  // Sets game mode, resets the game and closes the modal
   setMode(mode){
     SettingsActions.setGameMode(mode);
     this.props.startNewGame();

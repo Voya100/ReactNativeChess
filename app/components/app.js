@@ -69,6 +69,8 @@ export default class ReactNativeChess extends Reflux.Component {
     this.store = SettingsStore;
   }
 
+  // Settings should be loaded when app is launched, after which game can be launched
+  // Splashscreen is hidden after all this is complete
   componentDidMount(){
     SettingsActions.loadSettings(()=> {
       this.game.reset();
@@ -76,6 +78,9 @@ export default class ReactNativeChess extends Reflux.Component {
     });
   }
 
+  // Tabs aren't unmounted when they are changed, and navigator doesn't tell them if they are activated
+  // Main screen can run game in background, but it needs to know whether it's active and when that changes
+  // This is why it is saved to the store
   setRoute(prevState, currentState){
     if(currentState){
       RoundStateActions.setMainIsOpen(currentState.routes[currentState.index].routeName == 'Main');

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 
 import { ChessText } from './chess-text';
-
 import { colors } from '../colors';
 
 export class ChessButton extends Component {

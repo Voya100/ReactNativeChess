@@ -33,8 +33,8 @@ export class ChessBoard extends Reflux.Component {
   }
 
   renderRow(tileRow, index){
-    let jsxRow = tileRow.map((tile, i) => this.renderTile(tile, i));
-    return <View style={[styles.row, {height: this.props.tileSize}]} key={index}>{jsxRow}</View>;
+    let row = tileRow.map((tile, i) => this.renderTile(tile, i));
+    return <View style={[styles.row, {height: this.props.tileSize}]} key={index}>{row}</View>;
   }
 
   renderTile(tileData, index){
@@ -49,9 +49,13 @@ export class ChessBoard extends Reflux.Component {
   }
 
   selectTile(tile){
-    if(!this.state.game.gamePaused && this.state.game.activePlayer instanceof HumanPlayer && tile != null){
+    if(this.tileSelectIsAllowed(tile)){
       tile.select();
     }
+  }
+
+  tileSelectIsAllowed(tile){
+    return !this.state.game.gamePaused && this.state.game.activePlayer instanceof HumanPlayer && tile != null;
   }
 
 }
