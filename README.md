@@ -8,11 +8,11 @@ This app is very heavily based on chess game I made for my website with Angular.
 
 All the main game logic is contained in [game/](https://github.com/Voya100/ReactNativeChess/tree/master/app/game), [pieces/](https://github.com/Voya100/ReactNativeChess/tree/master/app/pieces) and [players/](https://github.com/Voya100/ReactNativeChess/tree/master/app/players) directories (inside app directory). These are nearly identical to the original version made with Angular.
 
-[store/](https://github.com/Voya100/ReactNativeChess/tree/master/app/store) directory contains all Reflux stores, which contain data about the game the views need to render their contents and settings/statistics.
+[store/](https://github.com/Voya100/ReactNativeChess/tree/master/app/stores) directory contains all Reflux stores, which contain data about the game the views need to render their contents and settings/statistics.
 
 [i18n/](https://github.com/Voya100/ReactNativeChess/tree/master/app/i18n) directory contains all localisation files. The app has been made so that it is easy to add new languages if needed. At the moment only English and Finnish are supported.
 
-[components/](https://github.com/Voya100/ReactNativeChess/tree/master/app/game) directory contains all code that relates to rendering of the app and user interactions. Most of the React Native code can be found here.
+[components/](https://github.com/Voya100/ReactNativeChess/tree/master/app/components) directory contains all code that relates to rendering of the app and user interactions. Most of the React Native code can be found here.
 
 # Feedback
 
