@@ -17,7 +17,7 @@ import { CustomBoardSetup } from './custom-board-setup/custom-board-setup';
 
 import { SettingsHelpModal } from './settings-help-modal';
 
-export class ChessSettings extends Reflux.Component {
+export class ChessSettingsScreen extends Reflux.Component {
   static navigationOptions = {
     tabBarLabel: () => i18n.t('settings.title'),
   };
@@ -71,7 +71,7 @@ export class ChessSettings extends Reflux.Component {
       <ScrollView style={styles.container} scrollEnabled={this.state.scrollEnabled}>
         <ChessHeader style={styles.header}>{i18n.t('settings.generalSettings')}</ChessHeader>
 				<ChessButton style={styles.helpButton} onPress={this.openModal}>?</ChessButton>
-				
+
 				<LanguagePickerRow selectedValue={this.state.language} languageOptions={Object.keys(i18n.translations)} onValueChange={this.updateLanguage}/>
 				<GameSpeedSliderRow value={this.state.gameSpeed} onSlidingComplete={this.updateGameSpeed}/>
 				<MaxRoundsSliderRow value={this.state.maxRounds} onSlidingComplete={this.updateMaxRounds}/>

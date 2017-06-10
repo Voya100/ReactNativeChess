@@ -6,10 +6,10 @@ import { StyleSheet, View } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import SplashScreen from 'react-native-splash-screen';
 
-import { ChessMain } from './screens/chess-main/chess-main';
-import { ChessSettings } from './screens/chess-settings/chess-settings';
-import { ChessStatistics } from './screens/chess-statistics/chess-statistics';
-import { ChessHelp } from './screens/chess-help/chess-help';
+import { ChessMainScreen } from './screens/chess-main/chess-main-screen';
+import { ChessSettingsScreen } from './screens/chess-settings/chess-settings-screen';
+import { ChessStatisticsScreen } from './screens/chess-statistics/chess-statistics-screen';
+import { ChessHelpScreen } from './screens/chess-help/chess-help-screen';
 
 import { ChessGame } from '../game/chess-game';
 
@@ -28,10 +28,10 @@ let navigationOptions = {
 }
 
 const AppNavigation = TabNavigator({
-  Main: { screen: ChessMain, navigationOptions },
-  Settings: { screen: ChessSettings, navigationOptions},
-  Statistics: { screen: ChessStatistics, navigationOptions},
-  Help: { screen: ChessHelp, navigationOptions},
+  Main: { screen: ChessMainScreen, navigationOptions },
+  Settings: { screen: ChessSettingsScreen, navigationOptions},
+  Statistics: { screen: ChessStatisticsScreen, navigationOptions},
+  Help: { screen: ChessHelpScreen, navigationOptions},
 
 },{
   cardStyle: {backgroundColor: colors.background},

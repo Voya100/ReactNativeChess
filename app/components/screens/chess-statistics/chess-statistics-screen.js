@@ -10,7 +10,7 @@ import { StatisticsResetModal } from './statistics-reset-modal';
 
 import { StatisticsStore, StatisticsActions } from '../../../stores/statistics-store';
 
-export class ChessStatistics extends Reflux.Component {
+export class ChessStatisticsScreen extends Reflux.Component {
   static navigationOptions = {
     tabBarLabel: () => i18n.t('statistics.title'),
   };

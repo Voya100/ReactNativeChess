@@ -1,13 +1,14 @@
 import React from 'react';
 import Reflux from 'reflux';
-import { View, Text, Image } from 'react-native';
 import i18n from 'react-native-i18n';
+import { View, Text, Image } from 'react-native';
 import { TabNavigator, NavigationActions } from 'react-navigation';
 
 import { GuidePage } from './guide-page';
 import { colors } from '../../colors';
 import { chessImages } from '../../../images/images';
 
+// Returns route path configs for a piece screen
 function piecePage(pieceName){
   return {
     screen: () => <GuidePage id={pieceName}/>,
@@ -65,7 +66,7 @@ const GuideNavigation = TabNavigator({
     }
   }})
 
-export class ChessHelp extends Reflux.Component {
+export class ChessHelpScreen extends Reflux.Component {
   static navigationOptions = {
     tabBarLabel: () => i18n.t('help.title'),
   };

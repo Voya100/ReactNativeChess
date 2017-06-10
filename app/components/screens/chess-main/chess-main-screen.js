@@ -14,7 +14,7 @@ import { RoundStateStore } from '../../../stores/round-state-store';
 const border = 2;
 const margin = 2;
 
-export class ChessMain extends Reflux.Component {
+export class ChessMainScreen extends Reflux.Component {
   static navigationOptions = {
     tabBarLabel: () => i18n.t('game.title'),
   };
