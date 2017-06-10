@@ -1,7 +1,7 @@
 import { Piece } from './piece';
-import { Tile } from '../game/tile';
+import { Tile } from '../tile';
 
-import { SettingsStore } from '../stores/settings-store';
+import { SettingsStore } from '../../stores/settings-store';
 
 export class Pawn extends Piece{
 

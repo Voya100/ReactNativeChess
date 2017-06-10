@@ -5,7 +5,7 @@ import { View, StyleSheet } from 'react-native';
 import { BoardTile } from './board-tile';
 import { BoardPiece } from './board-piece';
 
-import { HumanPlayer } from '../../../../players/human-player';
+import { HumanPlayer } from '../../../../game/players/human-player';
 import { PieceStore } from '../../../../stores/piece-store';
 import { BoardStore } from '../../../../stores/board-store';
 import { RoundStateStore } from '../../../../stores/round-state-store';

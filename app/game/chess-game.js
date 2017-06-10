@@ -1,12 +1,12 @@
 import { Tile } from './tile';
-import { Bishop } from '../pieces/bishop';
-import { King } from '../pieces/king';
-import { Knight } from '../pieces/knight';
-import { Pawn } from '../pieces/pawn';
-import { Queen } from '../pieces/queen';
-import { Rook } from '../pieces/rook';
-import { HumanPlayer } from '../players/human-player';
-import { ComputerPlayer } from '../players/computer-player';
+import { Bishop } from './pieces/bishop';
+import { King } from './pieces/king';
+import { Knight } from './pieces/knight';
+import { Pawn } from './pieces/pawn';
+import { Queen } from './pieces/queen';
+import { Rook } from './pieces/rook';
+import { HumanPlayer } from './players/human-player';
+import { ComputerPlayer } from './players/computer-player';
 
 import { SettingsStore } from '../stores/settings-store';
 import { PieceActions } from '../stores/piece-store';

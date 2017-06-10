@@ -1,5 +1,5 @@
 import { Piece } from './piece';
-import { Tile } from '../game/tile';
+import { Tile } from '../tile';
 
 export class King extends Piece{
 

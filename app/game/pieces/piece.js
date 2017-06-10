@@ -1,7 +1,7 @@
 import * as _ from 'underscore';
 
-import { PieceActions } from '../stores/piece-store';
-import { SettingsStore } from '../stores/settings-store';
+import { PieceActions } from '../../stores/piece-store';
+import { SettingsStore } from '../../stores/settings-store';
 
 // Abstract class
 export class Piece{
