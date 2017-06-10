@@ -1,4 +1,4 @@
-package com.reactnativechess;
+package com.voyacode.chess;
 
 import android.app.Application;
 
