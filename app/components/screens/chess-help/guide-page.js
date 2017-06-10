@@ -20,7 +20,7 @@ export class GuidePage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10
+    margin: 10
   },
   text: {
     fontSize: 14,

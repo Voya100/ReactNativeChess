@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import i18n from 'react-native-i18n';
 
 import { ChessButton } from '../../shared/chess-button';
@@ -16,22 +16,24 @@ export class SettingsHelpModal extends Component {
       <CenteredModal onRequestClose={this.props.onRequestClose} visible={this.props.visible} style={this.props.style}>
         <ChessHeader style={styles.text}>{i18n.t('settings.title')}</ChessHeader>
 
-        <ChessHeader headerType={2}>{i18n.t('settings.language')}</ChessHeader>
-        <ChessText>{i18n.t('settings.languageHelp')}{'\n'}</ChessText>
+        <ScrollView style={{margin:5}}>
+          <ChessHeader headerType={2}>{i18n.t('settings.language')}</ChessHeader>
+          <ChessText>{i18n.t('settings.languageHelp')}{'\n'}</ChessText>
 
-        <ChessHeader headerType={2}>{i18n.t('settings.gameSpeed')}</ChessHeader>
-        <ChessText>{i18n.t('settings.gameSpeedHelp')}{'\n'}</ChessText>
+          <ChessHeader headerType={2}>{i18n.t('settings.gameSpeed')}</ChessHeader>
+          <ChessText>{i18n.t('settings.gameSpeedHelp')}{'\n'}</ChessText>
 
-        <ChessHeader headerType={2}>{i18n.t('settings.maxRounds')}</ChessHeader>
-        <ChessText>{i18n.t('settings.maxRoundsHelp')}{'\n'}</ChessText>
-        
-        <ChessHeader headerType={2}>{i18n.t('settings.reverseBoard')}</ChessHeader>
-        <ChessText>{i18n.t('settings.reverseBoardHelp')}{'\n'}</ChessText>
+          <ChessHeader headerType={2}>{i18n.t('settings.maxRounds')}</ChessHeader>
+          <ChessText>{i18n.t('settings.maxRoundsHelp')}{'\n'}</ChessText>
+          
+          <ChessHeader headerType={2}>{i18n.t('settings.reverseBoard')}</ChessHeader>
+          <ChessText>{i18n.t('settings.reverseBoardHelp')}{'\n'}</ChessText>
 
-        <ChessHeader headerType={2}>{i18n.t('settings.customBoard.title')}</ChessHeader>
-        <ChessText>{i18n.t('settings.customBoardHelp')}{'\n'}</ChessText>
+          <ChessHeader headerType={2}>{i18n.t('settings.customBoard.title')}</ChessHeader>
+          <ChessText>{i18n.t('settings.customBoardHelp')}{'\n'}</ChessText>
+        </ScrollView>
 
-        <ChessButton style={styles.button} onPress={this.props.onRequestClose}>{i18n.t('settings.close')}</ChessButton>
+          <ChessButton style={styles.button} onPress={this.props.onRequestClose}>{i18n.t('settings.close')}</ChessButton>
       </CenteredModal>
     );
   }
