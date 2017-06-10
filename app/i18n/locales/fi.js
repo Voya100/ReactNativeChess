@@ -41,11 +41,11 @@ export default {
     reverseBoardHelp: 'Kääntää pelilautaa 90 astetta.',
     customBoard: {
       title: 'Erikoislauta',
-      pieceOptions: 'Nappulavaihtoehdot (vedä ja tiputa)',
+      pieceOptions: 'Nappulavaihtoehdot (vedä pelilaudalle)',
       board: 'Pelilauta',
       resetToDefault: 'Palauta alkuperäiseksi'
     },
-    customBoardHelp: 'Suunnittele oma pelilauta shakkipeliisi! Musta saa samat nappulat kuin valkoinen, mutta käänteisessä järjestyksessä. Muutokset tulevat voimaan, kun aloitat uuden pelin.',
+    customBoardHelp: 'Suunnittele oma pelilauta vetämällä nappuloita pelilaudalle. Voit poistaa nappuloita vetämällä ne pois laudalta. Musta saa samat nappulat kuin valkoinen, mutta käänteisessä järjestyksessä. Muutokset tulevat voimaan, kun aloitat uuden pelin.',
     close: 'Sulje'
   },
   statistics: {
@@ -75,7 +75,7 @@ Peli päättyy, jos yksi seuraavista ehdoista toteutuu:
 3. Maksimikierrosmäärä täyttyy
 (päättyy tasapeliin, määrää voi säätää asetuksista)
 
-Huomaa, että peli ei automaattisesti estä siirtoja, jotka jättäisivät kuninkaan shakki matti -tilanteeseen, jossa vastapuoli voittaa. Perinteisissä säännöissä tällaiset siirrot ovat kiellettyjä. Tässä tilanteessa mitä todennäkäisimmin häviät pelin, joten pysy tarkkana!
+Huomaa, että toisin kuin perinteisissä säännöissä, tässä versiossa peli päättyy vasta kuninkaan kaappauksen jälkeen. Peli ei myöskään automaattisesti estä siirtoja, jotka jättäisivät kuninkaan shakki matti -tilanteeseen. Tässä tilanteessa mitä todennäköisimmin häviät pelin, joten pysy tarkkana!
 `,
     },
     pawn: {
@@ -83,18 +83,18 @@ Huomaa, että peli ei automaattisesti estä siirtoja, jotka jättäisivät kunin
       content: `
 Sotilaat ovat pelin yleisin nappula. Sotilaat voivat liikkua vuorollaan 1 ruudun eteenpäin, jos kyseisessä ruudussa ei ole toista nappulaa. Sotilaat voivat ensimmäisellä siirrollaan vaihtoehtoisesti siirtyä kaksi ruutua eteenpäin, jos tiellä ei ole muita nappuloita.
 
-Sotilaat voiva kaapata vain nappuloita, jotka ovat niiden etuviistossa (ohestalyönti poikkeuksena).
+Sotilaat voivat kaapata vain nappuloita, jotka ovat niiden etuviistossa (ohestalyönti poikkeuksena).
 
 Jos vastustajan sotilas siirtyy 2 ruutua eteenpäin ja päätyy pelaajan sotilaan viereen vaakatasossa, sotilas voi kaapata vastustajan sotilaan ohestalyönti-erikoisliikkeellä. 
 
-Ohestalyönnissä soturi siirtyy etuviistossa vastustajan soturin taakse ja kaappaa sen. Tämä liike täytyy tehdä heti vastustajan siirron jälkeen.
+Ohestalyönnissä sotilas siirtyy etuviistossa vastustajan sotilaan taakse ja kaappaa sen. Tämä liike täytyy tehdä heti vastustajan siirron jälkeen.
 
-Ylennys on soturin toinen erikoisliike. Kun soturi pääsee laudan toiseen päätyyn, se ylennetään toiseksi nappulaksi. Tässä peliversiossa soturi ylennetään aina kuningattareksi.
+Ylennys on sotilaan toinen erikoisliike. Kun sotilas pääsee laudan toiseen päätyyn, se ylennetään toiseksi nappulaksi. Tässä peliversiossa sotilas ylennetään aina kuningattareksi.
 `
     },
     rook: {
       title: 'Torni',
-      content: `\nTorni voi liikkua vaaka- ja pystysuunnassa kuinka monta ruutua tahansa, mutta ei voi hyppiä toisten ruutujen ylitse.\n\nTorni voi myös tehdä linnoitus-erikoisliikkeen kuninkaan kanssa. Tästä liikkeestä kerrotaan tarkemmin kuningas-osiossa.`
+      content: `\nTorni voi liikkua vaaka- ja pystysuunnassa kuinka monta ruutua tahansa, mutta ei voi hyppiä toisten nappuloiden ylitse.\n\nTorni voi myös tehdä linnoitus-erikoisliikkeen kuninkaan kanssa. Tästä liikkeestä kerrotaan tarkemmin kuningas-osiossa.`
     },
     knight: {
       title: 'Ratsu',
@@ -102,7 +102,7 @@ Ylennys on soturin toinen erikoisliike. Kun soturi pääsee laudan toiseen pää
     },
     bishop: {
       title: 'Lähetti',
-      content: `\nLähetti voi liikkua viistosuunnissa kuinka monta ruutua tahansa, mutta ei hyppiä toisten ruutujen ylitse.`
+      content: `\nLähetti voi liikkua viistosuunnissa kuinka monta ruutua tahansa, mutta ei voi hyppiä toisten nappuloiden ylitse.`
     },
     queen: {
       title: 'Kuningatar',

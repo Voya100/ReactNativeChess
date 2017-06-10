@@ -41,11 +41,11 @@ export default {
     reverseBoardHelp: 'Turns the board by 90 degrees.',
     customBoard: {
       title: 'Custom board',
-      pieceOptions: 'Piece options (drag and drop)',
+      pieceOptions: 'Piece options (drag to the board)',
       board: 'Board',
       resetToDefault: 'Reset to default'
     },
-    customBoardHelp: 'Set a customized board with pieces of your choice. The pieces you set will also be set for black player, but in reversed order. Changes take effect when you start a new game.',
+    customBoardHelp: 'Set a customized board with pieces of your choice by dragging pieces to the board. You can remove pieces by dragging them off the board. The pieces you set will also be set for black player, but in reversed order. Changes take effect when you start a new game.',
     close: 'Close'
   },
   statistics: {
@@ -75,7 +75,7 @@ The game will end if one of the following conditions is met:
 3. Maximum rounds is reached
 (ends in tie - can be configured in the settings)
 
-Note that the game won't automatically prevent you from doing moves that leave the king in check mate, which would be an illegal move in the traditional rules. You will most likely lose the game if you do make a move like this, so stay sharp!`,
+Note that unlike in traditional rules, in this version the game will end when king is captured, not when king is checkmated. The game also won't automatically prevent you from doing moves that leave the king in checkmate.`,
     },
     pawn: {
       title: 'Pawn',
