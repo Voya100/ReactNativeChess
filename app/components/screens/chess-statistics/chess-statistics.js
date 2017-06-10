@@ -1,6 +1,6 @@
 import React from 'react';
 import Reflux from 'reflux';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 import i18n from 'react-native-i18n'
 
 import { ChessText } from '../../shared/chess-text';
@@ -39,7 +39,7 @@ export class ChessStatistics extends Reflux.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <ChessHeader>{i18n.t('statistics.title')}</ChessHeader>
         {this.renderStatsOfGameMode('playerVsComputer')}
         {this.renderStatsOfGameMode('localMultiplayer')}
@@ -51,7 +51,7 @@ export class ChessStatistics extends Reflux.Component {
           onRequestClose={this.closeResetModal} 
           eraseStatistics={this.eraseStatistics}
         />
-      </View>
+      </ScrollView>
     );
   }
   
