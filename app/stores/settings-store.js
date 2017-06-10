@@ -36,7 +36,6 @@ export class SettingsStore extends Reflux.Store{
 
   loadSettings(callback){
     AsyncStorage.getItem(storageKey).then((value) => {
-      console.log("settings", value);
       if(value !== null){
         let settings = JSON.parse(value);
         i18n.locale = settings.language || i18n.locale;
@@ -51,7 +50,6 @@ export class SettingsStore extends Reflux.Store{
   }
 
   saveSettings(changedSettings){
-    console.log("Saving settings");
     this.setState(changedSettings);
     // game mode shouldn't be saved to memory (should always use default)
     AsyncStorage.setItem(storageKey, JSON.stringify({...this.state, whiteIsComputer: undefined, blackIsComputer: undefined}));

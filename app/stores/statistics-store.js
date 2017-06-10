@@ -37,7 +37,6 @@ export class StatisticsStore extends Reflux.Store{
 
   loadStatistic(gameMode){
     AsyncStorage.getItem(storageKey + gameMode).then((value) => {
-      console.log("statistic", gameMode, value);
       if(value !== null){
         this.setState({[gameMode]: JSON.parse(value)});
       }
