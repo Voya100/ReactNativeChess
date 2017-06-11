@@ -12,7 +12,7 @@ export var BoardActions = Reflux.createActions([
 ]);
 
 const defaultBoard = Array(8).fill(1).map((x,j) => Array(8).fill(1).map((x,i) => {
-  return {tile: null, color: (i + j) % 2 == 0 ? colors.blackTile : colors.whiteTile}
+  return {tile: null, color: (i + j) % 2 == 0 ? colors.whiteTile : colors.blackTile}
 }));
 
 export class BoardStore extends Reflux.Store{
@@ -81,7 +81,7 @@ export class BoardStore extends Reflux.Store{
         return colors.enemyTile;
       }
     }else{
-      return (tile.x + tile.y) % 2 == 0 ? colors.blackTile : colors.whiteTile;
+      return (tile.x + tile.y) % 2 == 0 ? colors.whiteTile : colors.blackTile;
     }
   }
 
