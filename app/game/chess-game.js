@@ -90,12 +90,11 @@ export class ChessGame {
 		let positions = this.settings.state.piecePositions;
 		let row1 = positions[0];
 		let row2 = positions[1];
-		// Black rows are reversed
 		for(let i = 0; i < 8; i++){
 			this.addPiece(i, 7, this.white,row1[i], false);
-			this.addPiece(i, 0, this.black,row1[7-i], false);
+			this.addPiece(i, 0, this.black,row1[i], false);
 			this.addPiece(i, 6, this.white,row2[i], false);
-			this.addPiece(i, 1, this.black,row2[7-i], false);
+			this.addPiece(i, 1, this.black,row2[i], false);
 		}
 		PieceActions.setPieces([...this.white.pieces, ...this.black.pieces]);
 	}

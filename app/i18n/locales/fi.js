@@ -45,7 +45,7 @@ export default {
       board: 'Pelilauta',
       resetToDefault: 'Palauta alkuperäiseksi'
     },
-    customBoardHelp: 'Suunnittele oma pelilauta vetämällä nappuloita pelilaudalle. Voit poistaa nappuloita vetämällä ne pois laudalta. Musta saa samat nappulat kuin valkoinen, mutta käänteisessä järjestyksessä. Muutokset tulevat voimaan, kun aloitat uuden pelin.',
+    customBoardHelp: 'Suunnittele oma pelilauta vetämällä nappuloita pelilaudalle. Voit poistaa nappuloita vetämällä ne pois laudalta. Muutokset tulevat voimaan, kun aloitat uuden pelin.',
     close: 'Sulje'
   },
   statistics: {

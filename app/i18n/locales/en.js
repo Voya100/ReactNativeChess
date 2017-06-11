@@ -45,7 +45,7 @@ export default {
       board: 'Board',
       resetToDefault: 'Reset to default'
     },
-    customBoardHelp: 'Set a customized board with pieces of your choice by dragging pieces to the board. You can remove pieces by dragging them off the board. The pieces you set will also be set for black player, but in reversed order. Changes take effect when you start a new game.',
+    customBoardHelp: 'Set a customized board with pieces of your choice by dragging pieces to the board. You can remove pieces by dragging them off the board. The pieces you set will also be set for black player. Changes take effect when you start a new game.',
     close: 'Close'
   },
   statistics: {
