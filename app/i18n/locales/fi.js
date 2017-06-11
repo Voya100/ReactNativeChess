@@ -54,9 +54,9 @@ export default {
     losses: 'Tappiot',
     ties: 'Tasapelit',
     roundAverage: 'Kierroskeskiarvo',
-    resetStatistics: 'Reset tilastotiedot',
+    resetStatistics: 'Nollaa tilastotiedot',
     resetWarning: 'Varoitus: Tämä poistaa kaikki tilastotietosi.\nOletko varma?',
-    resetConfirmation: 'Kyllä, resetoi tietoni',
+    resetConfirmation: 'Kyllä, nollaa tietoni',
     resetDenial: 'Ei, haluan säilyttää tietoni'
   },
   help: {
