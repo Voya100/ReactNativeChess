@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import i18n from 'react-native-i18n';
 import { StyleSheet, View, Dimensions } from 'react-native';
 import { DragContainer } from 'react-native-drag-drop';
@@ -23,16 +24,6 @@ export class CustomBoardSetup extends Component {
     this.onDragEnd = this.onDragEnd.bind(this);
   }
 
-  updateBoardPosition(pieceData, prevPieceType, x, y){
-    if(pieceData.pieceType != prevPieceType){
-      SettingsActions.setPiecePosition(pieceData.pieceType, x, y);
-    }
-    // If draggable piece is from the board, the pieces should be swapped
-    if(pieceData.isOnBoard){
-      SettingsActions.setPiecePosition(prevPieceType, pieceData.x, pieceData.y);
-    }
-  }
-
   // Prevents scrolling when dragging (note: doesn't work reliably)
   onDragStart(){
     this.props.toggleScroll(false);
@@ -46,32 +37,15 @@ export class CustomBoardSetup extends Component {
     }
     this.props.toggleScroll(true);
   }
-  
-  render(){
-    let rowSize = 8;
-    let margin = 5;
-    let size = (Dimensions.get('window').width / rowSize) - margin;
-    return (
-      <View style={[styles.container, this.props.style]}>
-				<ChessText style={styles.text}>{i18n.t('settings.customBoard.title')}</ChessText>
 
-				<DragContainer style={styles.dragContainer} onDragStart={this.onDragStart} onDragEnd={this.onDragEnd}>
-          <ChessText>{i18n.t('settings.customBoard.pieceOptions')}</ChessText>
-          <View style={styles.tileContainer}>
-            {this.renderPieceOptions(size)}    
-          </View>       
-
-          <ChessText>{i18n.t('settings.customBoard.board')}</ChessText>
-          <View style={styles.tileContainer}>
-            {this.renderBoardRow(1, size)}
-            {this.renderBoardRow(0, size)}
-          </View>
-
-          <ChessButton onPress={() => SettingsActions.resetPiecePositions()}>{i18n.t('settings.customBoard.resetToDefault')}</ChessButton>
-        </DragContainer>
-
-			</View>
-    )
+  updateBoardPosition(pieceData, prevPieceType, x, y){
+    if(pieceData.pieceType != prevPieceType){
+      SettingsActions.setPiecePosition(pieceData.pieceType, x, y);
+    }
+    // If draggable piece is from the board, the pieces should be swapped
+    if(pieceData.isOnBoard){
+      SettingsActions.setPiecePosition(prevPieceType, pieceData.x, pieceData.y);
+    }
   }
 
   renderPieceOptions(size){
@@ -87,17 +61,56 @@ export class CustomBoardSetup extends Component {
   renderRow(types, y, size, isBoard){
     let dropZones = types.map((pieceType, x) => {
       let onDrop = isBoard ? (data) => this.updateBoardPosition(data, pieceType, x, y) : undefined;
-      return <TileDropZone data={{pieceType: pieceType, isOnBoard: isBoard, x, y}} size={size} key={x} onDrop={onDrop}/>
+      return <TileDropZone data={{pieceType: pieceType, isOnBoard: isBoard, x, y}} size={size} key={x} onDrop={onDrop} />
     })
     return <View style={styles.tileRow}>{dropZones}</View>;
   }
+  
+  render(){
+    let rowSize = 8;
+    let margin = 5;
+    let size = (Dimensions.get('window').width / rowSize) - margin;
+    return (
+      <View style={[styles.container, this.props.style]}>
+        <ChessText style={styles.text}>{i18n.t('settings.customBoard.title')}</ChessText>
+
+        <DragContainer style={styles.dragContainer} onDragStart={this.onDragStart} onDragEnd={this.onDragEnd}>
+          <ChessText>{i18n.t('settings.customBoard.pieceOptions')}</ChessText>
+          <View style={styles.tileContainer}>
+            {this.renderPieceOptions(size)}    
+          </View>       
+
+          <ChessText>{i18n.t('settings.customBoard.board')}</ChessText>
+          <View style={styles.tileContainer}>
+            {this.renderBoardRow(1, size)}
+            {this.renderBoardRow(0, size)}
+          </View>
+
+          <ChessButton onPress={() => SettingsActions.resetPiecePositions()}>{i18n.t('settings.customBoard.resetToDefault')}</ChessButton>
+        </DragContainer>
+
+      </View>
+    )
+  }
+}
+
+CustomBoardSetup.propTypes = {
+  positions: PropTypes.arrayOf(
+    PropTypes.arrayOf(PropTypes.string)
+    ).isRequired,
+  style: View.propTypes.style,
+  toggleScroll: PropTypes.func.isRequired
+}
+
+CustomBoardSetup.defaultProps = {
+  style: undefined
 }
 
 const styles = StyleSheet.create({
-	container: {
+  container: {
     padding: 5,
     flex: 1
-	},
+  },
   dragContainer: {
     alignItems: 'center'
   },

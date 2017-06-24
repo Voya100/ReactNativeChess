@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 import i18n from 'react-native-i18n';
 
 import { ChessButton } from '../../../shared/chess-button';
@@ -30,6 +31,18 @@ export class ChooseModeModal extends Component {
     );
   }
 }
+
+ChooseModeModal.propTypes = {
+  style: CenteredModal.propTypes.style,
+  visible: PropTypes.bool.isRequired,
+  startNewGame: PropTypes.func.isRequired,
+  onRequestClose: PropTypes.func.isRequired
+}
+
+ChooseModeModal.defaultProps = {
+  style: undefined
+}
+
 
 
 const styles = StyleSheet.create({

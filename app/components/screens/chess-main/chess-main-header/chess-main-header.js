@@ -20,7 +20,7 @@ export class ChessMainHeader extends Reflux.Component {
   renderPieceCount(color, count){
     return (
       <ChessText>
-        <Image style={styles.image} source={chessImages[color + "-pawn-small"]}/>  {i18n.t('game.pieces', {count: count})}
+        <Image style={styles.image} source={chessImages[color + "-pawn-small"]} />  {i18n.t('game.pieces', {count: count})}
       </ChessText>
     )
   }

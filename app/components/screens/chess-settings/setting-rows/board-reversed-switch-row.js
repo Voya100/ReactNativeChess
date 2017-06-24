@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import i18n from 'react-native-i18n';
 import { Switch } from 'react-native';
 
 import { SettingRow } from './setting-row';
 
-export class BoardReversedSwitchRow extends Component {
-  
-  render(){
-    return (
-      <SettingRow title={i18n.t('settings.reverseBoard')}>
-				<Switch value={this.props.value} onValueChange={this.props.onValueChange}/>
-			</SettingRow>
-    )
-  }
+export const BoardReversedSwitchRow = ({value, onValueChange}) => (
+  <SettingRow title={i18n.t('settings.reverseBoard')}>
+    <Switch value={value} onValueChange={onValueChange} />
+  </SettingRow>
+)
+
+BoardReversedSwitchRow.propTypes = {
+  value: PropTypes.bool.isRequired,
+  onValueChange: PropTypes.func.isRequired
 }

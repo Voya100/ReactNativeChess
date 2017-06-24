@@ -1,18 +1,29 @@
-import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import PropTypes from 'prop-types';
 
 import { ChessText } from './chess-text';
 import { colors } from '../colors';
 
-export class ChessButton extends Component {
-  render() {
-    let activeColor = this.props.active ? styles.active : {};
-    return (
-			<TouchableOpacity style={[styles.button, this.props.style, activeColor]} onPress={this.props.onPress} activeOpacity={0.4}>
-				<ChessText>{this.props.children}</ChessText>
-			</TouchableOpacity>
-    );
-  }
+export const ChessButton = ({active, children, style, onPress}) => {
+  let activeColor = active ? styles.active : {};
+  return (
+    <TouchableOpacity style={[styles.button, style, activeColor]} onPress={onPress} activeOpacity={0.4}>
+      <ChessText>{children}</ChessText>
+    </TouchableOpacity>
+  );
+}
+console.warn(TouchableOpacity.propTypes.style)
+ChessButton.propTypes = {
+  active: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  style: View.propTypes.style,
+  onPress: PropTypes.func.isRequired
+}
+
+ChessButton.defaultProps = {
+  active: false,
+  style: undefined
 }
 
 const styles = StyleSheet.create({
@@ -25,9 +36,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
-		flex: 1
+    flex: 1
   },
-	active: {
-		backgroundColor: colors.active
-	}
+  active: {
+    backgroundColor: colors.active
+  }
 });

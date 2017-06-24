@@ -3,7 +3,7 @@ import { AsyncStorage } from 'react-native';
 
 import { SettingsStore } from './settings-store';
 
-export var StatisticsActions = Reflux.createActions([
+export const StatisticsActions = Reflux.createActions([
   'addGameResult',
   'resetStatistics'
 ]);

@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
+import PropTypes from 'prop-types';
 import i18n from 'react-native-i18n';
 
 import { ChessText } from '../../shared/chess-text';
 import { ChessHeader } from '../../shared/chess-header';
 
-export class GuidePage extends Component {
-  
-  render() {
-    return (
-      <ScrollView style={styles.container}>
-        <ChessHeader>{i18n.t('help.' + this.props.id + '.title')}</ChessHeader>
-        <ChessText style={styles.text}>{i18n.t('help.' + this.props.id + '.content')}</ChessText>
-      </ScrollView>
-    );
-  }
+export const GuidePage = ({id}) => (
+  <ScrollView style={styles.container}>
+    <ChessHeader>{i18n.t('help.' + id + '.title')}</ChessHeader>
+    <ChessText style={styles.text}>{i18n.t('help.' + id + '.content')}</ChessText>
+  </ScrollView>
+);
+
+GuidePage.propTypes = {
+  id: PropTypes.string.isRequired
 }
 
 const styles = StyleSheet.create({

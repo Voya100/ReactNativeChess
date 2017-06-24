@@ -2,7 +2,7 @@ import Reflux from 'reflux';
 import { AsyncStorage } from 'react-native';
 import i18n from 'react-native-i18n';
 
-export var SettingsActions = Reflux.createActions([
+export const SettingsActions = Reflux.createActions([
   'loadSettings',
   'setLanguage',
   'setGameMode',
@@ -16,7 +16,7 @@ export var SettingsActions = Reflux.createActions([
 
 const storageKey = "@VoyaCodeChess:settings";
 const defaultPiecePositions = [['R','K','B','Q','X','B','K','R'],
-	                             ['P','P','P','P','P','P','P','P']];
+                               ['P','P','P','P','P','P','P','P']];
 
 export class SettingsStore extends Reflux.Store{
 
@@ -61,8 +61,8 @@ export class SettingsStore extends Reflux.Store{
   }
   
 	// Changes game mode
-	setGameMode(modeCode){
-		switch(modeCode){
+  setGameMode(modeCode){
+    switch(modeCode){
       case 0: // Player vs computer
         this.setState({whiteIsComputer: false, blackIsComputer: true});
         break;
@@ -72,8 +72,8 @@ export class SettingsStore extends Reflux.Store{
       case 2: // Computer vs computer
         this.setState({whiteIsComputer: true, blackIsComputer: true});
         break;
-      }
-	}
+    }
+  }
 
   setPiecePosition(pieceType, x, y){
     let piecePositions = this.state.piecePositions.map(row => row.slice());

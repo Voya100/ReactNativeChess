@@ -4,7 +4,7 @@ import { colors } from '../components/colors';
 import { SettingsStore, SettingsActions } from './settings-store';
 import { RoundStateStore } from './round-state-store';
 
-export var BoardActions = Reflux.createActions([
+export const BoardActions = Reflux.createActions([
   'clearBoard',
   'setBoard',
   'updateAllTiles',

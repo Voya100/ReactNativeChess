@@ -77,9 +77,9 @@ export class ChessMainScreen extends Reflux.Component {
 
     return (
       <View style={[styles.main]}>
-        <ChessMainHeader/>
-        <ChessBoard tileSize={tileSize} style={boardStyle}/>
-        <ChessMainFooter style={styles.footer} startNewGame={this.newGame} showModeModal={this.openChooseModeModal}/>
+        <ChessMainHeader />
+        <ChessBoard tileSize={tileSize} style={boardStyle} />
+        <ChessMainFooter style={styles.footer} startNewGame={this.newGame} showModeModal={this.openChooseModeModal} />
 
         <ChooseModeModal 
           visible={this.state.chooseModeVisible && !this.state.victoryVisible} 

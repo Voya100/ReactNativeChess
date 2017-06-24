@@ -37,24 +37,12 @@ export class ChessStatisticsScreen extends Reflux.Component {
     this.closeResetModal();
   }
 
-  render() {
-    return (
-      <ScrollView style={styles.container}>
-        <ChessHeader>{i18n.t('statistics.title')}</ChessHeader>
-        {this.renderStatsOfGameMode('playerVsComputer')}
-        {this.renderStatsOfGameMode('localMultiplayer')}
-        {this.renderStatsOfGameMode('computerVsComputer')}
-        <ChessButton style={styles.button} onPress={this.openResetModal}>{i18n.t('statistics.resetStatistics')}</ChessButton>
-
-        <StatisticsResetModal 
-          visible={this.state.resetModalVisible} 
-          onRequestClose={this.closeResetModal} 
-          eraseStatistics={this.eraseStatistics}
-        />
-      </ScrollView>
-    );
+  // Returns percentage in brackets (or empty string, if percentage is 0/infinite)
+  percentage(value, max){
+    let percentage = Math.floor((value / max)*100);
+    return max*value == 0 ? '' : ' (' + percentage + ' %)';
   }
-  
+
   renderStatsOfGameMode(mode){
     let header = i18n.t('game.gameMode.' + mode);
     let stats = this.state[mode];
@@ -80,10 +68,22 @@ export class ChessStatisticsScreen extends Reflux.Component {
     )
   }
 
-  // Returns percentage in brackets (or empty string, if percentage is 0/infinite)
-  percentage(value, max){
-    let percentage = Math.floor((value / max)*100);
-    return max*value == 0 ? '' : ' (' + percentage + ' %)';
+  render() {
+    return (
+      <ScrollView style={styles.container}>
+        <ChessHeader>{i18n.t('statistics.title')}</ChessHeader>
+        {this.renderStatsOfGameMode('playerVsComputer')}
+        {this.renderStatsOfGameMode('localMultiplayer')}
+        {this.renderStatsOfGameMode('computerVsComputer')}
+        <ChessButton style={styles.button} onPress={this.openResetModal}>{i18n.t('statistics.resetStatistics')}</ChessButton>
+
+        <StatisticsResetModal 
+          visible={this.state.resetModalVisible} 
+          onRequestClose={this.closeResetModal} 
+          eraseStatistics={this.eraseStatistics}
+        />
+      </ScrollView>
+    );
   }
 }
 

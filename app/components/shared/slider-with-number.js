@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Slider } from 'react-native';
+import PropTypes from 'prop-types';
 
 import { ChessText } from './chess-text';
 
@@ -47,16 +48,29 @@ export class SliderWithNumber extends Component {
   }
 }
 
+SliderWithNumber.propTypes = {
+  step: PropTypes.number.isRequired,
+  style: View.propTypes.style,
+  minimumValue: PropTypes.number.isRequired,
+  maximumValue: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+  onSlidingComplete: PropTypes.func.isRequired
+}
+
+SliderWithNumber.defaultProps = {
+  style: undefined
+}
+
 const styles = StyleSheet.create({
   text: {
-		flex: 1,
-		margin: 5
+    flex: 1,
+    margin: 5
   },
-	sliderContainer: {
-		flex: 2,
-		flexDirection: 'row'
-	},
-	slider: {
-		flex: 5
-	}
+  sliderContainer: {
+    flex: 2,
+    flexDirection: 'row'
+  },
+  slider: {
+    flex: 5
+  }
 });

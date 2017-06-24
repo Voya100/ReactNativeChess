@@ -9,4 +9,4 @@ i18n.translations = {
   fi
 };
 
-export default i18n; 
+export default i18n;

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Image, TouchableHighlight, LayoutAnimation } from 'react-native';
+import PropTypes from 'prop-types';
 import { chessImages } from '../../../../images/images';
+import { Tile } from '../../../../game/tile';
 
 import { colors } from '../../../colors';
 
@@ -41,24 +43,6 @@ export class BoardPiece extends Component {
     }
   }
 
-  render() {
-    let size = {
-      height: this.props.tileSize,
-      width: this.props.tileSize
-    }
-    let position = {
-      position: 'absolute',
-      left: this.pieceLeftLocation(),
-      top: this.pieceTopLocation(),
-      zIndex: 2
-    };
-    return (
-      <TouchableHighlight onPress={this.props.onPress} style={[size, position]} activeOpacity={0.6} underlayColor={colors.highlightTile}>
-        <Image style={size} source={this.image()}/>
-      </TouchableHighlight>
-    );
-  }
-
   pieceTopLocation(){
     if(!this.props.boardReversed){
       return this.props.tile.y * this.props.tileSize;
@@ -80,4 +64,33 @@ export class BoardPiece extends Component {
     return chessImages[this.props.piece.color + '-' + this.props.piece.type];
   }
 
+  render() {
+    let size = {
+      height: this.props.tileSize,
+      width: this.props.tileSize
+    }
+    let position = {
+      position: 'absolute',
+      left: this.pieceLeftLocation(),
+      top: this.pieceTopLocation(),
+      zIndex: 2
+    };
+    return (
+      <TouchableHighlight onPress={this.props.onPress} style={[size, position]} activeOpacity={0.6} underlayColor={colors.highlightTile}>
+        <Image style={size} source={this.image()} />
+      </TouchableHighlight>
+    );
+  }
+}
+
+BoardPiece.propTypes = {
+  boardReversed: PropTypes.bool.isRequired,
+  piece: PropTypes.shape({
+    color: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired
+  }).isRequired,
+  speed: PropTypes.number.isRequired,
+  tile: PropTypes.instanceOf(Tile).isRequired,
+  tileSize: PropTypes.number.isRequired,
+  onPress: PropTypes.func.isRequired
 }

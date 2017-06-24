@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 import i18n from 'react-native-i18n';
 
 import { ChessButton } from '../../../shared/chess-button';
@@ -7,6 +8,15 @@ import { ChessHeader } from '../../../shared/chess-header';
 import { CenteredModal } from '../../../shared/centered-modal';
 
 export class VictoryModal extends Component {
+
+  victoryMessage(){
+    let winner = this.props.winner;
+    if(winner == 'white' || winner == 'black'){
+      return i18n.t('game.victory.' + winner + 'Wins');
+    }else{
+      return i18n.t('game.victory.itsATie');
+    }
+  }
 
   render() {
     return (
@@ -17,16 +27,21 @@ export class VictoryModal extends Component {
       </CenteredModal>
     );
   }
-
-  victoryMessage(){
-    let winner = this.props.winner;
-    if(winner == 'white' || winner == 'black'){
-      return i18n.t('game.victory.' + winner + 'Wins');
-    }else{
-      return i18n.t('game.victory.itsATie');
-    }
-  }
 }
+
+VictoryModal.propTypes = {
+  style: CenteredModal.propTypes.style,
+  visible: PropTypes.bool.isRequired,
+  winner: PropTypes.string.isRequired,
+  openChooseModeModal: PropTypes.func.isRequired,
+  startNewGame: PropTypes.func.isRequired,
+  onRequestClose: PropTypes.func.isRequired
+}
+
+VictoryModal.defaultProps = {
+  style: undefined
+}
+
 
 const styles = StyleSheet.create({
   text: {

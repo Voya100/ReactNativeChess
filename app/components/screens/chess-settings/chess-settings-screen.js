@@ -25,81 +25,81 @@ export class ChessSettingsScreen extends Reflux.Component {
   constructor(){
     super();
     this.store = SettingsStore;
-		this.state = {helpModalOpen: false, scrollEnabled: true};
-		this.updateLanguage = this.updateLanguage.bind(this);
-		this.openModal = this.openModal.bind(this);
-		this.closeModal = this.closeModal.bind(this);
-		this.toggleScroll = this.toggleScroll.bind(this);
+    this.state = {helpModalOpen: false, scrollEnabled: true};
+    this.updateLanguage = this.updateLanguage.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.toggleScroll = this.toggleScroll.bind(this);
   }
 
-	updateLanguage(language){
-		SettingsActions.setLanguage(language);
-		// A trick to make nav bar update
-		this.props.navigation.setParams({language});
-	}
+  updateLanguage(language){
+    SettingsActions.setLanguage(language);
+    // A trick to make nav bar update
+    this.props.navigation.setParams({language});
+  }
 
-	updateGameSpeed(speed){
-		SettingsActions.setGameSpeed(speed);
-	}
+  updateGameSpeed(speed){
+    SettingsActions.setGameSpeed(speed);
+  }
 
-	updateMaxRounds(rounds){
-		SettingsActions.setMaxRounds(rounds);
-	}
+  updateMaxRounds(rounds){
+    SettingsActions.setMaxRounds(rounds);
+  }
 
-	updateBoardReversed(reversed){
-		SettingsActions.setBoardReversed(reversed);
-	}
+  updateBoardReversed(reversed){
+    SettingsActions.setBoardReversed(reversed);
+  }
 
-	updateBoardLayout(row1, row2){
-		SettingsActions.setPiecePositions(row1, row2);
-	}
+  updateBoardLayout(row1, row2){
+    SettingsActions.setPiecePositions(row1, row2);
+  }
 
-	openModal(){
-		this.setState({helpModalOpen: true});
-	}
+  openModal(){
+    this.setState({helpModalOpen: true});
+  }
 
-	closeModal(){
-		this.setState({helpModalOpen: false});
-	}
+  closeModal(){
+    this.setState({helpModalOpen: false});
+  }
 
-	toggleScroll(scrollEnabled){
-		this.setState({scrollEnabled})
-	}
+  toggleScroll(scrollEnabled){
+    this.setState({scrollEnabled})
+  }
 
   render() {
     return (
       <ScrollView style={styles.container} scrollEnabled={this.state.scrollEnabled}>
         <ChessHeader style={styles.header}>{i18n.t('settings.generalSettings')}</ChessHeader>
-				<ChessButton style={styles.helpButton} onPress={this.openModal}>?</ChessButton>
+        <ChessButton style={styles.helpButton} onPress={this.openModal}>?</ChessButton>
 
-				<LanguagePickerRow selectedValue={this.state.language} languageOptions={Object.keys(i18n.translations)} onValueChange={this.updateLanguage}/>
-				<GameSpeedSliderRow value={this.state.gameSpeed} onSlidingComplete={this.updateGameSpeed}/>
-				<MaxRoundsSliderRow value={this.state.maxRounds} onSlidingComplete={this.updateMaxRounds}/>
-				<BoardReversedSwitchRow value={this.state.boardReversed} onValueChange={this.updateBoardReversed}/>
-				<CustomBoardSetup positions={this.state.piecePositions} toggleScroll={this.toggleScroll}/>
+        <LanguagePickerRow selectedValue={this.state.language} languageOptions={Object.keys(i18n.translations)} onValueChange={this.updateLanguage} />
+        <GameSpeedSliderRow value={this.state.gameSpeed} onSlidingComplete={this.updateGameSpeed} />
+        <MaxRoundsSliderRow value={this.state.maxRounds} onSlidingComplete={this.updateMaxRounds} />
+        <BoardReversedSwitchRow value={this.state.boardReversed} onValueChange={this.updateBoardReversed} />
+        <CustomBoardSetup positions={this.state.piecePositions} toggleScroll={this.toggleScroll} />
 
-				<SettingsHelpModal visible={this.state.helpModalOpen} onRequestClose={this.closeModal}/>
-			</ScrollView>
+        <SettingsHelpModal visible={this.state.helpModalOpen} onRequestClose={this.closeModal} />
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-	container: {
-		margin: 10,
-		position: 'relative',
-		flex: 1
-	},
-	header: {
- 		margin:5
-	},
-	helpButton: {
-		width: 30,
-		height: 30,
-		borderRadius: 15,
-		position: 'absolute',
-		top: 5,
-		right: 5,
-		margin: 0
-	}
+  container: {
+    margin: 10,
+    position: 'relative',
+    flex: 1
+  },
+  header: {
+    margin:5
+  },
+  helpButton: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    position: 'absolute',
+    top: 5,
+    right: 5,
+    margin: 0
+  }
 });

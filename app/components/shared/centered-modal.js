@@ -1,28 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, View, Modal, TouchableWithoutFeedback } from 'react-native';
+import PropTypes from 'prop-types';
 
 import { colors } from '../colors';
 
 // Centered modal that can be closed by pressing outside of it
 
-export class CenteredModal extends Component {
+// Touchables close modal when pressed outside of the content area
 
-  render() {
-    // Touchables close modal when pressed outside of the content area
-    return (
-      <Modal animationType={"fade"} transparent={true} onRequestClose={this.props.onRequestClose} visible={this.props.visible}>
-        <TouchableWithoutFeedback onPress={this.props.onRequestClose}>
-          <View style={styles.container}>
-            <TouchableWithoutFeedback>
-              <View style={[styles.modalContent,this.props.style]}>
-                {this.props.children}
-              </View>
-            </TouchableWithoutFeedback>
+export const CenteredModal = ({children, style, visible, onRequestClose}) => (
+  <Modal animationType={"fade"} visible={visible} onRequestClose={onRequestClose} transparent>
+    <TouchableWithoutFeedback onPress={onRequestClose}>
+      <View style={styles.container}>
+        <TouchableWithoutFeedback>
+          <View style={[styles.modalContent, style]}>
+            {children}
           </View>
         </TouchableWithoutFeedback>
-      </Modal>
-    );
-  }
+      </View>
+    </TouchableWithoutFeedback>
+  </Modal>
+);
+
+CenteredModal.propTypes = {
+  children: PropTypes.node.isRequired,
+  style: View.propTypes.style,
+  visible: PropTypes.bool.isRequired,
+  onRequestClose: PropTypes.func.isRequired
+}
+
+CenteredModal.defaultProps = {
+  style: undefined
 }
 
 const styles = StyleSheet.create({

@@ -1,6 +1,6 @@
 import Reflux from 'reflux';
 
-export var PieceActions = Reflux.createActions([
+export const PieceActions = Reflux.createActions([
   'clearPieces',
   'setPieces',
   'addPiece',
@@ -12,51 +12,51 @@ export var PieceActions = Reflux.createActions([
 
 export class PieceStore extends Reflux.Store
 {
-    constructor(){
-      super();
-      this.pieceIds = [];
-      this.pieceLocationsMap = {}; // {id: {piece, tile}}
-      this.state = {pieceLocations: []}; 
-      this.listenables = PieceActions;
-    }
+  constructor(){
+    super();
+    this.pieceIds = [];
+    this.pieceLocationsMap = {}; // {id: {piece, tile}}
+    this.state = {pieceLocations: []}; 
+    this.listenables = PieceActions;
+  }
 
-    clearPieces(){
-      this.pieceIds = [];
-      this.pieceLocationsMap = {};
-      this.setState({pieceLocations: []});
-    }
+  clearPieces(){
+    this.pieceIds = [];
+    this.pieceLocationsMap = {};
+    this.setState({pieceLocations: []});
+  }
 
-    setPieces(pieces){
-      this.pieceLocationsMap = {};
-      this.pieceIds = [];
-      let pieceLocations = pieces.map((piece) => {
-        let pieceLocation = {piece, tile: piece.tile};
-        this.pieceLocationsMap[piece.id] = pieceLocation;
-        this.pieceIds.push(piece.id);
-        return pieceLocation;
-      })
-      this.setState({pieceLocations});
-    }
-
-    addPiece(piece, tile){
-      let pieceLocation = {piece, tile};
-      this.pieceIds.push(piece.id);
+  setPieces(pieces){
+    this.pieceLocationsMap = {};
+    this.pieceIds = [];
+    let pieceLocations = pieces.map((piece) => {
+      let pieceLocation = {piece, tile: piece.tile};
       this.pieceLocationsMap[piece.id] = pieceLocation;
-      this.setState({pieceLocations: this.state.pieceLocations.concat(pieceLocation)});
-    }
+      this.pieceIds.push(piece.id);
+      return pieceLocation;
+    })
+    this.setState({pieceLocations});
+  }
 
-    removePiece(piece){
-      this.pieceIds = this.pieceIds.filter((id) => id !== piece.id);
-      this.setState({pieceLocations: this.pieceLocations()});
-      this.pieceLocationsMap[piece.id] = undefined;
-    }
+  addPiece(piece, tile){
+    let pieceLocation = {piece, tile};
+    this.pieceIds.push(piece.id);
+    this.pieceLocationsMap[piece.id] = pieceLocation;
+    this.setState({pieceLocations: this.state.pieceLocations.concat(pieceLocation)});
+  }
 
-    movePiece(piece, tile){
-      this.pieceLocationsMap[piece.id] = {piece, tile};
-      this.setState({pieceLocations: this.pieceLocations()});
-    }
+  removePiece(piece){
+    this.pieceIds = this.pieceIds.filter((id) => id !== piece.id);
+    this.setState({pieceLocations: this.pieceLocations()});
+    this.pieceLocationsMap[piece.id] = undefined;
+  }
 
-    pieceLocations(){
-      return this.pieceIds.map(id => this.pieceLocationsMap[id]);
-    }
+  movePiece(piece, tile){
+    this.pieceLocationsMap[piece.id] = {piece, tile};
+    this.setState({pieceLocations: this.pieceLocations()});
+  }
+
+  pieceLocations(){
+    return this.pieceIds.map(id => this.pieceLocationsMap[id]);
+  }
 }

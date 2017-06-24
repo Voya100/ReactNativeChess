@@ -1,10 +1,11 @@
 import React from 'react';
 import Reflux from 'reflux';
-import '../i18n/i18n'; // Localisation setup
 
 import { StyleSheet, View } from 'react-native';
 import { TabNavigator } from 'react-navigation';
 import SplashScreen from 'react-native-splash-screen';
+
+import '../i18n/i18n'; // Localisation setup
 
 import { ChessMainScreen } from './screens/chess-main/chess-main-screen';
 import { ChessSettingsScreen } from './screens/chess-settings/chess-settings-screen';
@@ -90,7 +91,7 @@ export default class ReactNativeChess extends Reflux.Component {
   render() {
     return (
       <View style={styles.container}>
-        <AppNavigation screenProps={{language: this.state.language}} onNavigationStateChange={this.setRoute}/>
+        <AppNavigation screenProps={{language: this.state.language}} onNavigationStateChange={this.setRoute} />
       </View>
     );  
   }

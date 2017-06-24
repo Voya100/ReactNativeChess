@@ -38,13 +38,22 @@ export class ChessBoard extends Reflux.Component {
   }
 
   renderTile(tileData, index){
-    return <BoardTile color={tileData.color} tile={tileData.tile} onPress={() => this.selectTile(tileData.tile)} key={index}/>;
+    return <BoardTile color={tileData.color} tile={tileData.tile} onPress={() => this.selectTile(tileData.tile)} key={index} />;
   }
 
   renderPieces(){
     return this.state.pieceLocations.map(({piece,tile}) => {
-      return <BoardPiece piece={piece} tile={tile} boardReversed={this.state.boardReversed} tileSize={this.props.tileSize} 
-                         key={piece.id} speed={this.state.gameSpeed} onPress={() => this.selectTile(tile)} />
+      return (
+        <BoardPiece 
+          piece={piece} 
+          tile={tile} 
+          boardReversed={this.state.boardReversed} 
+          tileSize={this.props.tileSize} 
+          key={piece.id} 
+          speed={this.state.gameSpeed} 
+          onPress={() => this.selectTile(tile)}
+        />
+      )
     })
   }
 
