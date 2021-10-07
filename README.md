@@ -2,7 +2,7 @@
 
 Welcome to the repository of my android chess game which is made with React native. You can download the app from [Google Play](https://play.google.com/store/apps/details?id=com.voyacode.chess).
 
-This app is very heavily based on [chess game](http://www.voyacode.com/projects/chess) I made for my website with Angular. If you want to know more about how the game mechanics or the AI (of my own design) work, check the [repository of the original version](https://github.com/Voya100/VoyaCode/tree/master/app/projects/chess).
+This app is very heavily based on [chess game](https://voyacode.com/projects/chess) I made for my website with Angular. If you want to know more about how the game mechanics or the AI (of my own design) work, check the [repository of the original version](https://github.com/Voya100/VoyaCode/tree/master/src/app/projects/chess).
 
 # App structure
 
@@ -16,7 +16,8 @@ All the main game logic is contained in [game/](https://github.com/Voya100/React
 
 # iOS support
 
-At the moment only Android version of the app exists. The app code should in theory also work with iOS (possibly after small fixes/additions), but I lack the equipment to build, test or release iOS apps. This is unlikely to change in the near future. The [browser version](http://www.voyacode.com/projects/chess), however, scales to mobile devices, so you can use that to try the game on iOS, if you so desire.
+At the moment only Android version of the app exists. The app code should in theory also work with iOS (possibly after small fixes/additions), but I lack the equipment to build, test or release iOS apps. This is unlikely to change in the near future. The [browser version](https://www.voyacode.com/projects/chess), however, scales to mobile devices, so you can use that to try the game on iOS, if you so desire.
+
 
 # Feedback
 
