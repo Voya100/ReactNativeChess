@@ -26,7 +26,7 @@ You will also need to install node dependencies with `npm install`. Latest teste
 
 Connect an Android device with USB, enable developer settings and configure it to allow USB debug mode. If done correctly, Android should prompt for permissions on the first time.
 
-Launch the app in developer mode with `npm run dev`. It will run the build and launch it on the phone. 
+Launch the app in developer mode with `npm run dev`. It will run the build and launch it on the phone. If there is another version of the app (e.g. from Google Play), you will need to uninstall it first.
 The app dependencies are quite old, so it may warn that the app might not work properly on newer devices.
 
 # Feedback
