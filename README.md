@@ -18,6 +18,16 @@ All the main game logic is contained in [game/](https://github.com/Voya100/React
 
 At the moment only Android version of the app exists. The app code should in theory also work with iOS (possibly after small fixes/additions), but I lack the equipment to build, test or release iOS apps. This is unlikely to change in the near future. The [browser version](https://www.voyacode.com/projects/chess), however, scales to mobile devices, so you can use that to try the game on iOS, if you so desire.
 
+# How to run
+
+To run the app, you need to have ANDROID_HOME environment variable set to Android SDK location. Android SDK is installed along with Android studio. Some instructions on this can be found from [React Native documentation](https://reactnative.dev/docs/environment-setup), although all steps may not fully apply with this version of React Native being quite old at the time of writing this (2021).
+
+You will also need to install node dependencies with `npm install`. Latest tested node version is 12.7.0.
+
+Connect an Android device with USB, enable developer settings and configure it to allow USB debug mode. If done correctly, Android should prompt for permissions on the first time.
+
+Launch the app in developer mode with `npm run dev`. It will run the build and launch it on the phone. 
+The app dependencies are quite old, so it may warn that the app might not work properly on newer devices.
 
 # Feedback
 

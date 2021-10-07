@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
+    "dev": "node node_modules/react-native/local-cli/cli.js run-android",
     "run-prod": "react-native run-android --variant=release",
     "build-prod": "cd android && gradlew assembleRelease && cd ..",
     "gradlew-clean": "cd android && gradlew clean && cd..",
